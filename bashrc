@@ -32,7 +32,7 @@ if [[ "$OS" = "darwin" ]]; then
     export CLICOLOR=1
     export LSCOLORS=ExFxCxDaBxegedabagacad
 else
-    alias ls='ls --colour=auto'
+    alias ls='ls --color=auto'
 fi
 
 # Under windows, we'll need a bit of trickery for the python path.

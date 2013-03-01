@@ -39,7 +39,8 @@ fi
 
 # Set the library path
 paths="
-    $HOME/opt/OpenBLAS/lib
+    /opt/OpenBLAS/lib
+    $HOME/usr/opt/OpenBLAS/lib
     $HOME/usr/lib
     $HOME/usr/lib64
 "
@@ -47,7 +48,7 @@ for p in $paths; do
     if [[ -z "$LD_LIBRARY_PATH" ]]; then
         [ -d $p ] && LD_LIBRARY_PATH=$p
     else
-        [ -d $p ] && LD_LIBRARY_PATH=LD_LIBRARY_PATH:$p
+        [ -d $p ] && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$p
     fi
 done
 if [[ ! -z "$LD_LIBRARY_PATH" ]]; then
@@ -62,7 +63,7 @@ for p in $paths; do
     if [[ -z "$PKG_CONFIG_PATH" ]]; then
         [ -d $p ] && PKG_CONFIG_PATH=$p
     else
-        [ -d $p ] && PKG_CONFIG_PATH=PKG_CONFIG_PATH:$p
+        [ -d $p ] && PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$p
     fi
 done
 if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
