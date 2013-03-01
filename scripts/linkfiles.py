@@ -10,7 +10,13 @@
 # Define the files of interest.
 import os
 files = [ \
-        "bash_profile", "tmux.conf", "vim", "vimrc", "scripts" \
+        "bash_profile",     \
+        "bashrc",           \
+        "tmux.conf",        \
+        "profile",          \
+        "vim",              \
+        "vimrc",            \
+        "scripts"           \
     ]
 
 # Get the root directory of the dot files.
