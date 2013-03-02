@@ -6,7 +6,6 @@ paths="
     /opt/android-sdk-macosx/platform-tools
     $HOME/.scripts
     $HOME/usr/bin
-    $PYTHON3DIR                             # Windows python path
     /nagfor/bin                             # MinGW mount point
 "
 for p in $paths; do
