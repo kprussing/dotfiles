@@ -70,30 +70,3 @@ if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
     export PKG_CONFIG_PATH
 fi
 
-#--------1---------2---------3---------4---------5---------6---------7--
-# Below is my origin from home.
-# My path variables
-#PATH=$PATH:~/scripts
-
-# Add android SDK to path
-#PATH=$PATH:/opt/android-sdk-macosx/tools
-#PATH=$PATH:/opt/android-sdk-macosx/platform-tools
-##
-# Your previous /Users/keith/.profile file was backed up as /Users/keith/.profile.macports-saved_2012-06-21_at_20:33:52
-##
-
-# MacPorts Installer addition on 2012-06-21_at_20:33:52: adding an appropriate PATH variable for use with MacPorts.
-#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-# Add the man path for nagfor
-#if [[ -z $MANPATH ]]; then
-    #MANPATH=/usr/local/man
-#else
-    #MANPATH=$MANPATH:/usr/local/man
-#fi
-#MANPATH=$MANPATH:/opt/local/share/man
-#MANPATH=$MANPATH:/opt/X11/share/man
-#MANPATH=/usr/share/man:$MANPATH
-#export MANPATH
-

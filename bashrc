@@ -54,9 +54,9 @@ fi
 
 # If the X server is running, update the database. I really don't know
 # if this is even working correctly.
-if [[ -f .Xresources ]]; then
-    if ! xrdb .Xresources; then
-        echo "No X server at \$DISPLAY [$DISPLAY]" >& 2
-    fi
-fi
+#if [[ -f .Xresources ]]; then
+    #if ! xrdb .Xresources; then
+        #echo "No X server at \$DISPLAY [$DISPLAY]" >& 2
+    #fi
+#fi
 

@@ -1,0 +1,40 @@
+﻿! Set the font ----------------------------------------
+*font       :  -*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*-*
+
+
+! Terminal colors -------------------------------------
+xterm*font   : -*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*-*
+*background : #1C1C1C
+*foreground : #D0D0D0
+! Black 
+*color0     : #0C0C0C
+*color8     : #0A0A0A
+! Red
+*color1     : #D78787
+*color9     : #DD8787
+! Green
+*color2     : #ADD787
+*color10    : #ADDD87
+! Yellow
+*color3     : #F7F7AD
+*color11    : #FFFFAD
+! Blue
+*color4     : #87ADD7
+*color12    : #87ADDD
+! Magenta
+*color5     : #D7ADD7
+*color13    : #DDADDD
+! Cyan
+*color6     : #ADD7D7
+*color14    : #ADDDDD
+! White
+*color7     : #E6E6E6
+*color15    : #EEEEEE
+
+
+! Xft settings ---------------------------------------------------------------
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight

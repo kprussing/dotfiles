@@ -18,7 +18,6 @@ bundledir = os.getenv("HOME") +os.sep +".vim" +os.sep +"bundle"
 # Define a method to install a given bundle.
 def install(bundle):
     import subprocess
-    home = os.getenv("HOME")
     if os.path.exists(bundledir +os.sep +bundle):
         raise ValueError(bundle +" is already installed! Try updating.")
     # Save the current working directory.
@@ -34,7 +33,6 @@ def install(bundle):
 # Define a method to update the give bundle.
 def update(bundle):
     import subprocess
-    home = os.getenv("HOME")
     if not os.path.exists(bundledir +os.sep +bundle):
         raise ValueError(bundle +" is not installed! Try installing.")
     # Save the current working directory.
@@ -45,6 +43,23 @@ def update(bundle):
     ret = subprocess.call(["git", "pull"])
     print("Done")
     os.chdir(pwd)
+    return ret
+
+def pathogen():
+    import subprocess
+    autoload = os.path.abspath( \
+            bundledir +os.sep +".." +os.sep + "autoload" \
+        )
+    if not os.path.exists(autoload):
+        os.mkdir(autoload)
+    if os.path.exists(autoload +os.sep +"pathogen.vim"):
+        return 
+    print("Installing pathogen...")
+    ret = subprocess.call( [ \
+            "curl", "-o", autoload+os.sep+"pathogen.vim", \
+            "https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim" \
+        ] )
+    print("Done")
     return ret
 
 if __name__ == "__main__":
@@ -58,6 +73,7 @@ if __name__ == "__main__":
         lBundles = list( bundles.keys() )
     else:
         lBundles = sys.argv[2:]
+    pathgen()
     for bundle in lBundles:
         if bundle not in bundles.keys():
             print("Unknown bundle " +bundle +" passed in! Skipping.")
