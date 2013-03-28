@@ -7,6 +7,7 @@ paths="
     $HOME/.scripts
     $HOME/usr/bin
     /nagfor/bin                             # MinGW mount point
+    $HOME/.local/scripts
 "
 for p in $paths; do
     [ -d $p ] && BIN=$BIN:$p

@@ -14,6 +14,8 @@ bundles = { \
         "nerdcommenter" : "git://github.com/scrooloose/nerdcommenter.git" \
     }
 bundledir = os.getenv("HOME") +os.sep +".vim" +os.sep +"bundle"
+if not os.path.exists(bundledir):
+    os.mkdir(bundledir)
 
 # Define a method to install a given bundle.
 def install(bundle):
@@ -73,7 +75,7 @@ if __name__ == "__main__":
         lBundles = list( bundles.keys() )
     else:
         lBundles = sys.argv[2:]
-    pathgen()
+    pathogen()
     for bundle in lBundles:
         if bundle not in bundles.keys():
             print("Unknown bundle " +bundle +" passed in! Skipping.")
