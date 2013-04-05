@@ -36,18 +36,14 @@ else
 fi
 
 # Under windows, we'll need a bit of trickery for the python path.
-if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
-    PYTHON3DIR=/c/Programs/Python/3.2.3
-    PYTHON2DIR=/c/Programs/Python/2.7.3
-    if [[ $OS = *cygwin* ]]; then
-        PYTHON3DIR=/cygdrive$PYTHON3DIR
-        PYTHON2DIR=/cygdrive$PYTHON2DIR
-    fi
-    export PYTHON3DIR
-    export PYTHON2DIR
-    alias python2='${PYTHON2DIR}/python -E'
-    alias python3='${PYTHON3DIR}/python -E'
+if [[ $OS = *mingw* ]]; then
+    alias python='py'
+    alias python3='py -3.2'
+    alias python3.2='py -3.2'
+    alias python3.3='py -3'
+fi
 
+if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
     # Go ahead and set the X forwarding display too.
     export DISPLAY=:0
 fi
