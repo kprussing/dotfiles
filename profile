@@ -1,16 +1,19 @@
 # Add to the path ordered by preference
 paths="
-    /opt/local/bin                          # macports
-    /opt/local/sbin                         # macports
+    /opt/local/bin
+    /opt/local/sbin
     /opt/android-sdk-macosx/tools
     /opt/android-sdk-macosx/platform-tools
     $HOME/.scripts
-    $HOME/usr/bin
-    /nagfor/bin                             # MinGW mount point
-    $HOME/.local/scripts
-"
+    /nagfor/bin
+    $HOME/.local/bin
+    $HOME/.local/scripts"
 for p in $paths; do
-    [ -d $p ] && BIN=$BIN:$p
+    if [[ -x "$BIN" ]]; then
+        [ -d $p ] && BIN=$p
+    else
+        [ -d $p ] && BIN=$BIN:$p
+    fi
 done
 # And set the path
 if [[ ! -z "$BIN" ]]; then
@@ -23,8 +26,8 @@ paths="
     /usr/local/man
     /opt/local/share/man
     /opt/X11/share/man
-    $HOME/usr/man
-    $HOME/usr/share/man
+    $HOME/.local/man
+    $HOME/.local/share/man
 "
 for p in $paths; do
     if [[ -z "$MANPATH" ]]; then
@@ -40,9 +43,8 @@ fi
 # Set the library path
 paths="
     /opt/OpenBLAS/lib
-    $HOME/usr/opt/OpenBLAS/lib
-    $HOME/usr/lib
-    $HOME/usr/lib64
+    $HOME/.local/lib
+    $HOME/.local/lib64
 "
 for p in $paths; do
     if [[ -z "$LD_LIBRARY_PATH" ]]; then
@@ -57,7 +59,7 @@ fi
 
 # Set the pkgconfig path
 paths="
-    $HOME/usr/lib/pkgconfig
+    $HOME/.local/lib/pkgconfig
 "
 for p in $paths; do
     if [[ -z "$PKG_CONFIG_PATH" ]]; then
@@ -68,5 +70,20 @@ for p in $paths; do
 done
 if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
     export PKG_CONFIG_PATH
+fi
+
+# Set a python development path
+paths="$HOME/Documents/Development/python_dev"
+for pp in $paths; do
+    for p in $pp/*; do
+        if [[ -z "$PYTHONPATH" ]]; then
+            [ -d $p ] && PYTHONPATH=$p
+        else
+            [ -d $p ] && PYTHONPATH=$PYTHONPATH:$p
+        fi
+    done
+done
+if [[ ! -z "$PYTHONPATH" ]]; then
+    export PYTHONPATH
 fi
 
