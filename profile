@@ -9,7 +9,7 @@ paths="
     $HOME/.local/bin
     $HOME/.local/scripts"
 for p in $paths; do
-    if [[ -x "$BIN" ]]; then
+    if [[ -z "$BIN" ]]; then
         [ -d $p ] && BIN=$p
     else
         [ -d $p ] && BIN=$BIN:$p

@@ -13,10 +13,10 @@ files = [ \
         "bash_profile",     \
         "bashrc",           \
         "tmux.conf",        \
-        "profile",          \
         "vim",              \
         "vimrc",            \
-        "scripts"           \
+        "scripts",          \
+        "gitignore"         \
     ]
 
 # Get the root directory of the dot files.

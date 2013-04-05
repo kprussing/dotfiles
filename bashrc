@@ -48,11 +48,107 @@ if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
     export DISPLAY=:0
 fi
 
-# If the X server is running, update the database. I really don't know
-# if this is even working correctly.
-#if [[ -f .Xresources ]]; then
-    #if ! xrdb .Xresources; then
-        #echo "No X server at \$DISPLAY [$DISPLAY]" >& 2
-    #fi
-#fi
+# Now we handle the path variables.  The order of the lists below are in
+# descending preference.  The path variable is prepended; while, the
+# rest are appended to the appropriate variable.
+paths="
+    $HOME/.local/bin
+    $HOME/.local/scripts
+    $HOME/.scripts
+    /opt/local/bin
+    /opt/local/sbin
+    /opt/android-sdk-macosx/tools
+    /opt/android-sdk-macosx/platform-tools
+    /nagfor/bin
+"
+for p in $paths; do
+    if [[ (-d $p) && ($p =~ $PATH) ]]; then
+        if [[ -z "$BIN" ]]; then
+            BIN=$p
+        else
+            BIN=$BIN:$p
+        fi
+    fi
+done
+if [[ ! -z "$BIN" ]]l then
+    export PATH=$BIN:$PATH
+fi
+
+# The man page path
+paths="
+    /usr/share/man
+    /usr/local/man
+    /opt/local/share/man
+    /opt/X11/share/man
+    $HOME/.local/man
+    $HOME/.local/share/man
+"
+for p in $paths; do
+    if [[ (-d $p) && ($p =~ $MANPATH) ]]; then
+        if [[ -z "$MANPATH" ]]; then
+            MANPATH=$p
+        else
+            MANPATH=$MANPATH:$p
+        fi
+    fi
+done
+if [[ ! -z "$MANPATH" ]]; then
+    export MANPATH
+fi
+
+# Next the library path
+paths="
+    /opt/OpenBLAS/lib
+    $HOME/.local/lib
+    $HOME/.local/lib64
+"
+for p in $paths; do
+    if [[ (-d $p) && ($p =~ $LD_LIBRARY_PATH) ]]; then
+        if [[ -z "$LD_LIBRARY_PATH" ]]; then
+            LD_LIBRARY_PATH=$p
+        else
+            LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$p
+        fi
+    fi
+done
+if [[ ! -z "$LD_LIBRARY_PATH" ]]; then
+    export LD_LIBRARY_PATH
+fi
+
+# Next the pkg-config path
+paths="
+    $HOME/.local/lib/pkgconfig
+"
+for p in $paths; do
+    if [[ (-d $p) && ($p =~ $PKG_CONFIG_PATH) ]]; then
+        if pp -z "$PKG_CONFIG_PATH" ]]; then
+            PKG_CONFIG_PATH=$p
+        else
+            PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$p
+        fi
+    fi
+done
+if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
+    export PKG_CONFIG_PATH
+fi
+
+# And set the python development path.  This might need some tweaking
+# still...
+paths="
+    $HOME/Documents/Development/python_dev
+"
+for dd in $paths; do
+    for pp in $dd/*; do
+        p=$pp/build/lib
+        if [[ (-d $p) && ($p =~ $PYTHONPATH) ]]; then
+            if [[ -z "$PYTHONPATH" ]]; then
+                PYTHONPATH=$p
+            else
+                PYTHONPATH=$PYTHONPATH:$p
+            fi
+        fi
+done
+if [[ ! -z "$PYTHONPATH" ]]; then
+    export PYTHONPATH
+fi
 
