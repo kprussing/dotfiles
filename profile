@@ -77,9 +77,9 @@ paths="$HOME/Documents/Development/python_dev"
 for pp in $paths; do
     for p in $pp/*; do
         if [[ -z "$PYTHONPATH" ]]; then
-            [ -d $p ] && PYTHONPATH=$p
+            [ -d $p/build ] && PYTHONPATH=$p/build
         else
-            [ -d $p ] && PYTHONPATH=$PYTHONPATH:$p
+            [ -d $p/build ] && PYTHONPATH=$PYTHONPATH:$p/build
         fi
     done
 done
