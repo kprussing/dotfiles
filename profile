@@ -1,13 +1,14 @@
 # Add to the path ordered by preference
 paths="
+    $HOME/.scripts
+    $HOME/.local/bin
+    $HOME/.local/scripts
     /opt/local/bin
     /opt/local/sbin
     /opt/android-sdk-macosx/tools
     /opt/android-sdk-macosx/platform-tools
-    $HOME/.scripts
     /nagfor/bin
-    $HOME/.local/bin
-    $HOME/.local/scripts"
+"
 for p in $paths; do
     if [[ -z "$BIN" ]]; then
         [ -d $p ] && BIN=$p
@@ -15,7 +16,6 @@ for p in $paths; do
         [ -d $p ] && BIN=$BIN:$p
     fi
 done
-# And set the path
 if [[ ! -z "$BIN" ]]; then
     export PATH=$BIN:$PATH
 fi
@@ -73,7 +73,9 @@ if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
 fi
 
 # Set a python development path
-paths="$HOME/Documents/Development/python_dev"
+paths="
+    $HOME/Documents/Development/python_dev
+"
 for pp in $paths; do
     for p in $pp/*; do
         if [[ -z "$PYTHONPATH" ]]; then

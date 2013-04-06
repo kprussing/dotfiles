@@ -13,6 +13,7 @@ files = [ \
         "bash_profile",     \
         "bashrc",           \
         "tmux.conf",        \
+        "profile",          \
         "vim",              \
         "vimrc",            \
         "scripts",          \
