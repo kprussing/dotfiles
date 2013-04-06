@@ -51,6 +51,14 @@ fi
 # Now we handle the path variables.  The order of the lists below are in
 # descending preference.  The path variable is prepended; while, the
 # rest are appended to the appropriate variable.
+function notinpath {
+    if [ ! $(echo $2 | grep -q $1) ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
 paths="
     $HOME/.local/bin
     $HOME/.local/scripts
@@ -62,15 +70,13 @@ paths="
     /nagfor/bin
 "
 for p in $paths; do
-    if [[ (-d $p) && ($p =~ $PATH) ]]; then
-        if [[ -z "$BIN" ]]; then
-            BIN=$p
-        else
-            BIN=$BIN:$p
-        fi
+    if [[ -z "$BIN" ]]; then
+        [ -d $p ] && BIN=$p
+    else
+        [ -d $p ] && BIN=$BIN:$p
     fi
 done
-if [[ ! -z "$BIN" ]]l then
+if [[ ! -z "$BIN" ]]; then
     export PATH=$BIN:$PATH
 fi
 
@@ -84,12 +90,10 @@ paths="
     $HOME/.local/share/man
 "
 for p in $paths; do
-    if [[ (-d $p) && ($p =~ $MANPATH) ]]; then
-        if [[ -z "$MANPATH" ]]; then
-            MANPATH=$p
-        else
-            MANPATH=$MANPATH:$p
-        fi
+    if [[ -z "$MANPATH" ]]; then
+        [ -d $p ] && MANPATH=$p
+    else
+        [ -d $p ] && MANPATH=$MANPATH:$p
     fi
 done
 if [[ ! -z "$MANPATH" ]]; then
@@ -103,12 +107,10 @@ paths="
     $HOME/.local/lib64
 "
 for p in $paths; do
-    if [[ (-d $p) && ($p =~ $LD_LIBRARY_PATH) ]]; then
-        if [[ -z "$LD_LIBRARY_PATH" ]]; then
-            LD_LIBRARY_PATH=$p
-        else
-            LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$p
-        fi
+    if [[ -z "$LD_LIBRARY_PATH" ]]; then
+        [ -d $p ] && LD_LIBRARY_PATH=$p
+    else
+        [ -d $p ] && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$p
     fi
 done
 if [[ ! -z "$LD_LIBRARY_PATH" ]]; then
@@ -120,13 +122,11 @@ paths="
     $HOME/.local/lib/pkgconfig
 "
 for p in $paths; do
-    if [[ (-d $p) && ($p =~ $PKG_CONFIG_PATH) ]]; then
-        if pp -z "$PKG_CONFIG_PATH" ]]; then
-            PKG_CONFIG_PATH=$p
+        if [[ -z "$PKG_CONFIG_PATH" ]]; then
+            [ -d $p ] && PKG_CONFIG_PATH=$p
         else
-            PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$p
+            [ -d $p ] && PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$p
         fi
-    fi
 done
 if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
     export PKG_CONFIG_PATH
@@ -140,13 +140,12 @@ paths="
 for dd in $paths; do
     for pp in $dd/*; do
         p=$pp/build/lib
-        if [[ (-d $p) && ($p =~ $PYTHONPATH) ]]; then
-            if [[ -z "$PYTHONPATH" ]]; then
-                PYTHONPATH=$p
-            else
-                PYTHONPATH=$PYTHONPATH:$p
-            fi
+        if [[ -z "$PYTHONPATH" ]]; then
+            [ -d $p ] && PYTHONPATH=$p
+        else
+            [ -d $p ] && PYTHONPATH=$PYTHONPATH:$p
         fi
+    done
 done
 if [[ ! -z "$PYTHONPATH" ]]; then
     export PYTHONPATH
