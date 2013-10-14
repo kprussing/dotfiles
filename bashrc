@@ -8,6 +8,9 @@ if [[ "$SSH_TTY" ]]; then
 elif [[ "$OS" = "darwin" ]]; then
     hcol="1;35" # Magenta on Darwin
     pcol="1;34" # with a blue path.
+elif [[ "$OS" = "linux" ]]; then
+    hcol="1;36" # Cyan host on Linux
+    pcol="1;35" # with a magenta path.
 else
     hcol="1;32" # Otherwise, a green host
     pcol="1;33" # and yellow path.
@@ -15,11 +18,12 @@ fi
 PS1="\n"
 PS1=$PS1"\[\e[${hcol}m\]\u@\h:"
 PS1=$PS1"\[\e[${pcol}m\]\w"
-PS1=$PS1"\[\e[0m\]\n\s-\v\$ "
+PS1=$PS1'\[\e[0m\]\n\s-\v\$ '
 export PS1
 
 # Set my editor
 export EDITOR=vim
+set -o vi
 
 # Set some aliases
 alias xvim='xterm -e vim'   # I don't like gVim and this is tolerable.

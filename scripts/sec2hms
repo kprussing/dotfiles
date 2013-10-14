@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+from __future__ import print_function
+
+__info__ = "Convert the given seconds to HH:MM:SS format."
+__version__ = "0.1.0"
+
+def sec2hms(sec):
+    """
+    Convert from seconds to a tuple of hours minutes and seconds.
+    """
+    hm, ss = divmod(sec, 60)
+    hh, mm = divmod( hm, 60)
+    return (int(hh), int(mm), ss)
+# end def sec2hms
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description=__info__)
+    parser.add_argument( \
+            "seconds", help="Seconds to convert", type=float
+        )
+    args = parser.parse_args()
+    hms = sec2hms(args.seconds)
+    print("{:02d}:{:02d}:{:f}".format(*hms))
+
