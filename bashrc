@@ -20,6 +20,7 @@ export PS1
 
 # Set my editor
 export EDITOR=vim
+set -o vi
 
 # Set some aliases
 alias xvim='xterm -e vim'   # I don't like gVim and this is tolerable.
