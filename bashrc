@@ -36,14 +36,6 @@ else
     alias ls='ls --color=auto'
 fi
 
-# Under windows, we'll need a bit of trickery for the python path.
-if [[ $OS = *mingw* ]]; then
-    alias python='py'
-    alias python3='py -3.2'
-    alias python3.2='py -3.2'
-    alias python3.3='py -3'
-fi
-
 if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
     # Go ahead and set the X forwarding display too.
     export DISPLAY=:0
