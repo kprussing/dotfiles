@@ -47,9 +47,13 @@ Thumbs.db
 ############
 *.bz2
 
-# Backups #
-###########
-.*~
+# vim.gitignore #
+#################
+*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
 
 # LaTex Files #
 ###############
@@ -58,4 +62,8 @@ Thumbs.db
 *.blg
 *.dvi
 *.pdf
+
+# SCons #
+#########
+.sconsign.dblite
 
