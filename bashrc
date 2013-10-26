@@ -168,7 +168,34 @@ function repo_prompt() {
         echo -n " on \[$BOLD$MAGENTA\]$branch$tag"
         return
     fi
-    local svn_status=$(svn status 2>&1)
+
+    # Now check the svn status
+    status=$(svn status 2>&1)
+    if ! [[ "$status" =~ not\ a\ working\ copy ]]; then
+        # Get the branch name.  I know the call to awk will slow things
+        # down, but I don't know of another way to get the branch name
+        # at the moment.
+        branch=$(svn info | awk -F / '/URL/ {print $NF}')
+
+        # Determine the status of the files.
+        local flags=$(echo "$status" | cut -c 1)
+        local tag=""
+        if [[ "$flags" =~ "?" ]]; then
+            tag=$tag"\[$RESET\]?"
+        fi
+        if [[ "$flags" =~ (C|X|\!|\~) ]]; then
+            # svn only knows about commits waiting to happen.  So, we'll
+            # use the red "!" to indicate problems.
+            tag=$tag"\[$BOLD$RED\]!"
+        fi
+        if [[ "$flags" =~ (A|D|M|R) ]]; then
+            tag=$tag"\[$GREEN\]+"
+        fi
+        tag=$tag"\[$RESET\]"
+
+        echo -n " on \[$BOLD$CYAN\]$branch$tag"
+        return
+    fi
 }
 
 # And set my prompt.
