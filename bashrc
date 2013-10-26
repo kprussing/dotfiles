@@ -152,36 +152,27 @@ function repo_prompt() {
             branch="$(git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD)"
         fi
 
-        #case "$status" in 
-            #*"Untracked files"*)
-                #local tag="\[$BOLD$RED\]?\[$RESET\]"
-                #local ansi=$RED;;
-            #*"Changes to be committed"*)
-                #local tag="\[$BOLD$RED\]!\[$RESET\]"
-                #local ansi=$RED;;
-            #*"nothing to commit"*)
-                #local ansi=$GREEN;;
-            #*)
-                #local ansi=$YELLOW;;
-        #esac
-
-        if [[ "$git_status" =~ nothing\ to\ commit ]];  then
-            local ansi=$GREEN
-        elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-            local ansi=$RED
-        else
-            local ansi=$YELLOW
+        # Determine the status of the files.
+        local tag=""
+        if [[ "$status" =~ Untracked\ files ]]; then
+            tag=$tag"\[$RESET\]?"
         fi
+        if [[ "$status" =~ Changes\ not\ staged\ for\ commit ]]; then
+            tag=$tag"\[$BOLD$RED\]!"
+        fi
+        if [[ "$status" =~ Changes\ to\ be\ committed ]]; then
+            tag=$tag"\[$BOLD$GREEN\]+"
+        fi
+        tag=$tag"\[$RESET\]"
 
-        echo -n " on \[$ansi\]$branch\[$RESET\]$tag"
+        echo -n " on \[$BOLD$MAGENTA\]$branch$tag"
+        return
     fi
     local svn_status=$(svn status 2>&1)
 }
 
 # And set my prompt.
-#_PS1="\n"$usr" at "$hst" in "$pth"\n\$"
 _PS1="\n"$usr" at "$hst" in "$pth
-#PS2="\[$RESET\]>" Don't think I need this
 export PROMPT_COMMAND='export PS1="${_PS1}$(repo_prompt)\n\$ "'
 
 #--------1---------2---------3---------4---------5---------6---------7--
@@ -205,6 +196,11 @@ if [[ "$OS" = "darwin" ]]; then
 else
     alias ls='ls --color=auto'
 fi
+
+# Totally stole the idea from jefflarkin
+alias :q="echo \"Doh!  You're not in vi anymore.\""
+alias :x="echo 'Hey smart guy, you already did that.'"
+alias :e="echo \"Wouldn't it  be a good idea to open vi first?\""
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Set the X forwarding if we are using Windows as a client machine.
