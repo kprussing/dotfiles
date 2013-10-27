@@ -1,2 +1,73 @@
-.*
+#--------1---------2---------3---------4---------5---------6---------7--
+# From the github.com help site.
+#--------1---------2---------3---------4---------5---------6---------7--
+# Compiler Source #
+###################
+*.com
+*.class
+*.dll
+*.dylib
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own build in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#--------1---------2---------3---------4---------5---------6---------7--
+# My additions
+#--------1---------2---------3---------4---------5---------6---------7--
+# Packages #
+############
+*.bz2
+
+# vim.gitignore #
+#################
+*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# LaTex Files #
+###############
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.pdf
+
+# SCons #
+#########
+.sconsign.dblite
+
+# Python #
+##########
+*.pyc
 
