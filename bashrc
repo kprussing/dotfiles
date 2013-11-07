@@ -1,5 +1,32 @@
+#--------1---------2---------3---------4---------5---------6---------7--
+# General settings.
+
 # Determine the operating system
 OS=$(uname | tr A-Z a-z)
+
+# Tell bash to check the window size after each command.
+shopt -s checkwinsize
+
+# Set my editor and pager
+export EDITOR=vim
+export VISUAL=$EDITOR
+export PAGER=less
+
+export LESS="-i -g -R"
+
+# Make less colorful!
+#export LESS_TERMCAP_mb=$'\e[01;31m'
+#export LESS_TERMCAP_md=$'\e[01;31m'
+#export LESS_TERMCAP_me=$'\e[0m'
+#export LESS_TERMCAP_se=$'\e[0m'
+#export LESS_TERMCAP_so=$'\e[01;44;33m'
+#export LESS_TERMCAP_ue=$'\e[0m'
+#export LESS_TERMCAP_us=$"'"$GREEN"'"
+#export LESS_TERMCAP_us=$'\e[01;32m'
+
+# Use vi bindings for bash
+set -o vi
+
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Utility functions for updating paths.
@@ -201,14 +228,6 @@ function repo_prompt() {
 # And set my prompt.
 _PS1="\n"$usr" at "$hst" in "$pth
 export PROMPT_COMMAND='export PS1="${_PS1}$(repo_prompt)\n\$ "'
-
-#--------1---------2---------3---------4---------5---------6---------7--
-# Set my editor
-export EDITOR=vim
-set -o vi
-
-# Use vi bindings for bash
-set -o vi
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Set some aliases
