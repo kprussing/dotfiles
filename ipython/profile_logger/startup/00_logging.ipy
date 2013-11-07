@@ -50,9 +50,9 @@ try:
     ipy.logger.log_write( \
             u"# {:s}\n".format(time.strftime("%H:%M:%S")) \
         )
-    ipy.logger.log_write( \
-            u"# $ {:s}\n".format(" ".join(sys.argv)) \
-        )
+    #ipy.logger.log_write( \
+            #u"# $ {:s}\n".format(" ".join(sys.argv)) \
+        #)
     ipy.logger.log_write( \
             u"#--------1---------2---------3---------4---------5---\n" \
         )
