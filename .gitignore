@@ -4,3 +4,9 @@ vim/backup
 vim/bundle
 vim/swap
 vim/views
+ipython/*/db
+ipython/*/history.sqlite
+ipython/*/log
+ipython/*/pid
+ipython/*/security
+ipython/*/startup/README

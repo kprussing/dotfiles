@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+# Prepare the logging capabilities.  This is modeled after the Dated
+# logging script in the IPython Cookbook
+# (github.com/ipython/ipython/wiki).  We will also add a standard Python
+# logging file handler pointing to the log file so that we may pass
+# additional information.
+import logging, os, sys, time
+
+# Get the IPython instance
+ipy = get_ipython()
+
+# Determine the logging directory and form the log name.
+shortname = "log_{:s}_{:s}.py".format( \
+        ipy.profile, time.strftime("%Y-%m-%d") \
+    )
+longname  = os.path.join(ipy.profile_dir.log_dir, shortname)
+exists    = os.path.exists(longname)
+
+# Determine the log level and format.  We'll start by iterating over all
+# the configurables looking for the log information.  As far as I can
+# tell, this is always the second to last, but we might as well be
+# careful.
+for conf in ipy.configurables:
+    if "log_level" in dir(conf):
+        break
+    # end if
+# end for
+
+# Prepare the logging.
+logging.basicConfig(level=conf.log_level)
+
+# Logging to the file requires prepending with a '#' and we might as
+# well capture all of the logging events.
+handler = logging.FileHandler(longname)
+handler.setFormatter( logging.Formatter("# " +conf.log_format) )
+handler.setLevel(logging.DEBUG)
+logging.getLogger().addHandler(handler)
+
+# Now begin logging.
+try:
+    ipy.magic("logstart -o {:s} append".format(longname))
+    if not exists:
+        ipy.logger.log_write(u"#!/usr/bin/env python\n")
+        ipy.logger.log_write(u"# {:s}\n".format(shortname))
+        ipy.logger.log_write(u"# IPython automatic logging file\n")
+    # end if
+    ipy.logger.log_write( \
+            u"#--------1---------2---------3---------4---------5---\n" \
+        )
+    ipy.logger.log_write( \
+            u"# {:s}\n".format(time.strftime("%H:%M:%S")) \
+        )
+    ipy.logger.log_write( \
+            u"# $ {:s}\n".format(" ".join(sys.argv)) \
+        )
+    ipy.logger.log_write( \
+            u"#--------1---------2---------3---------4---------5---\n" \
+        )
+except RuntimeError:
+    logging.error("Already logging to {:s}!".format(longname))
+# end try
+
