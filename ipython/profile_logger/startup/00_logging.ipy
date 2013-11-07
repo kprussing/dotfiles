@@ -4,10 +4,11 @@
 # (github.com/ipython/ipython/wiki).  We will also add a standard Python
 # logging file handler pointing to the log file so that we may pass
 # additional information.
-import logging, os, sys, time
+import IPython, logging, os, sys, time
 
 # Get the IPython instance
 ipy = get_ipython()
+app = IPython.Application.instance()
 
 # Determine the logging directory and form the log name.
 shortname = "log_{:s}_{:s}.py".format( \
@@ -16,23 +17,13 @@ shortname = "log_{:s}_{:s}.py".format( \
 longname  = os.path.join(ipy.profile_dir.log_dir, shortname)
 exists    = os.path.exists(longname)
 
-# Determine the log level and format.  We'll start by iterating over all
-# the configurables looking for the log information.  As far as I can
-# tell, this is always the second to last, but we might as well be
-# careful.
-for conf in ipy.configurables:
-    if "log_level" in dir(conf):
-        break
-    # end if
-# end for
-
 # Prepare the logging.
-logging.basicConfig(level=conf.log_level)
+logging.basicConfig(level=app.log_level)
 
 # Logging to the file requires prepending with a '#' and we might as
 # well capture all of the logging events.
 handler = logging.FileHandler(longname)
-handler.setFormatter( logging.Formatter("# " +conf.log_format) )
+handler.setFormatter( logging.Formatter("# " +app.log_format) )
 handler.setLevel(logging.DEBUG)
 logging.getLogger().addHandler(handler)
 
@@ -50,9 +41,9 @@ try:
     ipy.logger.log_write( \
             u"# {:s}\n".format(time.strftime("%H:%M:%S")) \
         )
-    #ipy.logger.log_write( \
-            #u"# $ {:s}\n".format(" ".join(sys.argv)) \
-        #)
+    ipy.logger.log_write( \
+            u"# $ ipython {:s}\n".format(" ".join(app.argv)) \
+        )
     ipy.logger.log_write( \
             u"#--------1---------2---------3---------4---------5---\n" \
         )
