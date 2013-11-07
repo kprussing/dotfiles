@@ -27,6 +27,9 @@ export LESS="-i -g -R"
 # Use vi bindings for bash
 set -o vi
 
+# Point the temp directory to something I own.  This helps with long
+# running tmux sessions.
+export TMPDIR=$HOME/.local/tmp
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Utility functions for updating paths.
