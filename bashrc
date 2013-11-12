@@ -31,6 +31,9 @@ set -o vi
 # running tmux sessions.
 export TMPDIR=$HOME/.local/tmp
 
+# Also hard set the Tex directory
+export TEXMFHOME=$HOME/.texmf
+
 #--------1---------2---------3---------4---------5---------6---------7--
 # Utility functions for updating paths.
 function path_append () {

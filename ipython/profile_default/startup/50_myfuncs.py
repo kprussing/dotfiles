@@ -48,6 +48,10 @@ class myfuncs:
         logger.addHandler( logging.NullHandler() )
         logger.setLevel( logging.DEBUG )
         #
+        if mod.__file__[-1] in "oc":
+            mod.__file__ = mod.__file__[:-1]
+        # end if
+        #
         if "__track_source__" in mod.__dict__:
             orig = mod.__track_source__
         else:
@@ -60,7 +64,7 @@ class myfuncs:
         # end with
         #
         # Check for differences and report any changes.
-        logger.debug(__file__)
+        logger.debug(mod.__file__)
         if orig is None:
             for it in range(len(mod.__track_source__)):
                 logger.debug("{:d} {:s}".format( \
