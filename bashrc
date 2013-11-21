@@ -177,7 +177,7 @@ function repo_prompt() {
     # Check for repositories
     local status="$(git status -unormal 2>&1)"
     #
-    if ! [[ "$status" =~ Not\ a\ git\ repository ]]; then
+    if ! [[ "$status" =~ Not\ a\ git\ repository || "$status" =~ not\ found ]]; then
         # Get the branch name
         if [[ "$status" =~ On\ branch\ ([^[:space:]]+) ]]; then
             branch=${BASH_REMATCH[1]}
