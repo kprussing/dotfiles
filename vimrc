@@ -64,6 +64,11 @@ vnoremap <down> <nop>
 vnoremap <left> <nop>
 vnoremap <right> <nop>
 
+" Maps for easier buffer switching.  This is analogous to window
+" changing in tmux.
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bNext<CR>
+
 " This remap will probably help me out a lot...
 let mapleader = ","
 
