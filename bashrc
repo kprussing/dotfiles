@@ -52,6 +52,7 @@ function path_remove () {
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Update the paths based on how I have things installed.
+export PATH=$(path_append "$PATH" "$HOME/.scripts")
 #paths="
     #$HOME/.scripts
     #$HOME/.local/bin
