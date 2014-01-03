@@ -52,7 +52,7 @@ if __name__ == "__main__":
         ]
 
     # Prepare a backup file.
-    time = datetime.datetime.now.strftime("%Y%m%dT%H%M%S")
+    time = datetime.datetime.now().strftime("%Y%m%dT%H%M%S")
     tarname = "backup_" +time +".tar.gz"
     logging.debug("Backup file: {0}".format(tarname))
     with tarfile.open(tarname, "w:gz") as tar:
@@ -74,18 +74,18 @@ if __name__ == "__main__":
             # If the file already exists, back it up if it is not a
             # link and remove the original.  Otherwise, simply remove
             # the link.
-            if os.path.exists(oldname):
-                if not os.path.islink(oldname):
-                    logging.info("    Archiving {0}".format(oldname))
+            if os.path.exists(oldfile):
+                if not os.path.islink(oldfile):
+                    logging.info("    Archiving {0}".format(oldfile))
                     tar.add(newfile)
-                    if os.path.isdir(oldname):
-                        shutil.removetree(oldname)
+                    if os.path.isdir(oldfile):
+                        shutil.removetree(oldfile)
                     else:
-                        os.remove(oldname)
+                        os.remove(oldfile)
                     # end if
                 else:
-                    logging.info("    Unlinking {0}".format(oldname))
-                    os.path.unlink(oldname)
+                    logging.info("    Unlinking {0}".format(oldfile))
+                    os.unlink(oldfile)
                 # end if
             # end if
 
@@ -93,14 +93,14 @@ if __name__ == "__main__":
             try:
                 if sys.version_info.major < 3:
                     os.symlink(newfile, oldfile)
-                if sys.version_info.minor > 2 or os.name == "nt":
+                elif sys.version_info.minor > 2 or os.name == "nt":
                     os.symlink(newfile, oldfile, os.path.isdir(newfile))
                 else:
                     os.symlink(newfile, oldfile)
                 # end if
             except Exception as err:
                 logging.error("An error occurred! {0}".format(err))
-                msg = "I bet you are using the wrong combination\n" \
+                msg = "I bet you are using the wrong combination" \
                     +"of Python and Windows."
                 logging.error(msg)
                 sys.exit(1)

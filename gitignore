@@ -10,6 +10,8 @@
 *.exe
 *.o
 *.so
+*.out
+*.os
 
 # Packages #
 ############

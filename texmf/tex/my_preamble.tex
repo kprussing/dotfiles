@@ -1,0 +1,90 @@
+%--------1---------2---------3---------4---------5---------6---------7--
+% This is collection of stuff that I find very useful.
+%
+% This version is used for collecting my notation for my thesis.
+%--------1---------2---------3---------4---------5---------6---------7--
+% First we include all of our desired packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{bm}
+
+%--------1---------2---------3---------4---------5---------6---------7--
+% Use a R 3 vector and dyad similar to the APS style.
+\newcommand{\svec}[1]{
+    \ensuremath{ \bm{#1} }
+}
+\newcommand{\dyad}[1]{
+    \ensuremath{ \overleftrightarrow{\svec{#1}} }
+}
+
+%--------1---------2---------3---------4---------5---------6---------7--
+% We define generic unit vectors and a few specific
+\newcommand{\unitvec}[1]{
+    \ensuremath{ \bm{ \hat{#1} } }
+}
+% Generic
+\newcommand{\ihat}{\unitvec{\imath}}
+\newcommand{\jhat}{\unitvec{\jmath}}
+\newcommand{\khat}{\unitvec{k}}
+% Cartesian
+\newcommand{\xhat}{\unitvec{x}}
+\newcommand{\yhat}{\unitvec{y}}
+\newcommand{\zhat}{\unitvec{z}}
+% Spherical
+\newcommand{\rhat}{\unitvec{r}}
+\newcommand{\thetahat}{\unitvec{\theta}}
+\newcommand{\phihat}{\unitvec{\phi}}
+% Cylindrical
+\newcommand{\rhohat}{\unitvec{\rho}}
+
+%--------1---------2---------3---------4---------5---------6---------7--
+% Next a few quantum mechanics commands
+\newcommand{\bra}[1]{
+    \ensuremath{ \bigl\langle#1\bigr\rvert }
+}
+\newcommand{\ket}[1]{
+    \ensuremath{ \bigl\lvert#1\bigr\rangle }
+}
+\newcommand{\braket}[2]{
+    \ensuremath{ \bigl\langle#1\big\vert#2\bigr\rangle }
+}
+\newcommand{\operator}[1]{
+    \ensuremath{ \mathbb{#1} }
+}
+
+%--------1---------2---------3---------4---------5---------6---------7--
+% Now for some functions
+\let\divsymb=\div % Redefine so we can use \div
+\newcommand{\abs}[1]{
+    \ensuremath{ \left\lvert#1\right\rvert }
+}
+\newcommand{\norm}[1]{
+    \ensuremath{ \left\lVert#1\right\rVert }
+}
+\newcommand{\grad}[1][]{
+    \ensuremath{ \bm{\nabla}_{#1} }
+}
+\renewcommand{\div}[1][]{
+    \ensuremath{ \bm{\nabla}_{#1}\cdot }
+}
+\newcommand{\curl}[1][]{
+    \ensuremath{ \bm{\nabla}_{#1}\times }
+}
+
+%--------1---------2---------3---------4---------5---------6---------7--
+% And change varepsilon to something more reasonable
+\let\eps=\varepsilon
+
+%--------1---------2---------3---------4---------5---------6---------7--
+% A quick way to differentiate a mathematical vector and matrix
+% from a R_3 Cartesian vector and dyad
+\newcommand{\mat}[1]{
+    \ensuremath{ \overline{\overline{\bm{#1}}} } 
+}
+\newcommand{\mvec}[1]{
+    \ensuremath{ \overline{\bm{#1}} } 
+}
+
+%--------1---------2---------3---------4---------5---------6---------7--
+%

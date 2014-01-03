@@ -31,6 +31,9 @@ set -o vi
 # running tmux sessions.
 export TMPDIR=$HOME/.local/tmp
 
+# Also hard set the Tex directory
+export TEXMFHOME=$HOME/.texmf
+
 #--------1---------2---------3---------4---------5---------6---------7--
 # Utility functions for updating paths.
 function path_append () {
@@ -196,6 +199,28 @@ function repo_prompt() {
         tag=$tag"\[$RESET\]"
 
         echo -n " on \[$BOLD$MAGENTA\]$branch$tag"
+        return
+    fi
+
+    status=$(hg status 2>&1)
+    if ! [[ "$status" =~ abort:\ no\ repository\ found ]]; then
+        branch=$(hg branch -q)
+
+        # Determine the status of the files.
+        local flags=$(hg status 2>&1 | cut -c 1)
+        local tag=""
+        if [[ "$flags" =~ "?" ]]; then
+            tag="\[$RESET\]?"
+        fi
+        if [[ "$flags" =~ (M|\!) ]]; then
+            tag=$tag"\[$BOLD$RED\]!"
+        fi
+        if [[ "$flags" =~ (A|R) ]]; then
+            tag=$tag"\[$BOLD$GREEN\]+"
+        fi
+        tag=$tag"\[$RESET\]"
+
+        echo -n " on \[$BOLD$GREEN\]$branch$tag"
         return
     fi
 
