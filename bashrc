@@ -14,16 +14,6 @@ export PAGER=less
 
 export LESS="-i -g -R"
 
-# Make less colorful!
-#export LESS_TERMCAP_mb=$'\e[01;31m'
-#export LESS_TERMCAP_md=$'\e[01;31m'
-#export LESS_TERMCAP_me=$'\e[0m'
-#export LESS_TERMCAP_se=$'\e[0m'
-#export LESS_TERMCAP_so=$'\e[01;44;33m'
-#export LESS_TERMCAP_ue=$'\e[0m'
-#export LESS_TERMCAP_us=$"'"$GREEN"'"
-#export LESS_TERMCAP_us=$'\e[01;32m'
-
 # Use vi bindings for bash
 set -o vi
 
@@ -62,58 +52,58 @@ function path_remove () {
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Update the paths based on how I have things installed.
-paths="
-    $HOME/.scripts
-    $HOME/.local/bin
-    $HOME/.local/scripts
-    /opt/local/bin
-    /opt/local/sbin
-    /opt/android-sdk-macosx/tools
-    /opt/android-sdk-macosx/platform-tools
-    /nagfor/bin
-"
-for p in $paths; do
-    BIN=$(path_append "$BIN" "$p")
-done
-# Prepend PATH with my paths.
-if [[ ! -z "$BIN" ]]; then
-    export PATH=$BIN:$PATH
-fi
+#paths="
+    #$HOME/.scripts
+    #$HOME/.local/bin
+    #$HOME/.local/scripts
+    #/opt/local/bin
+    #/opt/local/sbin
+    #/opt/android-sdk-macosx/tools
+    #/opt/android-sdk-macosx/platform-tools
+    #/nagfor/bin
+#"
+#for p in $paths; do
+    #BIN=$(path_append "$BIN" "$p")
+#done
+## Prepend PATH with my paths.
+#if [[ ! -z "$BIN" ]]; then
+    #export PATH=$BIN:$PATH
+#fi
 
 # For some reason, the man path is not updated correctly by default.  To
 # be fair, I no longer remember which system is the culprit.  I know
 # installing to my home directory messes things up.
-paths="
-    /usr/share/man
-    /usr/local/man
-    /opt/local/share/man
-    /opt/X11/share/man
-    $HOME/.local/man
-    $HOME/.local/share/man
-"
-for p in $paths; do
-    MANPATH=$(path_append "$MANPATH" "$p")
-done
-if [[ ! -z "$MANPATH" ]]; then
-    export MANPATH
-fi
+#paths="
+    #/usr/share/man
+    #/usr/local/man
+    #/opt/local/share/man
+    #/opt/X11/share/man
+    #$HOME/.local/man
+    #$HOME/.local/share/man
+#"
+#for p in $paths; do
+    #MANPATH=$(path_append "$MANPATH" "$p")
+#done
+#if [[ ! -z "$MANPATH" ]]; then
+    #export MANPATH
+#fi
 
 # Update the library path for building in my home directory.  While
 # we're at it, we might as well check the package configuration too.
-paths="
-    $HOME/.local/lib
-    $HOME/.local/lib64
-"
-for p in $paths; do
-    LD_LIBRARY_PATH=$(path_append "$LD_LIBRARY_PATH" "$p")
-    PKG_CONFIG_PATH=$(path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig)
-done
-if [[ ! -z "$LD_LIBRARY_PATH" ]]; then
-    export LD_LIBRARY_PATH
-fi
-if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
-    export PKG_CONFIG_PATH
-fi
+#paths="
+    #$HOME/.local/lib
+    #$HOME/.local/lib64
+#"
+#for p in $paths; do
+    #LD_LIBRARY_PATH=$(path_append "$LD_LIBRARY_PATH" "$p")
+    #PKG_CONFIG_PATH=$(path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig)
+#done
+#if [[ ! -z "$LD_LIBRARY_PATH" ]]; then
+    #export LD_LIBRARY_PATH
+#fi
+#if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
+    #export PKG_CONFIG_PATH
+#fi
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Make the colors clear.  First the foreground.
@@ -202,27 +192,27 @@ function repo_prompt() {
         return
     fi
 
-    status=$(hg status 2>&1)
-    if ! [[ "$status" =~ abort:\ no\ repository\ found ]]; then
-        branch=$(hg branch -q)
+    #status=$(hg status 2>&1)
+    #if ! [[ "$status" =~ abort:\ no\ repository\ found ]]; then
+        #branch=$(hg branch -q)
 
-        # Determine the status of the files.
-        local flags=$(hg status 2>&1 | cut -c 1)
-        local tag=""
-        if [[ "$flags" =~ "?" ]]; then
-            tag="\[$RESET\]?"
-        fi
-        if [[ "$flags" =~ (M|\!) ]]; then
-            tag=$tag"\[$BOLD$RED\]!"
-        fi
-        if [[ "$flags" =~ (A|R) ]]; then
-            tag=$tag"\[$BOLD$GREEN\]+"
-        fi
-        tag=$tag"\[$RESET\]"
+        ## Determine the status of the files.
+        #local flags=$(hg status 2>&1 | cut -c 1)
+        #local tag=""
+        #if [[ "$flags" =~ "?" ]]; then
+            #tag="\[$RESET\]?"
+        #fi
+        #if [[ "$flags" =~ (M|\!) ]]; then
+            #tag=$tag"\[$BOLD$RED\]!"
+        #fi
+        #if [[ "$flags" =~ (A|R) ]]; then
+            #tag=$tag"\[$BOLD$GREEN\]+"
+        #fi
+        #tag=$tag"\[$RESET\]"
 
-        echo -n " on \[$BOLD$GREEN\]$branch$tag"
-        return
-    fi
+        #echo -n " on \[$BOLD$GREEN\]$branch$tag"
+        #return
+    #fi
 
     # Now check the svn status
     status=$(svn status 2>&1)

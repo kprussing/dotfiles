@@ -5,7 +5,9 @@ set modelines=0
 " I want to see the line number and I like the 72 characters on a line
 set number
 set textwidth=72
-set colorcolumn=73
+if exists('+colorcolumn')
+    set colorcolumn=73
+endif
 
 " Initialize pathogen
 filetype off
@@ -26,8 +28,9 @@ colorscheme zenburn
 set spell
 set spellfile=$HOME/.vim/dictionary.add
 
-set backup   " I like backups
-set undofile " Undo is also good.
+"Trying without.
+"set backup   " I like backups
+"set undofile " Undo is also good.
 
 " And of course these are my tab preferences
 set autoindent      " Indent intelligently
