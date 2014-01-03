@@ -202,6 +202,28 @@ function repo_prompt() {
         return
     fi
 
+    status=$(hg status 2>&1)
+    if ! [[ "$status" =~ abort:\ no\ repository\ found ]]; then
+        branch=$(hg branch -q)
+
+        # Determine the status of the files.
+        local flags=$(hg status 2>&1 | cut -c 1)
+        local tag=""
+        if [[ "$flags" =~ "?" ]]; then
+            tag="\[$RESET\]?"
+        fi
+        if [[ "$flags" =~ (M|\!) ]]; then
+            tag=$tag"\[$BOLD$RED\]!"
+        fi
+        if [[ "$flags" =~ (A|R) ]]; then
+            tag=$tag"\[$BOLD$GREEN\]+"
+        fi
+        tag=$tag"\[$RESET\]"
+
+        echo -n " on \[$BOLD$GREEN\]$branch$tag"
+        return
+    fi
+
     # Now check the svn status
     status=$(svn status 2>&1)
     if ! [[ "$status" =~ not\ a\ working\ copy ]]; then
