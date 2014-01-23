@@ -79,7 +79,7 @@ if __name__ == "__main__":
                     logging.info("    Archiving {0}".format(oldfile))
                     tar.add(newfile)
                     if os.path.isdir(oldfile):
-                        shutil.removetree(oldfile)
+                        shutil.rmtree(oldfile)
                     else:
                         os.remove(oldfile)
                     # end if
@@ -101,7 +101,7 @@ if __name__ == "__main__":
             except Exception as err:
                 logging.error("An error occurred! {0}".format(err))
                 msg = "I bet you are using the wrong combination" \
-                    +"of Python and Windows."
+                    +" of Python and Windows."
                 logging.error(msg)
                 sys.exit(1)
             # end try
