@@ -65,6 +65,10 @@ Session.vim
 *.dvi
 *.pdf
 
+# RevTex Bibliography file #
+############################
+*Notes.bib 
+
 # SCons #
 #########
 .sconsign.dblite
