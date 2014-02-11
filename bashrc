@@ -19,7 +19,7 @@ set -o vi
 
 # Point the temp directory to something I own.  This helps with long
 # running tmux sessions.
-export TMPDIR=$HOME/.local/tmp
+#export TMPDIR=$HOME/.local/tmp
 
 # Also hard set the Tex directory
 export TEXMFHOME=$HOME/.texmf
