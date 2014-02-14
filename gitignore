@@ -51,7 +51,7 @@ Thumbs.db
 
 # vim.gitignore #
 #################
-*.s[a-w][a-z]
+*.sw[a-z]
 *.un~
 Session.vim
 .netrwhist
