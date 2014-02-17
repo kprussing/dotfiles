@@ -66,6 +66,7 @@ Session.vim
 *.pdf
 *.pdf_tex
 *.fls
+*.toc
 
 # RevTex Bibliography file #
 ############################
