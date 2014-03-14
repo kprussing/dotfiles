@@ -274,3 +274,9 @@ if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
     export DISPLAY=:0
 fi
 
+#--------1---------2---------3---------4---------5---------6---------7--
+# Source the local setting too.
+if [ -f $HOME/.local/bashrc ]; then
+    source $HOME/.local/bashrc
+fi
+
