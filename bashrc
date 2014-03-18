@@ -184,6 +184,9 @@ function repo_prompt() {
         if [[ "$status" =~ Changes\ not\ staged\ for\ commit ]]; then
             tag=$tag"\[$BOLD$RED\]!"
         fi
+        if [[ "$status" =~ Changed\ but\ not\ updated ]]; then
+            tag=$tag"\[$BOLD$RED\]!"
+        fi
         if [[ "$status" =~ Changes\ to\ be\ committed ]]; then
             tag=$tag"\[$BOLD$GREEN\]+"
         fi
