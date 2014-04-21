@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+__doc__="""
+Parse an file looking for the string '#include' and replace the line
+with the text from the file that follows the string.  Basically, perform
+a preprocessors step.  This is a cobbled together script for me to use
+while generating my spell lists.  The result is printed to the screen.
+This routine does not recursively replace includes.  Only include
+statements in the input file are replaced.
+
+"""
+import argparse
+import logging
+import os
+import sys
+
+if __name__=="__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument( \
+            "INP", help="The input file to process" \
+        )
+    arg = parser.parse_args()
+
+    logging.basicConfig(level=logging.WARN)
+
+    if not os.path.exists(arg.INP):
+        logging.error("File {:s} does not exist!".format(arg.INP))
+        sys.exit(1)
+    # end if
+
+    with open(arg.INP, "r") as fid:
+        data = fid.readlines()
+    # end with
+
+    for line in data:
+        if line.rstrip() == "":
+            continue
+        # end if
+        toks = line.split("#include")
+        if len(toks) > 1:
+            for it in toks[1:]:
+                if not os.path.exists(it.strip()):
+                    msg = "{:s} is missing!  Skipping..."
+                    logging.warn(msg.format(it.strip()))
+                    continue
+                # end if
+                with open(it.strip(), "r") as fid:
+                    print(fid.read())
+                # end with
+            # end for
+        else:
+            print(line.strip())
+        # end if
+    # end for
+
