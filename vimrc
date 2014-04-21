@@ -47,6 +47,7 @@ set showcmd                     " Show partial command
 set hidden                      " Hide a buffer instead of abandoning
 set wildmenu                    " Show list instead of completing
 set wildmode=list:longest       " Tab complete longest common part
+set wildignore=*.pyc,*.aux      " Ignore some common file extensions
 set visualbell                  " Use a visual bell instead of beeping
 set ttyfast                     " Makes redraw fast. Smooths typing
 set ruler                       " Turn on the ruler

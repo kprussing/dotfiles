@@ -64,7 +64,9 @@ export PATH=$(path_append "$PATH" "$HOME/.scripts")
     #/nagfor/bin
 #"
 #for p in $paths; do
-    #BIN=$(path_append "$BIN" "$p")
+    #if [[ $(echo "$1" | grep -q "$2") ]]; then
+        #BIN=$(path_append "$BIN" "$p")
+    #fi
 #done
 ## Prepend PATH with my paths.
 #if [[ ! -z "$BIN" ]]; then
