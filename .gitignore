@@ -10,3 +10,5 @@ ipython/*/log
 ipython/*/pid
 ipython/*/security
 ipython/*/startup/README
+ipython/README
+ipython/*/static
