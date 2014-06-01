@@ -16,7 +16,9 @@ call pathogen#helptags()
 
 " Detect file types and auto indent
 filetype plugin indent on
-syntax on
+
+" Flag *.text as Markdown.
+autocmd BufNewFile,BufReadPost *.text set filetype=markdown
 
 " Set the color scheme here. zenburn for now!
 syntax enable
@@ -27,10 +29,6 @@ colorscheme zenburn
 " I like syntax highlighting and spelling on
 set spell
 set spellfile=$HOME/.vim/dictionary.add
-
-"Trying without.
-"set backup   " I like backups
-"set undofile " Undo is also good.
 
 " And of course these are my tab preferences
 set autoindent      " Indent intelligently
