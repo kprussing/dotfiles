@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function useage() {
+    echo "bibent BIB KEY"
+    echo ""
+    echo "Search file BIB for KEY and print from that line to the next"
+    echo "'}' character that is the sole item on the line."
+}
+
+if [[ $# != 2 ]]; then
+    useage
+    exit 1
+fi
+awk "/$2/,/^}$/" $1
+
