@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+__doc__="""
+Parse the bibtex output from Zotero and produce a list of authors last
+names.  This is to facilitate generating a list of strings to be ignored
+by spell checkers.  The basic assumption is that the format is `Last,
+First M.` for each name and separated by the token `and`.  Multiple word
+name that contain the `and` token are preserved.
+
+"""
+import argparse
+import logging
+
+def split_at_token(string, token, separator=" "):
+    """
+    Split the string into a list based on the token.
+
+    This method breaks the string into smaller strings based on the
+    token.  The first step is to split the string based on the given
+    separator.  Then, we look for the whole word token.  The reason we
+    have to do it this way is to ensure the string is only split at the
+    whole word token.
+
+    """
+    result = []
+    inname = False
+    for tok in string.split(separator):
+        if not inname:
+            inname = "{" in tok
+        # end if
+        if inname:
+            inname = "}" not in tok
+        # end if
+        if tok == token and not inname:
+            yield separator.join(result)
+            result = []
+            inname = False
+            continue
+        # end if
+        result.append(tok)
+    # end for
+    yield separator.join(result)
+# end def split_at_token
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument( \
+            "BIB", type=argparse.FileType("r"), help="BibText file" \
+        )
+
+    parser.add_argument( \
+            "--debug", "-d", action="store_true", help="Debug output" \
+        )
+    args = parser.parse_args()
+
+    if args.debug:
+        level = logging.DEBUG
+    else:
+        level = logging.WARNING
+    # end if
+    logging.basicConfig(level=level)
+
+    used = []
+    for line in args.BIB:
+        if "author = {" != line.strip()[:10]:
+            continue
+        # end if
+        logging.debug("{!s}".format(line.rstrip()))
+        end = -1 -(line[-1] == ",")
+        for author in split_at_token(line.strip()[10:end], "and"):
+            logging.debug("{!s}".format(author))
+            lname = author.split(",")[0].replace("{","").replace("}","")
+            if lname not in used:
+                used.append(lname)
+            # end if
+        # end for
+    print(" ".join(sorted(used)))
+
+# end if
+
