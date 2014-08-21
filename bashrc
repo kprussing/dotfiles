@@ -226,7 +226,7 @@ function repo_prompt() {
         # Get the branch name.  I know the call to awk will slow things
         # down, but I don't know of another way to get the branch name
         # at the moment.
-        branch=$(svn info | awk -F / '/URL/ {print $NF}')
+        branch=$(svn info | awk -F / '/^URL/ {print $NF}')
 
         # Determine the status of the files.
         local flags=$(echo "$status" | cut -c 1)
