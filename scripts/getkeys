@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+__doc__="""
+Scan a file for citation keys and print them to the screen.
+
+"""
+import argparse
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument( \
+            "FILE", type=argparse.FileType("r"), \
+            help="File to scan", nargs="+" \
+        )
+    args = parser.parse_args()
+
+    res = []
+    for ff in args.FILE:
+        data = ff.read().split("\\cite{")
+        for line in data[1:]:
+            keys = line.split("}")[0].split(",")
+            res += [k.strip() for k in keys if k.strip() not in res]
+        # end for
+    # end for
+    for key in sorted(res):
+        print(key)
+    # end for
+
+# end if
+
