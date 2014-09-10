@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function usage() {
+    echo 'usage: sanitize FILE'
+    echo ''
+    echo 'Strip markdown elements from a file.  This removes:'
+    echo '    emphasis markers `*`, `**`, `_`, and `__`'
+    echo '    block quotes `> `'
+    echo '    comments <!--*-->'
+    echo '    automatic link markers `<...>`'
+    echo '    Atx headers `#*`'
+    echo '    implicit ordered list `#.` (pandoc extension)'
+}
+
+if [[ $# -ne 1 ]]; then
+    usage
+    exit 1
+elif [[ $1 == '-h' ]]; then
+    usage
+    exit 0
+elif ! [[ -f $1 ]]; then
+    echo 'sanitize: '$1': No such file or directory'
+    exit 2
+fi
+
+sed -e 's/\*\*//g' -e 's/__//g' \
+    -e 's/_\([[:alnum:]]\)/\1/g' -e 's/\*\([[:alnum:]]\)/\1/g' \
+    -e 's/\([[:alnum:]]\)_/\1/g' -e 's/\([[:alnum:]]\)\*/\1/g' \
+    -e 's/^>/ /g' -e 's/<!--.*-->//g' -e 's/<\(.*\)>/\1/g' \
+    -e 's/#\./  /g' -e 's/#*//g' \
+    $1 | cat -s
+
