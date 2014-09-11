@@ -19,7 +19,7 @@ filetype plugin indent on
 
 " Flag *.text as pandoc.
 autocmd BufNewFile,BufReadPost *.text set filetype=pandoc
-let pandoc_use_conceal=0
+let g:pandoc#syntax#conceal#use=0
 
 " Set the color scheme here. zenburn for now!
 syntax enable
