@@ -11,7 +11,8 @@ endif
 
 " Initialize pathogen
 filetype off
-call pathogen#incubate()
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect('bundle/{}')
 call pathogen#helptags()
 
 " Detect file types and auto indent
