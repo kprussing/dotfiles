@@ -4,3 +4,6 @@
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
+[submodule "pandoc"]
+	path = pandoc
+	url = https://github.com/jgm/pandoc-templates.git
