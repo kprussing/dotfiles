@@ -1,0 +1,9 @@
+[user]
+	name = kprussing
+	email = kprussing74@gmail.com
+[core]
+	excludesfile = /Users/keith/.gitignore
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
