@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     # Define the files which to exclude from linking.
     excludes = [ \
-            "Xresources", "README.md", "minttyrc", filepath[1] \
+            "Xresources", "README.markdown", "minttyrc", filepath[1] \
         ]
 
     # Prepare a backup file.
