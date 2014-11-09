@@ -24,9 +24,9 @@ let g:pandoc#syntax#conceal#use=0
 
 " Set the color scheme here. zenburn for now!
 syntax enable
-set background=dark
+"set background=dark
 set t_Co=256
-colorscheme zenburn
+"colorscheme zenburn
 
 " I like syntax highlighting and spelling on
 set spell
