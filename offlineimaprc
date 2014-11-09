@@ -1,0 +1,35 @@
+#--------1---------2---------3---------4---------5---------6---------7--
+# General definitions
+[general]
+ui = ttyui
+accounts = Personal
+pythonfile=~/.mutt/offlineimap_helpers.py
+fsync = False
+
+#--------1---------2---------3---------4---------5---------6---------7--
+[Account Personal]
+localrepository = Personal-Local
+remoterepository = Personal-Remote
+status_backend = sqlite
+
+[Repository Personal-Local]
+type = Maildir
+localfolders = ~/Mail/
+nametrans = gmail_local_nametrans
+folderfilter = lambda foldername: foldername not in ["Offline"]
+
+[Repository Personal-Remote]
+type = Gmail
+remoteuser = kprussing74@gmail.com
+remotepasseval = get_keychain_pass("kprussing74", "imap.gmail.com")
+nametrans = gmail_remote_nametrans
+maxconnections = 1
+realdelete = no
+sslcacertfile=/opt/local/share/doc/mutt/samples/ca-bundle.crt
+ssl = yes
+
+# Uncomment this for the first pull.
+#readonly = True
+
+# vim: set syntax=config
+
