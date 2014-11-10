@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function useage() {
+function usage() {
     echo "bibent BIB KEY"
     echo ""
     echo "Search file BIB for KEY and print from that line to the next"
@@ -8,7 +8,7 @@ function useage() {
 }
 
 if [[ $# != 2 ]]; then
-    useage
+    usage
     exit 1
 fi
 awk "/$2/,/^}$/" $1
