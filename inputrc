@@ -1,0 +1,6 @@
+# Yanked from <http://stackoverflow.com/questions/10394302/how-do-i-use-vi-keys-in-ipython-under-nix>
+set editing-mode vi
+set keymap vi
+
+# Also refer to <http://stackoverflow.com/questions/10002356/what-does-set-keymap-vi-do/10002721#10002721>
+
