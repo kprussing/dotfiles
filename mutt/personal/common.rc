@@ -1,0 +1,34 @@
+## The generic settings for my personal account.
+
+set realname = "Keith F Prussing"
+set from = "kprussing74@gmail.com"
+
+## I can't seem to find this in the documentation.  So, I'll skip it
+## for now.
+#set envelope_from 
+
+## Set the paths
+## =============
+
+set signature           = ~/.mutt/personal/signature
+set header_cache        = ~/.mutt/cache/personal-headers
+set message_cachedir    = ~/.mutt/cache/bodies/personal-message
+
+## Alternate addresses
+
+alternates kprussing74@comcast.net \
+ kprussing74@comcast.net \
+ kprussing3@gatech.edu
+
+## Sending mail
+
+set sendmail = "/opt/local/bin/msmtp -a kprussing74"
+set sendmail_wait = 0
+unset record    # Gmail takes care of saving the message.
+
+## Get the general settings.
+
+source ~/.mutt/common.rc
+
+# vim: set filetype=muttrc
+

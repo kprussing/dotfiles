@@ -1,0 +1,149 @@
+# Collect all of the settings common to my generic `mutt` usage in one
+# file.  This file can then be sourced into account specific `muttrc`
+# files.
+#
+# General Options
+# ===============
+
+#set certificate_file =  = ~/.mutt/certificates
+set mailcap_path        = ~/.mutt/mailcap
+set tmpdir              = ~/.mutt/temp
+
+set wait_key = no       # Just return control to mutt
+set timeout = 3         # Only wait a shor time for input
+set mail_check = 0      # Check for new mail every # seconds (0 is good for offline)
+unset move              # Let the server handle that
+set delete              # Don't ask, just delete it
+unset confirmappend     # Don't ask, just put the email in the folder
+set quit                # Just quit mutt! <Up> + <Enter> isn't that hard
+unset mark_old          # Read/New is good enough.
+set pipe_decode         # Strip headers and decode on piping
+set thorough_search     # Decode message before searching
+
+# Status Bar
+# ----------
+
+set status_format = " %r %f [%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)?] %> %?p?(%p postponed)?"
+set status_chars = " *%A"
+
+# Sidebar Options
+# ---------------
+
+set sidebar_delim  = '  |'
+set sidebar_visible = yes
+set sidebar_width   = 24
+
+# Color Options
+# -------------
+
+color sidebar_new green default
+
+# Header Options 
+# --------------
+
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Index 
+# =====
+
+## View Options
+## ------------
+
+set date_format = "%Y-%m-%d"
+set index_format = "[%Z] %D %-15.15F %s"
+set sort = threads                          # Like Gmail
+set sort_aux = reverse-last-date-received   # Like Gmail & Outlook
+
+### I suspect I don't need this.  From the man page, the way I read it
+### is `mutt` will jump to the unread message _only_ if the thread is
+### not collapsed.
+#set uncollapse_jump # don't collapse on an unread message
+
+### Steve Losh had these settings.  The REGEX basically looks for 
+### subjects that start with the case insensitive 're' token.  Let's see
+### how `mutt` does on its own.
+#set sort_re                                # thread based on regex
+#set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+## Key Bindings
+## ------------
+
+bind index gg       first-entry
+bind index G        last-entry
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+# Sidebar Navigation 
+# ==================
+
+bind index <down>   sidebar-next
+bind index <up>     sidebar-prev
+bind index <right>  sidebar-open
+
+# Pager
+# =====
+
+## View Options
+## ------------
+
+### Not really sure what these are doing.
+#set pager_index_lines = 10  # The number of surrounding messages to show
+#set pager_context = 3       # Number of surrounding messages to show
+
+set pager_stop  # Do not go to the next message unless told to.
+set tilde       # Show the tilda after message.
+
+### Handle viewing HTML neatly.
+
+alternative_order text/plain text/enriched text/html
+auto_view text/html # View HTML automatically if someone was a jerk.
+
+## Key Bindings
+## ------------
+
+bind pager  k           previous-line
+bind pager  j           next-line
+bind pager  gg          top
+bind pager  G           bottom
+bind pager  R           group-reply
+
+### Cleanly handle attachments.
+
+bind attach <return>    view-mailcap
+
+# Compose
+# =======
+
+## View Options
+## ------------
+
+### General
+
+set edit_headers                # Let me fix typos in the header
+
+### Forwarding
+
+unset mime_forward              # Forward attachments in the body
+set forward_quote               # Forward the original message and quote
+set forward_decode              # Decode the message on forward to be nice
+set forward_format = "Fwd: %s"  # Format the subject on forward
+
+### Replying
+
+set fast_reply                  # Go straight to composing for replys
+set include                     # Inlcude original message on reply
+set reply_to                    # Reply to the correct address
+set reverse_name                # Reply as the email recipient
+
+### Tab complete contacts
+
+#set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+#bind editor <Tab> complete-query
+#bind editor ^T    complete
+
+# vim: set filetype=muttrc
+

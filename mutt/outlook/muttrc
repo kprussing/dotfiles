@@ -1,0 +1,27 @@
+# Who am I?
+# =========
+
+set realname = "Keith F Prussing"
+set from="$EMAIL"
+set envelope_from
+
+# Account info
+set imap_user = "kprussing3"
+set folder = "imaps://mail.gtri.gatech.edu/"
+set smtp_url = "smtps://apatlisdmfe4.core.gtri.org"
+
+set spoolfile="=INBOX"
+set record="=Sent Items"
+set postponed="=Drafts"
+
+# Set the paths
+# =============
+
+#set mai
+set header_cache=~/.mutt/cache/work-headers
+set message_cachedir=~/.mutt/cache/work-message
+
+source ~/.mutt/common.rc
+
+# vim: set filetype=muttrc
+

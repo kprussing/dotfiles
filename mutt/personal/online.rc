@@ -1,0 +1,12 @@
+## Online specific settings.
+
+set imap_user   = "kprussing74"
+set folder      = imaps://imap.gmail.com/
+set spoolfile   = +INBOX
+set postponed   = "+[Gmail]/Drafts"
+set imap_check_subscribed
+
+source ~/.mutt/personal/common.rc
+
+# vim: set filetype=muttrc:
+
