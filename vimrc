@@ -1,6 +1,9 @@
 " Only use vim not vi
 set nocompatible
-set modelines=0
+
+" Do I really want to disable this?  Otherwise, I can't use this to
+" syntax highlight non-standard files.
+"set modelines=0
 
 " I want to see the line number and I like the 72 characters on a line
 set number
