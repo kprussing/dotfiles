@@ -11,3 +11,5 @@ ipython/*/security
 ipython/*/startup/README
 ipython/README
 ipython/*/static
+mutt/cache
+mutt/temp/*
