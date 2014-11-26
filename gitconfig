@@ -2,7 +2,7 @@
 	name = kprussing
 	email = kprussing74@gmail.com
 [core]
-	excludesfile = /Users/keith/.gitignore
+	excludesfile = ~/.gitignore
 [push]
 	default = simple
 [credential]
