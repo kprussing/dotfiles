@@ -3,9 +3,9 @@ import re
 import subprocess
 
 def get_keychain_pass(account, server):
-    command = [ "sudo", "-u", "keith", "/usr/bin/security",
-            "find-internet-password", "-w", "-a", account, "-s", server,
-            "/Users/keith/Library/Keychains/login.keychain"
+    whoami = subprocess.check_output(["whoami"])
+    command = [ "sudo", "-u", str(whoami.strip()), "/usr/bin/security",
+            "find-internet-password", "-w", "-a", account, "-s", server
         ]
     output = subprocess.check_output(command)
     return output.strip()
