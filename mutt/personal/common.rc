@@ -30,5 +30,5 @@ unset record    # Gmail takes care of saving the message.
 
 source ~/.mutt/common.rc
 
-# vim: set filetype=muttrc
+# vim: set filetype=muttrc:
 

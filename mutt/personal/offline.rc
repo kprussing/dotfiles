@@ -22,5 +22,5 @@ macro index O "<shell-escape>offlineimap<enter>"    "Run `offlineimap`"
 source ~/.mutt/personal/common.rc
 source ~/.mutt/common.rc
 
-# vim: set filetype=muttrc
+# vim: set filetype=muttrc:
 
