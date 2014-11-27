@@ -1,0 +1,12 @@
+## Online specific settings
+
+set imap_user = "kprussing3"
+set folder = "imaps://mail.gtri.gatech.edu"
+set spoolfile = +INBOX
+set postponed = +Drafts
+set imap_check_subscribed
+
+source ~/.mutt/outlook/common.rc
+
+# vim: set filetype=muttrc:
+
