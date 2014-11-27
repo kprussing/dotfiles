@@ -12,7 +12,7 @@ set from = "kprussing74@gmail.com"
 
 set signature           = ~/.mutt/personal/signature
 set header_cache        = ~/.mutt/cache/personal-headers
-set message_cachedir    = ~/.mutt/cache/bodies/personal-message
+set message_cachedir    = ~/.mutt/cache/personal-message
 
 ## Alternate addresses
 
