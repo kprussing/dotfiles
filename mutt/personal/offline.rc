@@ -7,7 +7,7 @@ set folder              = ~/Mail
 ### Get the mailboxes.  Snagged this trick from 
 ### <http://dev.mutt.org/trac/wiki/ConfigTricks>
 
-mailboxes `find $folder -type d -name cur -printf %h`
+mailboxes `maildirs ~/Mail`
 
 set spoolfile   = +INBOX  # Default inbox.
 set mbox        = +Archive
@@ -15,12 +15,11 @@ set postponed   = +Drafts
 
 #### Retrieve email
 
-macro index O "<shell-escape>offlineimap<enter>"    "Run `offlineimap`"
+macro index O "<shell-escape>offlineimap<enter>"    "Run offlineimap"
 
 # Get the general settings.
 
 source ~/.mutt/personal/common.rc
-source ~/.mutt/common.rc
 
 # vim: set filetype=muttrc:
 

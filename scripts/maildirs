@@ -1,0 +1,33 @@
+#!/bin/bash
+
+function usage() {
+    echo "usage $0 MAIL"
+    echo ""
+    echo "Look for all directories in MAIL that have a 'cur' directory"
+    echo "and print a space separated list.  Each directory is prepended"
+    echo "with '+'.  This is because I use this specifically with mutt."
+    echo ""
+    echo "optional arguments:"
+    echo "  -h      show this help message and exit"
+}
+
+if [[ $# -ne 1 ]]; then
+    usage
+    exit 1
+elif [[ $1 = '-h' ]]; then
+    usage
+    exit
+elif ! [[ -d $1 ]]; then
+    echo $1" is not a directory!"
+    usage
+    exit 2
+fi
+
+dirs=""
+for ff in $(ls $1); do
+    if [[ -d $1/$ff/cur ]]; then
+        dirs=$dirs" +"$ff
+    fi
+done
+echo $dirs
+
