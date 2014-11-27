@@ -1,0 +1,20 @@
+## The generic settings for Outlook
+
+set realname = "Keith F. Prussing"
+set from="$EMAIL"
+
+set signature           = ~/.mutt/outlook/signature
+set header_cache        = ~/.mutt/cache/work-headers
+set message_cachedir    = ~/.mutt/cache/work-message
+
+## Sending mail
+
+set sendmail = "/opt/local/bin/msmtp -a $EMAIL"
+set sendmail_wait = 0
+unset record # Outlook does this?
+
+## Get the general settings
+
+source ~/.mutt/common.rc
+
+# vim: set filetype=muttrc:
