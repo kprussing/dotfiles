@@ -5,9 +5,9 @@
 # General Options
 # ===============
 
-set certificate_file =  = ~/.mutt/certificates
-set mailcap_path        = ~/.mutt/mailcap
-set tmpdir              = ~/.mutt/temp
+set certificate_file = ~/.mutt/certificates
+set mailcap_path     = ~/.mutt/mailcap
+set tmpdir           = ~/.mutt/temp
 
 set wait_key = no       # Just return control to mutt
 set timeout = 3         # Only wait a shor time for input
