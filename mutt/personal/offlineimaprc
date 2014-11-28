@@ -1,0 +1,51 @@
+#--------1---------2---------3---------4---------5---------6---------7--
+# General definitions
+[general]
+ui          = ttyui
+accounts    = Personal
+pythonfile  = ~/.mutt/passwords.py
+fsync       = False
+
+#--------1---------2---------3---------4---------5---------6---------7--
+[Account Personal]
+localrepository     = Personal-Local
+remoterepository    = Personal-Remote
+status_backend      = sqlite
+
+[Repository Personal-Local]
+type            = Maildir
+localfolders    = ~/Mail/
+nametrans       = lambda folder: {
+        "Archive":   "[Gmail]/All Mail",
+        "Drafts":    "[Gmail]/Drafts",
+        "Important": "[Gmail]/Important",
+        "Sent":      "[Gmail]/Sent Mail",
+        "Spam":      "[Gmail]/Spam",
+        "Starred":   "[Gmail]/Starred",
+        "Trash":     "[Gmail]/Trash",
+    }.get(folder, folder)
+folderfilter    = lambda foldername: foldername not in ["Offline"]
+
+[Repository Personal-Remote]
+type = Gmail
+remoteuser      = kprussing74@gmail.com
+remotepasseval  = keyring.get_password("gmail", "kprussing74")
+nametrans       = lambda folder: {
+        "[Gmail]/All Mail":  "Archive",
+        "[Gmail]/Drafts":    "Drafts",
+        "[Gmail]/Important": "Important",
+        "[Gmail]/Sent Mail": "Sent",
+        "[Gmail]/Spam":      "Spam",
+        "[Gmail]/Starred":   "Starred",
+        "[Gmail]/Trash":     "Trash",
+    }.get(folder, folder)
+maxconnections  = 1
+realdelete      = no
+sslcacertfile   =/opt/local/share/doc/mutt/samples/ca-bundle.crt
+ssl             = yes
+
+# Uncomment this for the first pull.
+#readonly = True
+
+# vim: set syntax=config:
+
