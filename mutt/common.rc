@@ -74,7 +74,6 @@ set sort_aux = reverse-last-date-received   # Like Gmail & Outlook
 bind index gg       first-entry
 bind index G        last-entry
 bind index R        group-reply
-bind index <tab>    sync-mailbox
 bind index <space>  collapse-thread
 
 ### Ctrl-R to mark all as read
