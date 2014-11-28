@@ -273,6 +273,10 @@ alias :q="echo \"Doh!  You're not in vi anymore.\""
 alias :x="echo 'Hey smart guy, you already did that.'"
 alias :e="echo \"Wouldn't it  be a good idea to open vi first?\""
 
+# Quick launch specific mailboxes in `mutt` for online reading.
+alias pmutt="mutt -F ~/.mutt/personal/online.rc"
+alias wmutt="mutt -F ~/.mutt/outlook/online.rc"
+
 #--------1---------2---------3---------4---------5---------6---------7--
 # Set the X forwarding if we are using Windows as a client machine.
 if [[ $OS = *cygwin* || $OS = *mingw* ]]; then

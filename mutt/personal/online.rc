@@ -1,7 +1,8 @@
 ## Online specific settings.
 
 set imap_user   = "kprussing74"
-set folder      = imaps://imap.gmail.com/
+set imap_pass   =  `python ~/.mutt/passwords.py get gmail kprussing74`
+set folder      = "imaps://imap.gmail.com/"
 set spoolfile   = +INBOX
 set postponed   = "+[Gmail]/Drafts"
 set imap_check_subscribed
