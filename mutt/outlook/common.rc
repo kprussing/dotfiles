@@ -1,7 +1,7 @@
 ## The generic settings for Outlook
 
 set realname = "Keith F. Prussing"
-set from="$EMAIL"
+set from="keith.prussing@gtri.gatech.edu"
 
 set signature           = ~/.mutt/outlook/signature
 set header_cache        = ~/.mutt/cache/work-headers
@@ -9,7 +9,7 @@ set message_cachedir    = ~/.mutt/cache/work-message
 
 ## Sending mail
 
-set sendmail = "/opt/local/bin/msmtp -a $EMAIL"
+set sendmail = "/opt/local/bin/msmtp -a outlook"
 set sendmail_wait = 0
 unset record # Outlook does this?
 
