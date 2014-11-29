@@ -277,6 +277,10 @@ alias :e="echo \"Wouldn't it  be a good idea to open vi first?\""
 alias pmutt="mutt -F ~/.mutt/personal/online.rc"
 alias wmutt="mutt -F ~/.mutt/outlook/online.rc"
 
+# Get todotxt to do the right thing.  Don't auto archive (-a), remove
+# blank lines (-n), and prepend the date (-t).
+alias todo="todotxt -ant"
+
 #--------1---------2---------3---------4---------5---------6---------7--
 # Set the X forwarding if we are using Windows as a client machine.
 if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
