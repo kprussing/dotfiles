@@ -1,10 +1,11 @@
 ## Online specific settings
 
-set imap_user = "kprussing3"
-set imap_pass = `python ~/.mutt/passwords.py get gtri kprussing3`
-set folder    = "imaps://mail.gtri.gatech.edu"
-set spoolfile = +INBOX
-set postponed = +Drafts
+set imap_user   = "kprussing3"
+set imap_pass   = `python ~/.mutt/passwords.py get gtri kprussing3`
+set folder      = "imaps://mail.gtri.gatech.edu"
+set spoolfile   = +INBOX
+set postponed   = +Drafts
+set record      = "+Sent Items"
 set imap_check_subscribed
 
 mailboxes +INBOX
