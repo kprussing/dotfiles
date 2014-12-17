@@ -153,9 +153,9 @@ set reverse_name                # Reply as the email recipient
 
 ### Tab complete contacts
 
-#set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
-#bind editor <Tab> complete-query
-#bind editor ^T    complete
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+bind editor <Tab> complete-query
+bind editor ^T    complete
 
 # vim: set filetype=muttrc:
 
