@@ -1,0 +1,58 @@
+#--------1---------2---------3---------4---------5---------6---------7--
+# General definitions
+[general]
+ui          = ttyui
+accounts    = Work
+pythonfile  = ~/.mutt/passwords.py
+fsync       = False
+
+#--------1---------2---------3---------4---------5---------6---------7--
+[Account Work]
+localrepository     = Local
+remoterepository    = Remote
+status_backend      = sqlite
+
+[Repository Local]
+type            = Maildir
+localfolders    = ~/Mail/
+nametrans       = lambda folder: {
+        "Sent" : "Sent Items"
+    }.get(folder, folder)
+
+[Repository Remote]
+type = IMAP
+remotehost      = mail.gtri.gatech.edu
+ssl             = yes
+## Generate the fingerprint with the following commands.
+## 
+##     $ echo Q | openssl s_client -connect mail.gtri.gatech.edu:993 \
+##     > | sed -n '/BEGIN CERTIFICATE/END CERTIFICATE/p' > cert.pem
+##     $ openssl x509 -in cert.pem -sha1 -noout -fingerprint | \
+##     > sed -e 's/://g' -e 's/^[[:alnum:][:blank:]]=//'
+##
+## The details of getting this came from
+## <http://www.robotamer.com/linux/openssl/mail-server-fingerprint.html>
+## and the `sed` commands where hacked together.  For some reason, I had
+## to use the fingerprint method for the Outlook email...
+##
+cert_fingerprint = AEB573018D692BDE642F57EEA37D7D3554B0E6B5
+remoteuser      = kprussing3
+remotepasseval  = keyring.get_password("gtri", "kprussing3")
+maxconnections  = 1
+realdelete      = no
+folderfilter = lambda folder: folder not in [
+        'Calendar', 'Contacts', 'Conversation History', 'Deleted Items',
+        'Journal', 'Junk E-mail', 'Notes', 'Outbox', 'RSS Feeds',
+        'Suggested Contacts', 'Sync Issues', 'Sync Issues/Conflicts', 
+        'Sync Issues/Local Failures', 'Sync Issues/Server Failures',
+        'Tasks', 'quarantine'
+    ]
+nametrans       = lambda folder: {
+        "Sent Items" : "Sent"
+    }.get(folder, folder)
+
+# Uncomment this for the first pull.
+#readonly = True
+
+# vim: set syntax=config:
+

@@ -26,7 +26,7 @@ fi
 dirs=""
 for ff in $(ls $1); do
     if [[ -d $1/$ff/cur ]]; then
-        dirs=$dirs" +"$ff
+        dirs=$dirs" +'$ff'"
     fi
 done
 echo $dirs

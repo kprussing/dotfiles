@@ -1,1 +1,18 @@
+set folder  = ~/Mail
+
+mailboxes `maildirs ~/Mail`
+
+set spoolfile   = +INBOX  # Default inbox.
+set postponed   = +Drafts
+set record      = +Sent
+
+#### Retrieve email
+
+macro index O "<shell-escape>offlineimap<enter>"    "Run offlineimap"
+
+# Get the general settings.
+
+source ~/.mutt/outlook/common.rc
+
+
 # vim: set filetype=muttrc:

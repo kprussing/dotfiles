@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Resize the terminal and start a `tmux` session.  The terminal will be
+# 181x60 so that mutt can be on the left in a 100 wide window and the
+# remaining will be split horizontally.
+#
+
+# Create a name and go to the desktop.
+NAME=email
+cd ~/Desktop
+
+# Resize the terminal window.
+#printf '\e[8;60;181;t\e[3;0;0;t'
+resize -s 50 181 > /dev/null
+#printf '\e[3;0;0;t'
+
+# Create the session.
+tmux -2 new-session -d -n 'Main' -s $NAME
+tmux send-keys "cd ~/Desktop && mutt" Enter
+# Split the window to 100 and 80 columns
+tmux split-window -h -l 80
+# Set the default window
+tmux select-window -t $NAME:1
+# Attach to the session.
+tmux -2 attach-session -t $NAME
+
