@@ -76,7 +76,7 @@ Session.vim
 
 # SCons #
 #########
-.sconsign.dblite
+.sconsign.dblite*
 
 # Python #
 ##########
