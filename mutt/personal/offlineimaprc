@@ -41,7 +41,7 @@ nametrans       = lambda folder: {
     }.get(folder, folder)
 maxconnections  = 1
 realdelete      = no
-sslcacertfile   =/opt/local/share/doc/mutt/samples/ca-bundle.crt
+sslcacertfile   = ~/.mutt/ca-bundle.crt
 ssl             = yes
 
 # Uncomment this for the first pull.
