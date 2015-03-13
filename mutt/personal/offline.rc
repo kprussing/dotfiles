@@ -20,6 +20,7 @@ macro index O "<shell-escape>offlineimap<enter>"    "Run offlineimap"
 # Get the general settings.
 
 source ~/.mutt/personal/common.rc
+source ~/.mutt/gpg.rc
 
 # vim: set filetype=muttrc:
 
