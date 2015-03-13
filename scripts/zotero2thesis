@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+from __future__ import print_function
+__doc__="""
+Take the BibTex file BIB produced by Zotero and clean it up for my
+thesis.  The ``abstract`` and ``file`` fields are removed from all
+entries.  If the abstract extends over more than one line, it will strip
+out the extra lines.  Additionally, the ``urldate`` is removed from all
+entries _except_ for the ``misc`` entries.  This allows me to have an
+accessed date for websites.
+
+"""
+import re
+
+def process(fid):
+    """
+    Process the given file handle.
+    """
+    inmisc = False
+    for line in fid:
+        # Skip and overflow lines.  This could be fragile if
+        # Zotero ever changes how they format the BibTex file.
+        if line.strip() == "":
+            print()
+            continue
+        elif line[0].isalnum():
+            continue
+        # end if
+
+        # Check for the bounds on a ``misc`` field.
+        if line[0] == "@" and line[:5] == "@misc":
+            inmisc = True
+        elif inmisc and line.strip() == "}":
+            inmisc = False
+        # end if
+
+        toks = line.strip().split()
+        if toks[0] in ["abstract", "file"]:
+            continue
+        elif not inmisc and toks[0] == "urldate":
+            continue
+        # end if
+
+        print(line.rstrip())
+    # end for
+
+    return
+# end def process
+
+def main():
+    import argparse, sys
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+            "BIB", help="The Zotero BibTex file",
+            type=argparse.FileType("r")
+        )
+    args = parser.parse_args()
+    sys.exit( process(args.BIB) )
+# end def main
+
+if __name__ == "__main__":
+    main()
+# end if
+
