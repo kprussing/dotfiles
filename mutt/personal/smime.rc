@@ -1,0 +1,10 @@
+# Settings for my personal account using S/MIME
+
+# Use PGP by default
+#set smime_is_default
+
+# Who am I?
+set smime_default_key="0eca1d10.0"
+
+# vim: set filetype=muttrc:
+

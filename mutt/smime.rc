@@ -1,10 +1,22 @@
-# -*-muttrc-*-
+# S/MIME and Mutt Configuration
+# =============================
+#
+# This file was copied from `/opt/local/share/doc/mutt/share` and
+# modified to my needs.  [This] article was helpful in getting things
+# running.  I got a personal certificate from [Comodo] using Safari.
+# Once I downloaded the certificate from Comodo, I imported it into
+# Keychain Access and the exported my certificate.  I also exported the
+# COMODO certificate that was installed.  I then had to go get the root
+# certificate from Comodo and use 
+#
+#       smime_keys add_root comodoroot.pem
+#
+# [This]: https://pthree.org/2011/09/15/setting-up-mutt-with-smime-and-pgpmime/
+# [Comodo]: https://secure.comodo.com/products/frontpage?area=SecureEmailCertificate
+#
+
 ## The following options are only available if you have
 ## compiled in S/MIME support
-
-# If you compiled mutt with support for both PGP and S/MIME, PGP
-# will be the default method unless the following option is set
-set smime_is_default
 
 # Uncoment this if you don't want to set labels for certificates you add.
 # unset smime_ask_cert_label
@@ -13,21 +25,17 @@ set smime_is_default
 set smime_timeout=300
 
 # Global crypto options -- these affect PGP operations as well.
-set crypt_autosign = no
+#set crypt_autosign = yes
 set crypt_replyencrypt = yes
-set crypt_replysign = yes
+#set crypt_replysign = yes
 set crypt_replysignencrypted = yes
 set crypt_verify_sig = yes
 
 # Section A: Key Management.
 
-# The (default) keyfile for signing/decrypting.  Uncomment the following
-# line and replace the keyid with your own.
-set smime_default_key="93b18a2f.0"
-
-# Uncommen to make mutt ask what key to use when trying to decrypt a message.
-# It will use the default key above (if that was set) else.
-# unset smime_decrypt_use_default_key
+# Uncomment to make mutt ask what key to use when trying to decrypt a
+# message.  It will use the default key above (if that was set) else.
+#unset smime_decrypt_use_default_key
 
 # Path to a file or directory with trusted certificates
 set smime_ca_location="~/.smime/ca-bundle.crt"
