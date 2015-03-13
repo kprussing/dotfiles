@@ -281,6 +281,9 @@ alias wmutt="mutt -F ~/.mutt/outlook/online.rc"
 # blank lines (-n), and prepend the date (-t).
 alias todo="todotxt -ant"
 
+# Use Steve Losh's `t`
+alias t="python2.7 ~/.scripts/t/t.py --task-dir ~/Documents/Development/todo --list TODO.txt"
+
 #--------1---------2---------3---------4---------5---------6---------7--
 # Set the X forwarding if we are using Windows as a client machine.
 if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
