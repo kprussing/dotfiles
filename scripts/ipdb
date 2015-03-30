@@ -19,7 +19,6 @@ if __name__ == "__main__":
             "args", help="Arguments to module", nargs=argparse.REMAINDER
         )
     args = parser.parse_args()
-    print(args.args)
     sys.argv = args.args
     pdb.runcall(
             runpy.run_module, args.module, run_name="__main__"
