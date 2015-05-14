@@ -14,5 +14,8 @@ macro index O "<shell-escape>offlineimap<enter>"    "Run offlineimap"
 
 source ~/.mutt/outlook/common.rc
 
+# And the security settings.
+source ~/.mutt/smime.rc
+source ~/.mutt/outlook/smime.rc
 
 # vim: set filetype=muttrc:

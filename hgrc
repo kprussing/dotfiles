@@ -1,0 +1,21 @@
+[ui]
+username = Keith F Prussing <kprussing74@gmail.com>
+editor = vim
+ignore = ~/.hgignore
+
+[extensions]
+convert =
+record =
+pager =
+
+[email]
+from = Keith F Prussing <kprussing74@gmail.com>
+
+[pager]
+attend = annotate, cat, diff, export, glog, log, qdiff, help
+
+[alias]
+# Absolutely taken from Steve Losh.
+bug = !python2.7 ~/.scripts/t/t.py --task-dir="`$HG root`" --list=BUGS $@
+todo = !python2.7 ~/.scripts/t/t.py --task-dir="`$HG root`" --list=TODO $@
+

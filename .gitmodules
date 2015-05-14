@@ -4,3 +4,9 @@
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
+[submodule "scripts/mutt-ics"]
+	path = scripts/mutt-ics
+	url = https://github.com/dmedvinsky/mutt-ics.git
+[submodule "scripts/t"]
+	path = scripts/t
+	url = https://github.com/sjl/t.git

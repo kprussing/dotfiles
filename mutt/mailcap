@@ -15,4 +15,7 @@ text/html; links -dump %s; nametemplate=%s.html; copiousoutput
 # # Unidentified files
 application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
 application/msword; ~/.mutt/view_attachment.sh %s "-"
+#
+# # Calendar requests
+text/calendar; python ~/.scripts/mutt-ics/src/main.py %s | less; copioutoutput
 

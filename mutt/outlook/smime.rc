@@ -1,0 +1,10 @@
+# S/MIME settings for my work account
+
+# Use S/MIME as the default encryption
+set smime_is_default
+
+# Who am I?
+set smime_default_key="93b18a2f.0"
+
+# vim: set filetype=muttrc:
+
