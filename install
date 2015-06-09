@@ -64,6 +64,8 @@ if __name__ == "__main__":
             if f[0] == "." or f in excludes:
                 logging.debug("Skipping {0}".format(f))
                 continue
+            elif os.path.splitext(f)[1] in (".tar", ".gz"):
+                continue
             # end if
             logging.info("Processing: {0}".format(f))
 
