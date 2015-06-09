@@ -1,30 +1,17 @@
 #--------1---------2---------3---------4---------5---------6---------7--
 # General settings.
 
-# Determine the operating system
-OS=$(uname | tr A-Z a-z)
-
 # Tell bash to check the window size after each command.
 shopt -s checkwinsize
-
-# Set my editor and pager
-export EDITOR=vim
-export VISUAL=$EDITOR
-export PAGER=less
-
-export LESS="-i -g -R"
 
 # Use vi bindings for bash
 set -o vi
 
-# Point the temp directory to something I own.  This helps with long
-# running tmux sessions.
-#export TMPDIR=$HOME/.local/tmp
-
-# Also hard set the Tex directory
-export TEXMFHOME=$HOME/.texmf
-
+# Source the shell independent details.
+source $HOME/.scripts/variables.sh
 source $HOME/.scripts/functions.sh
+source $HOME/.scripts/aliases.sh
+
 #--------1---------2---------3---------4---------5---------6---------7--
 # Update the paths based on how I have things installed.
 export PATH=$(path_append "$PATH" "$HOME/.scripts")
@@ -227,14 +214,6 @@ function repo_prompt() {
 # And set my prompt.
 _PS1="\n"$usr" at "$hst" in "$pth
 export PROMPT_COMMAND='export PS1="${_PS1}$(repo_prompt)\n\$ "'
-
-#--------1---------2---------3---------4---------5---------6---------7--
-# Set the X forwarding if we are using Windows as a client machine.
-if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
-    export DISPLAY=:0
-fi
-
-source $HOME/.scripts/aliases.sh
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Source the local setting too.
