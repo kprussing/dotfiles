@@ -8,6 +8,7 @@ shopt -s checkwinsize
 set -o vi
 
 # Source the shell independent details.
+source $HOME/.scripts/colors.sh
 source $HOME/.scripts/variables.sh
 source $HOME/.scripts/functions.sh
 source $HOME/.scripts/aliases.sh
@@ -69,33 +70,6 @@ export PATH=$(path_append "$PATH" "$HOME/.scripts")
 #if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
     #export PKG_CONFIG_PATH
 #fi
-
-#--------1---------2---------3---------4---------5---------6---------7--
-# Make the colors clear.  First the foreground.
-BLACK='\e[30m'
-RED='\e[31m'
-GREEN='\e[32m'
-YELLOW='\e[33m'
-BLUE='\e[34m'
-MAGENTA='\e[35m'
-CYAN='\e[36m'
-WHITE='\e[37m'
-
-# Next, the background
-BGBLACK='\e[40m'
-BGRED='\e[41m'
-BGGREEN='\e[42m'
-BGYELLOW='\e[43m'
-BGBLUE='\e[44m'
-BGMAGENTA='\e[45m'
-BGCYAN='\e[46m'
-BGWHITE='\e[47m'
-
-# Modifiers
-RESET='\e[0m'
-BOLD='\e[1m'
-UNDERLINE='\e[4m'
-BLINK='\e[5m'
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Set my prompt colors.  First, check to see if the user is root.
