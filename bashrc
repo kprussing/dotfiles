@@ -24,32 +24,7 @@ set -o vi
 # Also hard set the Tex directory
 export TEXMFHOME=$HOME/.texmf
 
-#--------1---------2---------3---------4---------5---------6---------7--
-# Utility functions for updating paths.
-function path_append () {
-    # Append a path ($2) to a variable ($1) if it is not already in the
-    # variable and exists.
-    if [[ -z "$1" ]]; then
-        # If the string is uninitialized, just create the path
-        [ -d $2 ] && echo $2
-    else
-        # Check for duplicate paths.
-        if echo $1 | grep -q "$2"; then
-            echo $1
-        else
-            [ -d $2 ] && echo $1:$2 || echo $1
-        fi
-    fi
-    return
-}
-
-function path_remove () {
-    # Remove a path ($2) from a variable ($1) if it occurs in the path.
-    # Don't forget to clean up those ugly duplicate colons.
-    echo $1 | sed -e "s|$2||" -e "s|::|:|"
-    return
-}
-
+source $HOME/.scripts/functions.sh
 #--------1---------2---------3---------4---------5---------6---------7--
 # Update the paths based on how I have things installed.
 export PATH=$(path_append "$PATH" "$HOME/.scripts")
