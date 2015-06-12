@@ -1,3 +1,4 @@
 
 # Build products
 \.sconsign\.dblite
+.pyc$

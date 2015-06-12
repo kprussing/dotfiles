@@ -1,54 +1,17 @@
 #--------1---------2---------3---------4---------5---------6---------7--
 # General settings.
 
-# Determine the operating system
-OS=$(uname | tr A-Z a-z)
-
 # Tell bash to check the window size after each command.
 shopt -s checkwinsize
-
-# Set my editor and pager
-export EDITOR=vim
-export VISUAL=$EDITOR
-export PAGER=less
-
-export LESS="-i -g -R"
 
 # Use vi bindings for bash
 set -o vi
 
-# Point the temp directory to something I own.  This helps with long
-# running tmux sessions.
-#export TMPDIR=$HOME/.local/tmp
-
-# Also hard set the Tex directory
-export TEXMFHOME=$HOME/.texmf
-
-#--------1---------2---------3---------4---------5---------6---------7--
-# Utility functions for updating paths.
-function path_append () {
-    # Append a path ($2) to a variable ($1) if it is not already in the
-    # variable and exists.
-    if [[ -z "$1" ]]; then
-        # If the string is uninitialized, just create the path
-        [ -d $2 ] && echo $2
-    else
-        # Check for duplicate paths.
-        if echo $1 | grep -q "$2"; then
-            echo $1
-        else
-            [ -d $2 ] && echo $1:$2 || echo $1
-        fi
-    fi
-    return
-}
-
-function path_remove () {
-    # Remove a path ($2) from a variable ($1) if it occurs in the path.
-    # Don't forget to clean up those ugly duplicate colons.
-    echo $1 | sed -e "s|$2||" -e "s|::|:|"
-    return
-}
+# Source the shell independent details.
+source $HOME/.scripts/colors.sh
+source $HOME/.scripts/variables.sh
+source $HOME/.scripts/functions.sh
+source $HOME/.scripts/aliases.sh
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Update the paths based on how I have things installed.
@@ -107,33 +70,6 @@ export PATH=$(path_append "$PATH" "$HOME/.scripts")
 #if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
     #export PKG_CONFIG_PATH
 #fi
-
-#--------1---------2---------3---------4---------5---------6---------7--
-# Make the colors clear.  First the foreground.
-BLACK='\e[30m'
-RED='\e[31m'
-GREEN='\e[32m'
-YELLOW='\e[33m'
-BLUE='\e[34m'
-MAGENTA='\e[35m'
-CYAN='\e[36m'
-WHITE='\e[37m'
-
-# Next, the background
-BGBLACK='\e[40m'
-BGRED='\e[41m'
-BGGREEN='\e[42m'
-BGYELLOW='\e[43m'
-BGBLUE='\e[44m'
-BGMAGENTA='\e[45m'
-BGCYAN='\e[46m'
-BGWHITE='\e[47m'
-
-# Modifiers
-RESET='\e[0m'
-BOLD='\e[1m'
-UNDERLINE='\e[4m'
-BLINK='\e[5m'
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Set my prompt colors.  First, check to see if the user is root.
@@ -252,43 +188,6 @@ function repo_prompt() {
 # And set my prompt.
 _PS1="\n"$usr" at "$hst" in "$pth
 export PROMPT_COMMAND='export PS1="${_PS1}$(repo_prompt)\n\$ "'
-
-#--------1---------2---------3---------4---------5---------6---------7--
-# Set some aliases
-alias xvim='xterm -e vim'   # I don't like gVim and this is tolerable.
-alias tmux='tmux -2'        # Force 256 colors in tmux.
-
-# Colorize ls based on BSD vs. GNU
-if [[ "$OS" = "darwin" ]]; then
-    # Set the command line colors. Based on information from
-    # osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
-    export CLICOLOR=1
-    export LSCOLORS=ExFxCxDaBxegedabagacad
-else
-    alias ls='ls --color=auto'
-fi
-
-# Totally stole the idea from jefflarkin
-alias :q="echo \"Doh!  You're not in vi anymore.\""
-alias :x="echo 'Hey smart guy, you already did that.'"
-alias :e="echo \"Wouldn't it  be a good idea to open vi first?\""
-
-# Quick launch specific mailboxes in `mutt` for online reading.
-alias pmutt="mutt -F ~/.mutt/personal/online.rc"
-alias wmutt="mutt -F ~/.mutt/outlook/online.rc"
-
-# Get todotxt to do the right thing.  Don't auto archive (-a), remove
-# blank lines (-n), and prepend the date (-t).
-alias todo="todotxt -ant"
-
-# Use Steve Losh's `t`
-alias t="python2.7 ~/.scripts/t/t.py --task-dir ~/Documents/Development/todo --list TODO.txt"
-
-#--------1---------2---------3---------4---------5---------6---------7--
-# Set the X forwarding if we are using Windows as a client machine.
-if [[ $OS = *cygwin* || $OS = *mingw* ]]; then
-    export DISPLAY=:0
-fi
 
 #--------1---------2---------3---------4---------5---------6---------7--
 # Source the local setting too.
