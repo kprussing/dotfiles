@@ -154,7 +154,7 @@ elif [[ "$OS" = "darwin" ]]; then
     # I like magenta on the man page theme with a blue path.
     hst="\[$BOLD$MAGENTA\]\h\[$RESET\]"
     pth="\[$BOLD$BLUE\]\w\[$RESET\]"
-elif [[ "$OS" = *cgwin* || "$OS" = *mingw* ]]; then
+elif [[ "$OS" = *cygwin* || "$OS" = *mingw* ]]; then
     # Let's try cyan with yellow for Windows.
     hst="\[$BOLD$CYAN\]\h\[$RESET\]"
     pth="\[$BOLD$YELLOW\]\w\[$RESET\]"
