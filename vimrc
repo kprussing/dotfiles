@@ -29,7 +29,9 @@ let g:pandoc#syntax#conceal#use=0
 syntax enable
 "set background=dark
 set t_Co=256
-"colorscheme zenburn
+if has("win32") || has("win32unix")
+    colorscheme zenburn
+endif
 
 " I like syntax highlighting and spelling on
 set spell
