@@ -81,4 +81,5 @@ Session.vim
 # Python #
 ##########
 *.pyc
+*.egg-info
 
