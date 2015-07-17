@@ -1,0 +1,28 @@
+[Finch]
+wm = /usr/lib64/gnt/irssi.so
+
+color-available = green; default
+color-away = blue; default
+color-idle = gray; default
+color-offline = red; default
+
+color-message-sent = magenta; default
+color-message-received = cyan; default
+color-message-highlight = default; gray
+color-message-action = red; default
+color-timestamp = blue; default
+
+[general]
+small-button = true
+
+[colorpairs]
+normal = default; default
+highlight = default; white
+highlightd = default; default
+#shadow = black; darkgray
+title = green; default
+titled = default; default
+text = default; white
+disabled = gray; default
+#urgent = green; black 
+
