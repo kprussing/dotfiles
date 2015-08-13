@@ -2,3 +2,9 @@
 # Build products
 \.sconsign\.dblite
 .pyc$
+
+# Archives
+.gz$
+.tar$
+.bz2$
+
