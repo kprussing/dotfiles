@@ -2,6 +2,7 @@
 # Build products
 \.sconsign\.dblite
 .pyc$
+.egg-info$
 
 # Archives
 .gz$
