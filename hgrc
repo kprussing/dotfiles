@@ -5,8 +5,10 @@ ignore = ~/.hgignore
 
 [extensions]
 convert =
+color =
 record =
 pager =
+hggit = ~/Documents/Development/hg-git/hggit
 
 [email]
 from = Keith F Prussing <kprussing74@gmail.com>
@@ -18,4 +20,9 @@ attend = annotate, cat, diff, export, glog, log, qdiff, help
 # Absolutely taken from Steve Losh.
 bug = !python2.7 ~/.scripts/t/t.py --task-dir="`$HG root`" --list=BUGS $@
 todo = !python2.7 ~/.scripts/t/t.py --task-dir="`$HG root`" --list=TODO $@
+
+# Push both the mercurial and git repositories.  Still taken from Mr.
+# Losh.  This does mean I will need to ensure that the git repository is
+# properly named.
+pg = !"$HG" push && "$HG" push git.
 
