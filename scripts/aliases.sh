@@ -18,6 +18,7 @@ fi
 alias :q="echo \"Doh!  You're not in vi anymore.\""
 alias :x="echo 'Hey smart guy, you already did that.'"
 alias :e="echo \"Wouldn't it  be a good idea to open vi first?\""
+alias :w="echo 'Want to try that again over in vi?'"
 
 # Quick launch specific mailboxes in `mutt` for online reading.
 alias pmutt="mutt -F ~/.mutt/personal/online.rc"
