@@ -93,6 +93,10 @@ nnoremap <leader><space> :noh<cr>
 " And remap keys for easy windowing
 nnoremap <leader>w <C-w>v<C-w>l
 
+" Quickly save a session in the current directory.  This is mainly for
+" pausing my work in a development directory.
+nnoremap <leader>s :mksession!<CR>
+
 "--------1---------2---------3---------4---------5---------6---------7--
 " The function to create and set the backup directories for cleanliness
 function! InitializeDirectories()
