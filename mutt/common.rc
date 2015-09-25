@@ -29,14 +29,14 @@ set status_chars = " *%A"
 # Sidebar Options
 # ---------------
 
-set sidebar_delim  = '  |'
-set sidebar_visible = yes
-set sidebar_width   = 24
+#set sidebar_delim  = '  |'
+#set sidebar_visible = yes
+#set sidebar_width   = 24
 
 # Color Options
 # -------------
 
-color sidebar_new green default
+color index green default new
 
 # Header Options 
 # --------------
