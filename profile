@@ -1,8 +1,6 @@
 # The things that tell the world about me!  We begin with setting some
 # universal variables starting with the operating system.
 
-echo "Profile running"
-
 export OS=$(uname | tr A-Z a-z)
 
 # Next the editor and pager
