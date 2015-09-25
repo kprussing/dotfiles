@@ -1,5 +1,6 @@
 # This is simply and example of possible places to look for executables.
-exit
+# It does not actually do anything.
+return
 
 paths="
     $HOME/.scripts
@@ -10,7 +11,7 @@ paths="
     /opt/android-sdk-macosx/tools
     /opt/android-sdk-macosx/platform-tools
     /nagfor/bin
-"
+”
 for p in $paths; do
     if [[ $(echo "$1" | grep -q "$2") ]]; then
         BIN=$(path_append "$BIN" "$p")
@@ -31,7 +32,7 @@ paths="
     /opt/X11/share/man
     $HOME/.local/man
     $HOME/.local/share/man
-"
+”
 for p in $paths; do
     MANPATH=$(path_append "$MANPATH" "$p")
 done
@@ -44,7 +45,7 @@ fi
 paths="
     $HOME/.local/lib
     $HOME/.local/lib64
-"
+”
 for p in $paths; do
     LD_LIBRARY_PATH=$(path_append "$LD_LIBRARY_PATH" "$p")
     PKG_CONFIG_PATH=$(path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig)

@@ -1,6 +1,6 @@
 # Set some easy references to the color.
 if [[ $- != *i* ]]; then
-    exit
+    return
 fi
 
 # Make the colors clear

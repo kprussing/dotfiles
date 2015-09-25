@@ -1,5 +1,5 @@
 if [[ $- != *i* ]]; then
-    exit
+    return
 fi
 
 # We begin with the general settings.  Tell bash to check the window

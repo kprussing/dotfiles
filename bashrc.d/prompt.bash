@@ -1,7 +1,7 @@
 # Set up my prompt.  It's big and extravagant, but I like it!
 
 if [[ $- != *i* ]]; then
-    exit
+    return
 fi
 
 # Ensure that the colors have been sourced.  Note that this assumes the
