@@ -9,10 +9,7 @@ shopt -s checkwinsize
 # Use vi bindings for bash
 set -o vi
 
-export PATH=$(path_append "$PATH" "$HOME/.scripts")
-
 # Source the other settings
-
 for config in "$HOME"/.bashrc.d/*.bash;
 do
     source $config

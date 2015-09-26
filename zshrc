@@ -19,8 +19,6 @@ do
 done
 unset -v config
 
-export PATH=$(path_append "$PATH" "$HOME/.scripts")
-
 if [ -f "$HOME"/.local/zshrc ]; then
     source "$HOME"/.local/zshrc
 fi
