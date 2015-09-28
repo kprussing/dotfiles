@@ -2,6 +2,7 @@
 username = Keith F Prussing <kprussing74@gmail.com>
 editor = vim
 ignore = ~/.hgignore
+ssh = ssh -C
 
 [extensions]
 convert =
