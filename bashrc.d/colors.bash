@@ -1,3 +1,8 @@
+# Set some easy references to the color.
+if [[ $- != *i* ]]; then
+    return
+fi
+
 # Make the colors clear
 BLACK='\e[30m'
 RED='\e[31m'

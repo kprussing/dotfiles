@@ -78,7 +78,7 @@ set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --l
 set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
 
 # Me!
-set pgp_sign_as=0xED49F094
+set pgp_sign_as=0xC853D2F1
 set pgp_replyencrypt=yes
 set pgp_timeout=600
 
