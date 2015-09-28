@@ -2,11 +2,13 @@
 # It is a collection of all the places I have had to put executables.
 
 paths=(
-    "$HOME/.scripts"
-    "$HOME/.local/bin"
-    "$HOME/.local/scripts"
     "/opt/local/bin"
     "/opt/local/sbin"
+    "$HOME/.scripts"
+    "$HOME/.cabal/bin"
+    "$HOME/.local/bin"
+    "$HOME/.local/scripts"
+    "$HOME/Library/Python/3.4/bin"
     "/opt/android-sdk-macosx/tools"
     "/opt/android-sdk-macosx/platform-tools"
     "/nagfor/bin"
