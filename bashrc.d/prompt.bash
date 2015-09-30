@@ -35,8 +35,8 @@ elif [[ "$OS" = *cygwin* || "$OS" = *mingw* ]]; then
     pth="\[$BOLD$YELLOW\]\w\[$RESET\]"
 else
     # And no color is the default.
-    hst="\h"
-    pth="\w"
+    hst="\[$BOLD$CYAN\]\h\[$RESET\]"
+    pth="\[$BOLD$BLUE\]\w\[$RESET\]"
 fi
 
 # Adapted from http://www.opinionatedprogrammer.com/2011/01/colorful-bash-prompt-reflecting-git-status

@@ -23,8 +23,8 @@ elif [[ "$OS" = *cygwin* || "$OS" = *mingw* ]]; then
     pth="%{$fg_bold[yellow]%}%2~%{$reset_color%}"
 else
     # And no color is the default.
-    hst="%m"
-    pth="%2~"
+    hst="%{$fg_bold[cyan]%}%m%{$reset_color%}"
+    pth="%{$fg_bold[blue]%}%2~%{$reset_color%}"
 fi
 
 PROMPT='
