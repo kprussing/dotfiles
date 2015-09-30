@@ -13,6 +13,11 @@ autoload -U colors && colors
 # Let the prompt actually expand functions.
 setopt PROMPT_SUBST
 
+# Get the shell independent settings.
+if [ -f "$HOME"/.shrc ]; then
+    source "$HOME"/.shrc
+fi
+
 for config in "$HOME"/.zshrc.d/*zsh
 do
     source $config

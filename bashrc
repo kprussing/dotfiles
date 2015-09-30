@@ -9,6 +9,11 @@ shopt -s checkwinsize
 # Use vi bindings for bash
 set -o vi
 
+# Get the shell independent settings.
+if [ -f "$HOME"/.shrc ]; then
+    source "$HOME"/.shrc
+fi
+
 # Source the other settings
 for config in "$HOME"/.bashrc.d/*.bash;
 do
