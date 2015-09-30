@@ -2,12 +2,12 @@
 # The function to establish a mercurial prompt.
 
 function _hg_prompt() {
-    local sta=$(hg status 2>&1 | cut -d ' ' -f 1 | tr -s '\n' ' ')
+    sta=$(hg status 2>&1 | cut -d ' ' -f 1 | tr -s '\n' ' ')
     if ! [[ "$sta" =~ 'abort:' || "$sta" =~ 'zsh:' ]]; then
         # Make a hg prompt!
-        local branch=$(hg branch -q)
+        branch=$(hg branch -q)
 
-        local tag
+        tag
         if [[ "$sta" =~ "\?" ]]; then
             tag=$tag"%{$reset_color%}?"
         fi
