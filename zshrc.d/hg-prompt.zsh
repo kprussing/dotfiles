@@ -3,7 +3,7 @@
 
 function _hg_prompt() {
     local sta=$(hg status 2>&1 | cut -d ' ' -f 1 | tr -s '\n' ' ')
-    if ! [[ "$sta" =~ 'abort:' || "$sta" =~ 'zsh:' ]]; then
+    if ! [[ "$sta" =~ 'abort:' || "$sta" =~ '_hg_prompt:' ]]; then
         # Make a hg prompt!
         local branch=$(hg branch -q)
 
