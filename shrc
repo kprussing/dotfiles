@@ -1,5 +1,5 @@
-# The things that tell the world about me!  We begin with setting some
-# universal variables starting with the operating system.
+# This collects all the shell independent settings.  We begin with
+# setting some universal variables starting with the operating system.
 
 export OS=$(uname | tr A-Z a-z)
 
@@ -20,7 +20,7 @@ fi
 
 # Now source all of the additional configurations.
 
-for config in "$HOME"/.profile.d/*.sh
+for config in "$HOME"/.shrc.d/*.sh
 do
     . $config
 done
