@@ -9,7 +9,7 @@ set message_cachedir    = ~/.mutt/cache/work-message
 
 ## Sending mail
 
-set sendmail = "/opt/local/bin/msmtp -a outlook"
+set sendmail = "`which msmtp` -a outlook"
 set sendmail_wait = 0
 
 ## Get the general settings

@@ -22,7 +22,7 @@ alternates kprussing74@comcast.net \
 
 ## Sending mail
 
-set sendmail = "/opt/local/bin/msmtp -a kprussing74"
+set sendmail = "`which msmtp` -a kprussing74"
 set sendmail_wait = 0
 unset record    # Gmail takes care of saving the message.
 
