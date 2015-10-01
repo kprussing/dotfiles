@@ -3,11 +3,11 @@
 
 function _hg_prompt() {
     sta=$(hg status 2>&1 | cut -d ' ' -f 1 | tr -s '\n' ' ')
-    if ! [[ "$sta" =~ 'abort:' || "$sta" =~ 'zsh:' ]]; then
+    if ! [[ "$sta" =~ 'abort:' || "$sta" =~ '_hg_prompt:' ]]; then
         # Make a hg prompt!
         branch=$(hg branch -q)
 
-        tag
+        tag=""
         if [[ "$sta" =~ "\?" ]]; then
             tag=$tag"%{$reset_color%}?"
         fi
