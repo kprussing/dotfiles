@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # Fix the mess OSX and path_helper make of the path.  These tools
 # "conveniently help" by putting the /usr paths at the front.  The
 # problem with that is *I don't want that*!  The /opt and $HOME
