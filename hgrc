@@ -9,7 +9,7 @@ convert =
 color =
 record =
 pager =
-hggit = ~/Documents/Development/hg-git/hggit
+hggit = ~/.scripts/hg-git/hggit
 
 [email]
 from = Keith F Prussing <kprussing74@gmail.com>
