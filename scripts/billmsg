@@ -1,0 +1,83 @@
+#!/bin/sh
+
+DEF=$HOME/Documents/Bills
+
+function usage() {
+    echo "usage: $(basename $0) BILL YEAR MONTH MSG [MSG ...]"
+    echo ""
+    help=$(cat << _EOF_
+        Generate the remind(1) message for the given BILL.  The logic is
+        that if the bill was paid for YEAR-MONTH, then I printed out a
+        PDF of the confirmation, named it after the bill, and placed it
+        in a directory YEAR/MONTH where the month is zero padded.  This
+        directory is assumed to be placed under $DEF.  This can be
+        overwritten by setting the environment variable BILLDIR.  If the
+        PDF does not *not* exist, then the MSG is sent to standard out.
+        If the optional argument -c is present, then a call to ledger(1)
+        is made to check the balance of BILL.  If the balance is zero,
+        nothing is printed.  Otherwise, MSG is printed.  If ledger(1) is
+        not installed, -c is ignored.
+        _EOF_
+    )
+    echo $help | fmt -ps
+    echo ""
+    echo "  Options:"
+    echo ""
+    echo "      -c  Check ledger(1) for a credit card balance."
+}
+
+CC=0
+while getopts ":ch" opt
+do
+    case "$opt" in
+        c)
+            CC=1;;
+        \?)
+            echo "Unknown option: $OPTARG" >& 2
+            usage >& 2
+            exit 2;;
+        h)
+            usage >& 2
+            exit 1;;
+    esac
+done
+
+if [ $(expr $# - $CC) -lt 4 ]
+then
+    echo "Invalid number of arguments: $#"
+    usage >& 2
+    exit 3
+fi
+shift $(expr $OPTIND - 1)
+BILL="$1"
+shift
+YEAR=$1
+shift
+MONTH=$(printf "%02d" $1)
+shift
+MSG="$@"
+
+#echo "Bill: "$BILL
+#echo "Year: "$YEAR
+#echo "Month: "$MONTH
+#echo "MSG: "$MSG
+
+billdir=${BILLDIR:-$DEF}
+#echo "Looking in "$billdir
+if [[ -e ${billdir%*/}/${YEAR}/${MONTH}/${BILL}.pdf ]]
+then
+    exit
+fi
+
+if [[ $CC -eq 1 && $(command -v ledger > /dev/null 2>&1) -eq 0 ]]
+then
+    bal=$(ledger balance "$BILL" | tr -s ' ' | cut -d ' ' -f 3)
+    if [[ -z $bal ]]; then
+        exit
+    fi
+#else
+    #echo "ledger(1) not found"
+fi
+
+echo "$MSG"
+
