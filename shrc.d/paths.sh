@@ -13,7 +13,7 @@ paths=(
     "/opt/android-sdk-macosx/platform-tools"
     "/nagfor/bin"
 )
-for p in $paths; do
+for p in ${paths[@]}; do
     if ! echo "$PATH" | grep -q "$p" ; then
         BIN=$(path_append "$BIN" "$p")
     fi
@@ -35,7 +35,7 @@ paths=(
     "$HOME/.local/man"
     "$HOME/.local/share/man"
 )
-for p in $paths; do
+for p in ${paths[@]}; do
     MANPATH=$(path_append "$MANPATH" "$p")
 done
 if [[ ! -z "$MANPATH" ]]; then
@@ -48,7 +48,7 @@ paths=(
     "$HOME/.local/lib"
     "$HOME/.local/lib64"
 )
-for p in $paths; do
+for p in ${paths[@]}; do
     LD_LIBRARY_PATH=$(path_append "$LD_LIBRARY_PATH" "$p")
     PKG_CONFIG_PATH=$(path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig)
 done
