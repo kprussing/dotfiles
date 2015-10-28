@@ -31,3 +31,5 @@ alias todo="todotxt -ant"
 # Use Steve Losh's `t`
 alias t="python2.7 ~/.scripts/t/t.py --task-dir ~/Documents/Development/todo --list TODO.txt"
 
+alias wabe="mplayer -nocache http://pba-ice.streamguys.org/wabe.mp3"
+alias allsongs="mplayer -nocache http://nprdmp-stream02.akacast.akamaistream.net/7/940/364919/v1/npr.akacast.akamaistream.net/nprdmp_stream02"
