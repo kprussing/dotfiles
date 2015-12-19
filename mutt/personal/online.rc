@@ -1,7 +1,7 @@
 ## Online specific settings.
 
 set imap_user   = "kprussing74"
-set imap_pass   =  `python2.7 ~/.mutt/passwords.py get gmail kprussing74`
+set imap_pass   =  "`keyring-2.7 get gmail kprussing74`"
 set folder      = "imaps://imap.gmail.com/"
 set spoolfile   = +INBOX
 set postponed   = "+[Gmail]/Drafts"
