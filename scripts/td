@@ -1,0 +1,133 @@
+#!/usr/bin/env python
+from __future__ import print_function
+__doc__="""
+A command line tool to work with a to do text file.
+
+I know what you're thinking: "Why *another* command line tool to work
+with a to do list in text format?  Don't we already have too many of
+those?"  And the answer is: "You're right!"  That is part of the reason
+this script is in my personal script repository.  I see no need to
+pollute the space with another script that does nothing new.  However, I
+have no need for context or projects like those supported by todo.sh by
+Gina Trapani.  Additionally, I do not really want the hash method of
+enumeration that Steve Losh used in t.py.  Both are great for what they
+do, but I want something a little simpler.  And frankly, if you want
+that functionality, why are you looking at my script?  They have already
+solved their respective problems better that I will.  My tasks are
+localized around the computer I am running this script from.  This makes
+the context idea pointless along with eliminating the version control
+problem the hashing method of enumeration solves.  What I want is for a
+tool that will add, list, and remove "To Do" items from a list.
+
+The to do list can be specified with the `-f` option, or it will default
+to 'os.path.expanduser("~")/.todo.txt'.  There is no concept of a 'done'
+list.  If you want that, use todo.sh or t.py.
+
+"""
+
+import argparse
+import os
+import re
+import sys
+
+_default_file = os.path.join(os.path.expanduser("~"), ".todo.txt")
+
+def main():
+    parser = argparse.ArgumentParser(
+            description=__doc__
+        )
+
+    parser.add_argument(
+            "-f", "--file", help="The to do file",
+            type=argparse.FileType("r+"), default=_default_file
+        )
+
+    subparser = parser.add_subparsers(dest="subparser")
+
+    subparser.add_parser(
+            "ls", description="""
+            List the items in the given list.
+
+            The items are listed and enumerated in the order that they
+            are discovered.  Blank lines are ignored.  This will
+            complain at you if you have more than 99 items on you list.
+            """
+        )
+    sparse = subparser.add_parser(
+            "done", description="""
+            Remove an enumerated item from the list.
+
+            Remove the specified item from the list.  This is the simple
+            index based on the position in the specified list.  These
+            are the number listed using the ls command.
+            """
+        )
+    sparse.add_argument("ID", help="The task to remove", type=int)
+    sparse = subparser.add_parser(
+            "add", description="""
+            Add an item to the list.
+
+            If the item is not on the list, add it to the end.  If the
+            item is on the list, append it with the given flag.  By
+            default, the flag is '!'.
+            """
+        )
+    sparse.add_argument(
+            "--flag", help="Flag to append duplicate tasks",
+            default="!"
+        )
+    sparse.add_argument(
+            "TASK", help="The task to add to the list",
+            nargs=argparse.REMAINDER
+        )
+
+    args = parser.parse_args()
+
+    tasks = [
+            l.strip() for l in args.file.readlines() if l.strip() != ""
+        ]
+    if args.subparser == "ls":
+        if len(tasks) > 99:
+            msg = "{0} is too many tasks!  Clean up your list!"
+            sys.exit(msg.format(len(tasks)))
+
+        for it in range(len(tasks)):
+            print("{0:2d}: {1:s}".format(it, tasks[it]))
+
+    elif args.subparser == "done":
+        if args.ID > len(tasks):
+            sys.exit("Invalid task ID {0}".format(args.ID))
+
+        tasks.pop(args.ID)
+        args.file.seek(0)
+        args.file.truncate()
+        args.file.write(os.linesep.join(tasks))
+    elif args.subparser == "add":
+        if len(args.TASK) < 1:
+            sys.exit("Task is missing")
+
+        task = ".*" + " ".join(args.TASK) +".*"
+        old = False
+        for it in range(len(tasks)):
+            if re.match(task, tasks[it]):
+                tasks[it] += args.flag
+                old = True
+                break
+
+        if not old:
+            tasks.append(" ".join(args.TASK))
+
+        args.file.seek(0)
+        args.file.truncate()
+        args.file.write(os.linesep.join(tasks))
+    else:
+        parser.print_help()
+        sys.exit("Unknown option")
+
+    return
+# end def main
+
+if __name__ == "__main__":
+    main()
+# end if
+
