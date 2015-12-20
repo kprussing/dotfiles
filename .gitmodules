@@ -7,6 +7,3 @@
 [submodule "scripts/mutt-ics"]
 	path = scripts/mutt-ics
 	url = https://github.com/dmedvinsky/mutt-ics.git
-[submodule "scripts/hg-git"]
-	path = scripts/hg-git
-	url = https://github.com/schacon/hg-git.git
