@@ -17,5 +17,5 @@ application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
 application/msword; ~/.mutt/view_attachment.sh %s "-"
 #
 # # Calendar requests
-text/calendar; python ~/.scripts/mutt-ics/src/main.py %s | less; copioutoutput
+text/calendar; python ~/.scripts/invite.py %s | less; copioutoutput
 
