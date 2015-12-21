@@ -57,6 +57,10 @@ set index_format = "[%Z] %D %-15.15F %s"
 set sort = threads                          # Like Gmail
 set sort_aux = reverse-last-date-received   # Like Gmail & Outlook
 
+set text_flowed = yes   # Pretty flow the line breaks.  This means I can
+                        # stop worrying about long lines in emails from
+                        # Outlook and other muas.
+
 ### I suspect I don't need this.  From the man page, the way I read it
 ### is `mutt` will jump to the unread message _only_ if the thread is
 ### not collapsed.
