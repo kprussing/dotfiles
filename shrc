@@ -1,18 +1,18 @@
 # This collects all the shell independent settings.  We begin with
 # setting some universal variables starting with the operating system.
 
-export OS=$(uname | tr A-Z a-z)
+OS=$(uname | tr A-Z a-z)
 
 # Next the editor and pager
-export EDITOR=vim
-export VISUAL=$EDITOR
-export PAGER=less
+EDITOR=vim
+VISUAL=$EDITOR
+PAGER=less
 
-export LESS="-i -g -R"
+LESS="-i -g -R"
 
 # And set the TeX directory to the proper value.
 
-export TEXMFHOME=$HOME/.texmf
+TEXMFHOME=$HOME/.texmf
 
 # Set the X forwarding if we are using Windows as a client machine.
 

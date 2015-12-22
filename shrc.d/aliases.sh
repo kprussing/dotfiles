@@ -8,8 +8,8 @@ alias tmux='tmux -2'        # Force 256 colors in tmux.
 if [[ "$OS" = "darwin" ]]; then
     # Set the command line colors. Based on information from
     # osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
-    export CLICOLOR=1
-    export LSCOLORS=ExFxCxDaBxegedabagacad
+    CLICOLOR=1
+    LSCOLORS=ExFxCxDaBxegedabagacad
 else
     alias ls='ls --color=auto'
 fi

@@ -9,6 +9,7 @@ if ! [[ $OS = "darwin" ]]; then
     return
 fi
 
+#echo $path
 front=""
 end=""
 for pp in ${(@s|:|)PATH}
@@ -36,5 +37,5 @@ done
 #echo $front
 #echo $end
 #echo "$front":"$end"
-export PATH="$front":"$end"
+PATH="$front":"$end"
 

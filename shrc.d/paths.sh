@@ -18,10 +18,6 @@ for p in ${paths[@]}; do
         BIN=$(path_append "$BIN" "$p")
     fi
 done
-# Prepend PATH with my paths.
-if [[ ! -z "$BIN" ]]; then
-    export PATH=$BIN:$PATH
-fi
 unset -v BIN
 
 # For some reason, the man path is not updated correctly by default.  To
@@ -38,9 +34,6 @@ paths=(
 for p in ${paths[@]}; do
     MANPATH=$(path_append "$MANPATH" "$p")
 done
-if [[ ! -z "$MANPATH" ]]; then
-    export MANPATH
-fi
 
 # Update the library path for building in my home directory.  While
 # we're at it, we might as well check the package configuration too.
@@ -52,10 +45,5 @@ for p in ${paths[@]}; do
     LD_LIBRARY_PATH=$(path_append "$LD_LIBRARY_PATH" "$p")
     PKG_CONFIG_PATH=$(path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig)
 done
-if [[ ! -z "$LD_LIBRARY_PATH" ]]; then
-    export LD_LIBRARY_PATH
-fi
-if [[ ! -z "$PKG_CONFIG_PATH" ]]; then
-    export PKG_CONFIG_PATH
-fi
 unset -v paths
+
