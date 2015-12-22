@@ -18,6 +18,7 @@ for p in ${paths[@]}; do
         BIN=$(path_append "$BIN" "$p")
     fi
 done
+PATH=$BIN:$PATH
 unset -v BIN
 
 # For some reason, the man path is not updated correctly by default.  To
