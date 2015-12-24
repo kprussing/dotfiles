@@ -24,4 +24,5 @@ setopt hist_verify              # Verify the history expansion before
 setopt extended_glob            # Use better REGEX for globbing
 setopt no_correct               # Type the command you want.
 setopt no_correct_all           # Seriously, you can't put that in a script.
+setopt prompt_subst             # The prompt can expand functions.
 

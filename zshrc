@@ -10,9 +10,6 @@ bindkey -v
 # Initialize the colors
 autoload -U colors && colors
 
-# Let the prompt actually expand functions.
-setopt PROMPT_SUBST
-
 # Get the shell independent settings.
 if [ -f "$HOME"/.shrc ]; then
     source "$HOME"/.shrc
