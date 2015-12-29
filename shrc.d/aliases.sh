@@ -5,6 +5,8 @@
 alias xvim='xterm -e vim'   # I don't like gVim and this is tolerable.
 alias tmux='tmux -2'        # Force 256 colors in tmux.
 
+# These are here because GNU ls needs to be an alias while BSD simply
+# needs environment variables set.
 if [[ "$OS" = "darwin" ]]; then
     # Set the command line colors. Based on information from
     # osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
@@ -12,6 +14,9 @@ if [[ "$OS" = "darwin" ]]; then
     export LSCOLORS=ExFxCxDaBxegedabagacad
 else
     alias ls='ls --color=auto'
+    if [[ -f "$HOME"/.dircolors ]]; then
+        eval `dircolors -b "$HOME"/.dircolors`
+    fi
 fi
 
 # Totally stole the idea from jefflarkin
