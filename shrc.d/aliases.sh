@@ -14,9 +14,6 @@ if [[ "$OS" = "darwin" ]]; then
     export LSCOLORS=ExFxCxDaBxegedabagacad
 else
     alias ls='ls --color=auto'
-    if [[ -f "$HOME"/.dircolors ]]; then
-        eval `dircolors -b "$HOME"/.dircolors`
-    fi
 fi
 
 # Totally stole the idea from jefflarkin

@@ -28,5 +28,14 @@ do
 done
 unset -v config
 
-# vim: set filetype=rc
+# Set the colors for GNU ls.
+if test -f "$HOME"/.dircolors; then
+    if command -v dircolors >/dev/null 2>&1; then
+        eval $(dircolors -b "$HOME"/.dircolors)
+    elif command -v gdircolors >/dev/null 2>&1; then
+        eval $(gdircolors -b "$HOME"/.dircolors)
+    fi
+fi
+
+# vim: set filetype=sh:
 
