@@ -29,7 +29,6 @@ setopt no_auto_remove_slash # Leave the slash.  I'm used to it.
 setopt complete_in_word     # Yes, complete a word I'm in the middle of.
 setopt always_to_end        # And just go to the end of the word once 
                             # I'm done.
-
 # Miscellaneous
 
 setopt extended_glob            # Use better REGEX for globbing
