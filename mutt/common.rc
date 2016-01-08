@@ -157,7 +157,8 @@ set reverse_name                # Reply as the email recipient
 
 ### Tab complete contacts
 
-set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+#set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+set query_command = "mutt_ldap_query.sh '%s'"
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
