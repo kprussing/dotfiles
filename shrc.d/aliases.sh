@@ -29,3 +29,5 @@ alias wmutt="mutt -F ~/.mutt/outlook/online.rc"
 alias wabe="mplayer -nocache http://pba-ice.streamguys.org/wabe.mp3"
 alias allsongs="mplayer -nocache http://nprdmp-stream02.akacast.akamaistream.net/7/940/364919/v1/npr.akacast.akamaistream.net/nprdmp_stream02"
 
+alias oyster="mplayer -nocache http://statslive.infomaniak.ch/playlist/oysterradio/oysterradio-192-0-0.mp3/playlist.m3u"
+
