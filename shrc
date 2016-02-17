@@ -4,15 +4,15 @@
 OS=$(uname | tr A-Z a-z)
 
 # Next the editor and pager
-EDITOR=vim
-VISUAL=$EDITOR
-PAGER=less
+export EDITOR=vim
+export VISUAL=$EDITOR
+export PAGER=less
 
-LESS="-i -g -R"
+export LESS="-i -g -R"
 
 # And set the TeX directory to the proper value.
 
-TEXMFHOME=$HOME/.texmf
+export TEXMFHOME=$HOME/.texmf
 
 # Set the X forwarding if we are using Windows as a client machine.
 
