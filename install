@@ -1,114 +1,159 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 __info__="""
-    A script to facilitate installing my dot files.  The documentation
-    states that the symlink function in the OS module is supported on
-    all platforms.  Any original files on the system are archived in the
-    parent directory of this script.  
+A script to facilitate installing my dot files.  This parses the
+provided configuration file and installs all of the specified files in
+the given location.  If a file (not symlink) is found in the target
+location, it is archived next to the configuration file.  The symlink
+function in the os module is portable across platforms; however, to use
+this install script on Windows for MSys, you need to use the native
+Python and not CygWin.  This is due to the differences between how
+symlinks are handled on the two platforms.
 
-    NOTE FOR WINDOWS:   To use this for MSys, you must use the native
-                        Python version 3.2 or later from Python.org and
-                        be running Vista or later.  Using the CygWin
-                        Python will allow for use under CygWin only due
-                        to the nature of the symbolic links.
-
-    Keith Prussing 2013-10-26
 """
-version="0.1.1"
 
-__DEBUG__ = True
+import argparse
+import configparser
+import datetime
+import logging
+import os
+import shutil
+import sys
+import tarfile
 
+if sys.version_info < (3,3):
+    raise RuntimeError("This requires Python 3.3 or newer")
+
+class TarBall(object):
+    """Context wrapper to conditionally handle backups."""
+
+    def __init__(self, backup):
+        super(TarBall, self).__init__()
+        self.backup = backup
+        time = datetime.datetime.now().strftime("%Y%m%dT%H%M%S")
+        self.tarname = "backup_" +time +".tar.gz"
+
+    def __enter__(self, *args, **kwargs):
+        logger = logging.getLogger(__name__ + ".TarBall.__enter__")
+        logger.debug("Backup file: {0}".format(self.tarname))
+        if self.backup:
+            logger.debug("Opening the tar ball")
+            self.tar = tarfile.open(self.tarname, "w:gz")
+
+
+    def __exit__(self, *args, **kwargs):
+        logger = logging.getLogger(__name__ + ".TarBall.__exit__")
+        logger.debug("Cleaning up tar ball")
+        if self.backup:
+            self.tar.close()
+
+    def add(self, data):
+        if self.backup:
+            self.tar.add(data)
+
+
+default = os.path.join(os.path.dirname(__file__), "install.ini")
 
 if __name__ == "__main__":
-    # Perform the imports
-    import argparse, datetime, logging, os, shutil, sys, tarfile
 
-    parser = argparse.ArgumentParser( \
-            description=__info__, \
-            formatter_class=argparse.RawDescriptionHelpFormatter \
+    parser = argparse.ArgumentParser(description=__info__)
+    parser.add_argument(
+            "-n", "--dry-run", dest="dry_run", action="store_true",
+            help="Do not actually perform the install."
         )
-    parser.add_argument( \
-            "-v", "--verbose", action="store_true" \
+    parser.add_argument(
+            "-f", "--file", default=default, 
+            help="Path to install configuration",
+            type=argparse.FileType("r", encoding="UTF-8")
         )
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+            "-v", "--verbose", action="store_true",
+            help="Increase verbosity of program"
+        )
+    group.add_argument(
+            "-d", "--debug", action="store_true",
+            help="Enable debugging statements"
+        )
+
     args = parser.parse_args()
 
-    if __DEBUG__:
-        logging.basicConfig(format="%(message)s", level=logging.DEBUG)
-    elif args.verbose:
-        logging.basicConfig(format="%(message)s", level=logging.INFO)
+    if args.debug:
+        level = logging.DEBUG
+    elif args.verbose or args.dry_run:
+        level = logging.INFO
     else:
-        logging.basicConfig(format="%(message)s")
-    # end if
+        level = logging.WARNING
 
-    # Get the full path to this file
-    filepath = os.path.split( os.path.realpath(__file__) )
+    logging.basicConfig(level=level)
+    logger = logging.getLogger(__name__)
+    logger.debug("Configuration file: {0}".format(args.file.name))
+    config = configparser.ConfigParser()
+    config.read_dict(
+            {"general" : {
+                    "create" : True, 
+                    "homevar" : ["HOME", "USERPROFILE"],
+                    "homepath" : "",
+                },
+            "link" : {
+                },
+            }
+        )
+    config.read_file(args.file)
 
-    # Get the root directory of the dot files.
-    dotdir =  os.path.abspath(filepath[0])
-    logging.debug("Target directory: {0}".format(dotdir))
+    # Find the installation directory.
+    homedir = config["general"]["homepath"]
+    if homedir == "":
+        variables = config["general"]["homevar"].split()
+        for var in [x.strip() for x in variables]:
+            logger.debug("Checking environment for {0}".format(var))
+            if var in os.environ:
+                homedir = os.environ[var]
+                break
 
-    # Define the files which to exclude from linking.
-    excludes = [ \
-            "Xresources", "README.markdown", "minttyrc", filepath[1] \
-        ]
+    if not os.path.exists(homedir):
+        logger.error("No installation directory found! Please set")
+        logger.error("'homepath' or 'homevar' to a valid location")
+        logger.error("in the configuration file.")
+        sys.exit(1)
 
-    # Prepare a backup file.
-    time = datetime.datetime.now().strftime("%Y%m%dT%H%M%S")
-    tarname = "backup_" +time +".tar.gz"
-    logging.debug("Backup file: {0}".format(tarname))
-    with tarfile.open(tarname, "w:gz") as tar:
-
-        # And install all of the files in the dot files directory.
-        for f in os.listdir(dotdir):
-            # Skip ignored files, backup directory, and this installation
-            # file.
-            if f[0] == "." or f in excludes:
-                logging.debug("Skipping {0}".format(f))
+    dotdir = os.path.dirname(os.path.realpath(args.file.name))
+    logger.info("Installing into {0} from {1}".format(homedir, dotdir))
+    with TarBall(config["general"]["backup"]) as tar:
+        for key, val in config["link"].items():
+            src = os.path.join(dotdir, key)
+            if not os.path.exists(src):
+                logger.warning("{0} is missing!  Skipping.".format(src))
                 continue
-            elif os.path.splitext(f)[1] in (".tar", ".gz"):
-                continue
-            # end if
-            logging.info("Processing: {0}".format(f))
 
-            # Prepare the file names
-            oldfile = os.path.join(os.environ["HOME"], "."+f)
-            newfile = os.path.join(dotdir, f)
+            if val == "":
+                tgt = "." + key
+            else:
+                tgt = val
 
-            # If the file already exists, back it up if it is not a
-            # link and remove the original.  Otherwise, simply remove
-            # the link.
-            if os.path.exists(oldfile):
-                if not os.path.islink(oldfile):
-                    logging.info("    Archiving {0}".format(oldfile))
-                    tar.add(newfile)
-                    if os.path.isdir(oldfile):
-                        shutil.rmtree(oldfile)
-                    else:
-                        os.remove(oldfile)
-                    # end if
+            tgt = os.path.join(homedir, tgt)
+            if os.path.exists(tgt):
+                if not os.path.islink(tgt):
+                    logger.info("Archiving {0}".format(tgt))
+                    if not args.dry_run:
+                        tar.add(tgt)
+                        if os.path.isdir(tgt):
+                            shutil.rmtree(tgt)
+                        else:
+                            os.remove(tgt)
+
                 else:
-                    logging.info("    Unlinking {0}".format(oldfile))
-                    os.unlink(oldfile)
-                # end if
-            # end if
+                    logger.info("Unlinking {0}".format(tgt))
+                    if not args.dry_run:
+                        os.unlink(tgt)
 
-            # Create the link for the new file.
-            try:
-                if sys.version_info.major < 3:
-                    os.symlink(newfile, oldfile)
-                elif sys.version_info.minor > 2 or os.name == "nt":
-                    os.symlink(newfile, oldfile, os.path.isdir(newfile))
-                else:
-                    os.symlink(newfile, oldfile)
-                # end if
-            except Exception as err:
-                logging.error("An error occurred! {0}".format(err))
-                msg = "I bet you are using the wrong combination" \
-                    +" of Python and Windows."
-                logging.error(msg)
-                sys.exit(1)
-            # end try
+            logger.info("Installing {0} as {1}".format(src, tgt))
+            if not args.dry_run:
+                root = os.path.dirname(tgt)
+                if not os.path.exists(root):
+                    logger.info("Making path {0}".format(root))
+                    os.makedirs(root)
 
-        # end for
-    # end with
-# end if
+                # Third argument (target_is_directory) is new in 3.3
+                os.symlink(src, tgt, os.path.isdir(src))
 
