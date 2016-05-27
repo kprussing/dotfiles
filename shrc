@@ -37,5 +37,10 @@ if test -f "$HOME"/.dircolors; then
     fi
 fi
 
+# Grab local settings.
+if test -f "$HOME"/.local/shrc; then
+    . "$HOME"/.local/shrc
+fi
+
 # vim: set filetype=sh:
 
