@@ -23,7 +23,7 @@ import tarfile
 if sys.version_info < (3,3):
     raise RuntimeError("This requires Python 3.3 or newer")
 
-class TarBall(object):
+class TarBall:
     """Context wrapper to conditionally handle backups."""
 
     def __init__(self, backup):
@@ -38,6 +38,8 @@ class TarBall(object):
         if self.backup:
             logger.debug("Opening the tar ball")
             self.tar = tarfile.open(self.tarname, "w:gz")
+
+        return self
 
 
     def __exit__(self, *args, **kwargs):
