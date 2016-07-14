@@ -33,6 +33,13 @@ set t_Co=256
 colorscheme zenburn
 "endif
 
+" And set a sane font for gVim
+if has("gui_running")
+    if has("win32")
+        set guifont=Consolas:h11:cANSI
+    endif
+endif
+
 " I like syntax highlighting and spelling on
 set spell
 set spellfile=$HOME/.vim/dictionary.add
