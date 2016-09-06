@@ -59,12 +59,16 @@ set showcmd                     " Show partial command
 set hidden                      " Hide a buffer instead of abandoning
 set wildmenu                    " Show list instead of completing
 set wildmode=list:longest       " Tab complete longest common part
-set wildignore=*.pyc,*.aux,*.o  " Ignore some common file extensions
 set visualbell                  " Use a visual bell instead of beeping
 set ttyfast                     " Makes redraw fast. Smooths typing
 set ruler                       " Turn on the ruler
 set backspace=indent,eol,start  " Delete like a real program
 set laststatus=2
+
+" Ignore some common file extensions for autocomplete.
+set wildignore=*.pyc,*.o,                           " Object code
+set wildignore=*.aux,*.pdf,*.png,*.bbl,*.blg,*.fls  " LaTeX products.
+set wildignore=*.png,*.pdf_tex,*.pgf                " Generated images.
 
 " Now make myself learn to use the correct keys
 "nnoremap <up> <nop>
