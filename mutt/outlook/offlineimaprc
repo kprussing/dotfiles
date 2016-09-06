@@ -24,7 +24,7 @@ type = IMAP
 remotehost      = mail.gtri.gatech.edu
 ssl             = yes
 ## Generate the fingerprint with the following commands.
-## 
+##
 ##     $ echo Q | openssl s_client -connect mail.gtri.gatech.edu:993 \
 ##     > | sed -n '/BEGIN CERTIFICATE/END CERTIFICATE/p' > cert.pem
 ##     $ openssl x509 -in cert.pem -sha1 -noout -fingerprint | \
@@ -43,9 +43,10 @@ realdelete      = no
 folderfilter = lambda folder: folder not in [
         'Calendar', 'Contacts', 'Conversation History', 'Deleted Items',
         'Journal', 'Junk E-mail', 'Notes', 'Outbox', 'RSS Feeds',
-        'Suggested Contacts', 'Sync Issues', 'Sync Issues/Conflicts', 
+        'Suggested Contacts', 'Sync Issues', 'Sync Issues/Conflicts',
         'Sync Issues/Local Failures', 'Sync Issues/Server Failures',
-        'Tasks', 'quarantine'
+        'Tasks', 'quarantine', 'Contacts/Skype for Business Contacts',
+        'Emailed Contacts', 'Physics Colloquia', 'Keith'
     ]
 nametrans       = lambda folder: {
         "Sent Items" : "Sent"
