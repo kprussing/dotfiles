@@ -8,7 +8,7 @@ paths=(
     "$HOME/.cabal/bin"
     "$HOME/.local/bin"
     "$HOME/.local/scripts"
-    "$HOME/Library/Python/3.4/bin"
+    "$HOME/Library/Python/3.5/bin"
     "/opt/android-sdk-macosx/tools"
     "/opt/android-sdk-macosx/platform-tools"
     "/nagfor/bin"
