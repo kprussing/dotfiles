@@ -10,3 +10,6 @@
 [submodule "vim/bundle/unicode"]
 	path = vim/bundle/unicode
 	url = git@github.com:chrisbra/unicode.vim.git
+[submodule "vim/bundle/vim-glsl"]
+	path = vim/bundle/vim-glsl
+	url = https://github.com/tikhomirov/vim-glsl.git
