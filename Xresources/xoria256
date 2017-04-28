@@ -1,4 +1,4 @@
-﻿! Set the font ----------------------------------------
+! Set the font ----------------------------------------
 *font       :  -*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*-*
 
 
@@ -38,3 +38,4 @@ Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
+
