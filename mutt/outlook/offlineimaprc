@@ -10,7 +10,7 @@ fsync       = False
 [Account Work]
 localrepository     = Local
 remoterepository    = Remote
-status_backend      = sqlite
+#status_backend      = sqlite
 
 [Repository Local]
 type            = Maildir

@@ -92,6 +92,9 @@ nnoremap <C-P> :bNext<CR>
 " This remap will probably help me out a lot...
 let mapleader = ","
 
+nnoremap / /\v
+vnoremap / /\v
+
 set ignorecase  " Case insensitive search
 set smartcase   " Case sensitive when upper case present
 set incsearch   " Search while typing

@@ -9,9 +9,11 @@ paths=(
     "$HOME/.local/bin"
     "$HOME/.local/scripts"
     "$HOME/Library/Python/3.5/bin"
+    "$HOME/Library/Python/2.7/bin"
     "/opt/android-sdk-macosx/tools"
     "/opt/android-sdk-macosx/platform-tools"
     "/nagfor/bin"
+    "/Applications/MacVim.app/Contents/bin"
 )
 for p in ${paths[@]}; do
     if ! echo "$PATH" | grep -q "$p" ; then
