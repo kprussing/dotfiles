@@ -3,7 +3,7 @@
 
 function _git_prompt() {
     local sta="$(git status -unormal 2>&1)"
-    if ! [[ "$sta" =~ 'Not a git repository' || "$sta" =~ 'not found' ]]; then
+    if ! [[ "$sta" =~ '[Nn]ot a git repository' || "$sta" =~ 'not found' ]]; then
         # If we have git and we are in a repository, form a prompt!
         # First, get the branch name.
         local branch
