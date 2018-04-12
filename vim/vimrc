@@ -92,8 +92,8 @@ nnoremap <C-P> :bNext<CR>
 " This remap will probably help me out a lot...
 let mapleader = ","
 
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 set ignorecase  " Case insensitive search
 set smartcase   " Case sensitive when upper case present
@@ -120,6 +120,7 @@ function! InitializeDirectories()
     let dir_list = {
         \ 'backup': 'backupdir',
         \ 'views': 'viewdir',
+        \ 'undo' : 'undodir',
         \ 'swap': 'directory' }
     for [dirname, settingname] in items(dir_list)
         let directory = parent . '/' . prefix . '/' . dirname . '/'
@@ -138,6 +139,7 @@ function! InitializeDirectories()
     endfor
 endfunction
 call InitializeDirectories()
+set undofile
 
 "--------1---------2---------3---------4---------5---------6---------7--
 " Some abbreviations for sectioning code.
