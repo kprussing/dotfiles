@@ -23,5 +23,5 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/.mutt
 
 #
 # # Calendar requests
-text/calendar; python2.7 ~/.scripts/invite.py %s; copiousoutput
+text/calendar; python ~/.scripts/invite.py %s; copiousoutput
 

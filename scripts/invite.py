@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 __doc__="""
 A testing script to see if I can work with Outlook calendar requests.
 The ultimate goal will be to view and then respond using mutt.  I'm not
