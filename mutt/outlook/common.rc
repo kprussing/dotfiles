@@ -4,7 +4,6 @@ set realname = "Keith F. Prussing"
 set from="keith.prussing@gtri.gatech.edu"
 
 set signature           = ~/.mutt/outlook/signature
-set header_cache        = ~/.mutt/cache/work-headers
 set message_cachedir    = ~/.mutt/cache/work-message
 
 ## Sending mail
