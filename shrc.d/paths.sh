@@ -37,6 +37,10 @@ paths=(
 for p in ${paths[@]}; do
     MANPATH=$(path_append "$MANPATH" "$p")
 done
+if ! test -z "$MANPATH"
+then
+    export MANPATH
+fi
 
 # Update the library path for building in my home directory.  While
 # we're at it, we might as well check the package configuration too.
@@ -49,4 +53,12 @@ for p in ${paths[@]}; do
     PKG_CONFIG_PATH=$(path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig)
 done
 unset -v paths
+if ! test -z "$LD_LIBRARY_PATH"
+then
+    export LD_LIBRARY_PATH
+fi
+if ! test -z "$PKG_CONFIG_PATH"
+then
+    export PKG_CONFIG_PATH
+fi
 
