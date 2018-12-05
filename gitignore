@@ -69,6 +69,13 @@ Session.vim
 *.toc
 *.lot
 *.lof
+*.fdb_latexmk
+*.sta
+*.stp
+*.nav
+*.snm
+*.bcf
+*.run.xml
 
 # RevTex Bibliography file #
 ############################
