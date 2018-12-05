@@ -69,6 +69,7 @@ set laststatus=2
 " Ignore some common file extensions for autocomplete.
 set wildignore+=*.pyc,*.o,                          " Object code
 set wildignore+=*.aux,*.pdf,*.png,*.bbl,*.blg,*.fls " LaTeX products.
+set wildignore+=*.log,*.nav,*.out,*.svn,*.toc,*.snm,*.sta " More LaTeX
 set wildignore+=*.png,*.pdf_tex,*.pgf               " Generated images.
 
 " Now make myself learn to use the correct keys
