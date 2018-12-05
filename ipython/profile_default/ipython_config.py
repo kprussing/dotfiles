@@ -309,6 +309,8 @@ c.TerminalInteractiveShell.automagic = False
 # Automatically call the pdb debugger after every exception.
 # c.TerminalInteractiveShell.pdb = False
 
+c.TerminalInteractiveShell.editing_mode = "vi"
+
 #------------------------------------------------------------------------------
 # PromptManager configuration
 #------------------------------------------------------------------------------
