@@ -18,3 +18,4 @@ vim/undo
 # This allows me to make this a link to the system certificate bundle.
 # On OS X, I found it at `/opt/local/share/curl/curl-ca-bundle.crt`.
 mutt/ca-bundle.crt
+tmux/resurrect

@@ -19,3 +19,9 @@
 [submodule "scons/site_scons/pandoc"]
 	path = scons/site_scons/pandoc
 	url = git@github.com:kprussing/scons-pandoc.git
+[submodule "tmux/plugins/tmux-continuum"]
+	path = tmux/plugins/tmux-continuum
+	url = https://git::@github.com/tmux-plugins/tmux-continuum
+[submodule "tmux/plugins/tmux-resurrect"]
+	path = tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
