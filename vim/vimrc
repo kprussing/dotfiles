@@ -37,6 +37,8 @@ colorscheme zenburn
 if has("gui_running")
     if has("win32")
         set guifont=Consolas:h11:cANSI
+    elseif has("mac")
+        set guifont=Monaco:h11
     endif
     set guioptions=
 endif
