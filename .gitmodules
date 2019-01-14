@@ -13,3 +13,9 @@
 [submodule "vim/bundle/vim-glsl"]
 	path = vim/bundle/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl.git
+[submodule "scons/site_scons/inkscape"]
+	path = scons/site_scons/inkscape
+	url = git@github.com:kprussing/scons-inkscape.git
+[submodule "scons/site_scons/pandoc"]
+	path = scons/site_scons/pandoc
+	url = git@github.com:kprussing/scons-pandoc.git
