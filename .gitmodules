@@ -31,3 +31,6 @@
 [submodule "scons/site_scons/site_tools/dtxtools"]
 	path = scons/site_scons/site_tools/dtxtools
 	url = git@github.com:kprussing/scons-dtxtools.git
+[submodule "texmf/tex/latex/zenburn-latex"]
+	path = texmf/tex/latex/zenburn-latex
+	url = git@github.com:kprussing/zenburn-latex.git
