@@ -524,18 +524,36 @@
 % \fi
 %
 % \subsubsection{Presentation font theme}
-% \changes{v0.1}{2019/01/17}{Set the presentation fonts}
+% \changes{v1.0}{2019/01/17}{Set the presentation fonts}
 %
 % \iffalse
 %<*beamerfont>
 % \fi
-% We know we want to use a proper font designed by professionals
+% We know we want to use a proper font designed by professionals, but do
+% we want Source Pro or DejaVu?  This means we need options.
+%    \begin{macrocode}
+\DeclareOptionBeamer{sourcepro}{%
+    \PassOptionsToPackage{sourcepro}{kprussing-font}
+}
+\DeclareOptionBeamer{dejavu}{%
+    \PassOptionsToPackage{dejavu}{kprussing-font}
+}
+\DeclareOptionBeamer{math}{%
+    \PassOptionsToPackage{math}{kprussing-font}
+}
+\ExecuteOptionsBeamer{sourcepro}
+\DeclareOptionBeamer*{\PackageWarning{beamerfontthemekprussing}%
+                       {Unknown `\CurrentOption'}}
+\ProcessOptionsBeamer\relax
+%    \end{macrocode}
+%
+% Next, we just load the fonts
 %    \begin{macrocode}
 \usefonttheme{professionalfonts}
 \RequirePackage{kprussing-font}
 %    \end{macrocode}
-% Now we just need to use the sans-serif font and adjust the title
-% fonts.
+%
+% Now we just need to use the sans-serif font and adjust the fonts.
 %    \begin{macrocode}
 \mode<presentation>
 \renewcommand{\familydefault}{\sfdefault}
