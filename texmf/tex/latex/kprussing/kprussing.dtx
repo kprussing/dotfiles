@@ -20,11 +20,10 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{kprussing.dtx}
+\ProvidesFile{\jobname.dtx}
 %</driver>
 %<common>\NeedsTeXFormat{LaTeX2e}[2003/12/01]
 %<report>\ProvidesPackage{kprussing}
-%<colors>\ProvidesFile{kprussing-color.def}
 %<fonts>\ProvidesPackage{kprussing-font}
 %<presentation>\ProvidesPackage{beamerthemekprussing}
 %<beamercolor>\ProvidesPackage{beamercolorthemekprussing}
@@ -42,15 +41,14 @@
 \RecordChanges{}
 \usepackage{hologo}
 \usepackage{kprussing}
+\usepackage[columns=1]{idxlayout}
 \begin{document}
-    \DocInput{kprussing.dtx}
-    \PrintChanges{}
-    \PrintIndex{}
+    \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
 % \fi
 %
-% \CheckSum{264}
+% \CheckSum{0}
 %
 % \CharacterTable
 %  {Upper-case \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -69,7 +67,7 @@
 %   Right brace   \}     Tilde         \~}
 %
 % \changes{v0.1}{2019/01/17}{Initial version}
-% \GetFileInfo{kprussing.dtx}
+% \GetFileInfo{\jobname.dtx}
 %
 %^^A Package macros
 % \DoNotIndex{\CurrentOption, \DeclareOption, \ExecuteOptions}
@@ -113,11 +111,11 @@
 %
 % \begin{abstract}
 % This package is an attempt to provide a set of themes for \LaTeX{}
-% that will collect my preferred settings into a class and theme.  It
-% provides a beamer theme for presentations and a package for use with
-% the |report| or |book| |documentclass| for formatting reports.  The
-% aim of the side project it so provide an uniform set of tools for
-% generating nicely type materials in a consistent style.
+% that will collect my preferred settings into a set of styles and
+% themes.  It provides a beamer theme for presentations and a style for
+% use with the |report| or |book| |documentclass| for formatting
+% reports.  The aim of this side project it so provide an uniform set of
+% tools for generating nicely type materials in a consistent style.
 % \end{abstract}
 %
 % \section{Introduction}
