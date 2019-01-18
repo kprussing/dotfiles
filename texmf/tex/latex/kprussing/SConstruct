@@ -2,13 +2,13 @@
 
 import os
 
-env = Environment(PDFLATEX="lualatex", TEXINPUTS=os.curdir,
+env = Environment(ENV=os.environ, PDFLATEX="lualatex",
                   tools=["default", "dtxtools"] )
 
 root = "kprussing"
 pdf = env.PDF("kprussing.dtx",
               MAKEINDEX=env["MAKEINDEX"] + " -s gind.ist")
-stys = env.ins2sty("kprussing.ins")
+stys = env.ins2sty([], "kprussing.ins")
 Depends(pdf, stys)
 if not GetOption("clean"):
     Default(pdf)
