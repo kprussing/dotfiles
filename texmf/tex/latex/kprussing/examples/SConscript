@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import os
+
+Import("env stys")
+
+def dejavu(target, source, env):
+    """Generate the DejaVu example
+    """
+    with open(str(target[0]), "w") as tgt:
+        tgt.write("\\PassOptionsToPackage{dejavu}{kprussing-font}\n")
+        with open(str(source[0]), "r") as src:
+            tgt.write(src.read())
+
+BUILDERS = {
+        "dejavu" : Builder(action=dejavu),
+    }
+env.AppendUnique(BUILDERS=BUILDERS)
+
+srcs = (
+        "example-sourcepro.tex",
+        env.dejavu("example-dejavu.tex", "example-sourcepro.tex"),
+        "example-beamer.tex",
+    )
+pdfs = [env.PDF(x) for x in srcs]
+deps = [Depends(x, stys) for x in pdfs if ".pdf" in str(x)]
+

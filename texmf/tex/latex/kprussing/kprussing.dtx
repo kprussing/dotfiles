@@ -1,0 +1,715 @@
+% \iffalse meta-comment
+%
+% Copyright (c) 2019 by Keith F. Prussing <kprussing74@gmail.com>
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, either version 1.3c of this license
+% or (at your option) any later version.  The latest version of this
+% license is in
+%
+%     http://www.latex-project.org/lppl.txt
+%
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Keith F. Prussing.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{kprussing.dtx}
+%</driver>
+%<common>\NeedsTeXFormat{LaTeX2e}[2003/12/01]
+%<report>\ProvidesPackage{kprussing}
+%<colors>\ProvidesFile{kprussing-color.def}
+%<fonts>\ProvidesPackage{kprussing-font}
+%<presentation>\ProvidesPackage{beamerthemekprussing}
+%<beamercolor>\ProvidesPackage{beamercolorthemekprussing}
+%<beamerfont>\ProvidesPackage{beamerfontthemekprussing}
+%<beamerinner>\ProvidesPackage{beamerinnerthemekprussing}
+%<beamerouter>\ProvidesPackage{beamerouterthemekprussing}
+%<*common>
+    [2019/01/17 v0.1 kprussing personal themes]
+%</common>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs{}
+\CodelineIndex{}
+\RecordChanges{}
+\usepackage{hologo}
+\usepackage{kprussing}
+\begin{document}
+    \DocInput{kprussing.dtx}
+    \PrintChanges{}
+    \PrintIndex{}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{264}
+%
+% \CharacterTable
+%  {Upper-case \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits     \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \changes{v0.1}{2019/01/17}{Initial version}
+% \GetFileInfo{kprussing.dtx}
+%
+%^^A Package macros
+% \DoNotIndex{\CurrentOption, \DeclareOption, \ExecuteOptions}
+% \DoNotIndex{\PackageError, \PackageWarning, \PassOptionsToPackage}
+% \DoNotIndex{\ProcessOptions, \RequirePackage}
+%^^A Font macros
+% \DoNotIndex{\bfseries, \familydefault, \Huge, \Large, \sfseries}
+% \DoNotIndex{\normalsize, \scriptsize, \setmainfont, \setmathfont}
+% \DoNotIndex{\setmonofont, \setsansfont, \sfdefault, \textsc, \textsf}
+% \DoNotIndex{\texttt}
+%^^A Low level macros
+% \DoNotIndex{\begin, \bigskip, \centering, \else, \end, \fi, \hfill}
+% \DoNotIndex{\hspace, \ifPDFTeX, \newcommand, \newif, \null}
+% \DoNotIndex{\paperheight, \paperwidth, \par, \providecommand}
+% \DoNotIndex{\relax, \renewcommand, \textbullet, \textcopyright}
+% \DoNotIndex{\textwidth, \vfill, \vspace}
+%^^A Beamer macros
+% \DoNotIndex{\DeclareOptionBeamer, \ExecuteOptionsBeamer}
+% \DoNotIndex{\defbeamertemplate, \insertauthor, \insertbiblabel}
+% \DoNotIndex{\insertdate, \insertinstitute, \insertpart}
+% \DoNotIndex{\insertpartnumber, \insertshortauthor, \insertshortdate}
+% \DoNotIndex{\insertsubenumlabel, \insertsubsubenumlabel}
+% \DoNotIndex{\insertsubtitle, \inserttitle, \mode}
+% \DoNotIndex{\ProcessOptionsBeamer, \setbeamercolor, \setbeamerfont}
+% \DoNotIndex{\setbeamertemplate, \usebeamercolor, \usebeamerfont}
+% \DoNotIndex{\usebeamertemplate, \usecolortheme, \usefonttheme}
+% \DoNotIndex{\useinnertheme, \useoutertheme, \usetheme}
+%^^A Miscellaneous package macros
+% \DoNotIndex{\definecolor, \hypersetup, \lstinline, \texorpdfstring}
+%^^A Package conditionals
+% \DoNotIndex{\kprussing@dejavufalse, \kprussing@dejavutrue}
+% \DoNotIndex{\kprussing@sourceprofalse, \kprussing@sourceprotrue}
+% \DoNotIndex{\kprussing@unicodemathfalse, \kprussing@unicodemathtrue}
+%
+% \title{Keith's \LaTeX{} styles \thanks{This document
+% corresponds to \textsf{kprussing}~\fileversion, dated~\filedate.}}
+%
+% \author{Keith F. Prussing \\ \texttt{kprussing74@gmail.com}}
+%
+% \maketitle
+%
+% \begin{abstract}
+% This package is an attempt to provide a set of themes for \LaTeX{}
+% that will collect my preferred settings into a class and theme.  It
+% provides a beamer theme for presentations and a package for use with
+% the |report| or |book| |documentclass| for formatting reports.  The
+% aim of the side project it so provide an uniform set of tools for
+% generating nicely type materials in a consistent style.
+% \end{abstract}
+%
+% \section{Introduction}
+%
+% This is a collection of \LaTeX{} macros and settings to create nicely
+% typeset materials in my preferred styles.  It provides a beamer theme
+% and macros for formatting a report.  The beamer theme defines the
+% outer, inner, color, and font themes.  They can be used individually,
+% but will most often be used together.  In addition to the two main
+% themes, this provides common definitions for my preferred fonts and
+% colors.
+%
+% \section{Usage}
+%
+% To install the package, simply run the provided |kprussing.ins| file
+% through your preferred \hologo{pdfLaTeX}.  Then, copy the resultant
+% |.sty| and |.def| files to a location where \LaTeX{} can find them.
+% To generate the documentation, run this file (|kprussing.dtx|) through
+% \hologo{pdfLaTeX} twice.  The second time is only to make sure the
+% references are typeset correctly.  Using the theme or package is
+% simply a matter of adding |\usetheme{kprussing}| or
+% |\usepackage{kprussing}\| to your preamble.
+%
+% The better way to build the files is to simply use \textsf{SCons} with
+% the provided |SConstruct|.
+%
+% \subsection{General stylistic decisions}
+%
+% This section details the general design decisions that apply to both
+% the report package and the presentation theme.  These are the
+% appropriate fonts and colors.  Beyond that, we provide a set of
+% utility macros for typesetting software component commonly encountered
+% in documentation and presentations.
+%
+% \subsubsection{Fonts and colors}
+%
+% After using for a while at work, I find I really like the Source Pro
+% family of fonts.  They have good coverage of the correct Unicode
+% points and have (most) of the correct styles.  The DejaVu family is a
+% close second.  In fact, we mix the two in a limited sense to fill out
+% some missing styles.  Both of these fonts are OpenType and ship with
+% most modern \LaTeX{} distributions.  The correct fonts are loaded
+% conditionally based on if \hologo{LuaLaTeX}, \hologo{XeLaTeX}, or
+% \hologo{pdfLaTeX}.
+%
+% Source Sans Pro offers essentially all of the font features we desire.
+% The serif font is missing italic and small caps, but the italic font
+% was recently (August 2018) released in version 2.007.  So, the
+% italics are simply a matter of waiting for the main distributions to
+% updated.  With \textsf{fontspec} active in \hologo{LuaLaTeX} or
+% \hologo{XeLaTeX}, we can work around these deficiencies by assigning a
+% substitute font.  For small caps, we fall back to the sans-serif font.
+% It exists and is generally well matched to the serif, and it provides
+% an extra level of distinction from its neighbors which is a desirable
+% effect.  For the italics, we can temporarily use the DejaVu Serif
+% which is passably well matched.  This is a temporary work around while
+% we wait for the true italic font.
+%
+% \subsubsection{Stylistic macros}
+%
+% \DescribeMacro{\software}
+% \DescribeMacro{\variable}
+% \DescribeMacro{\program}
+% \DescribeMacro{\subprogram}
+% When presenting my work, I often need to describe software at
+% multiple levels.  Specifically, I need to speak about ``software,''
+% ``variables,'' ``programs,'' and ``subprograms.''  To ensure
+% consistency, this package provides the four semantic markup macros
+% |\software|, |\variable|, |\program|, and |\subprogram|.  Each takes a
+% mandatory argument and typesets it accordingly.  The notation for the
+% subprograms derives from the Fortran notation of subroutines and
+% functions contained within another programming unit.
+%
+% \subsection{Presentation specific decisions}
+% \subsubsection{Color theme}
+% \subsubsection{Font theme}
+% \subsubsection{Inner theme}
+% \subsubsection{Outer theme}
+% \subsubsection{Title page}
+%
+% At the moment, it is very simple.  It has the information centered and
+% is quite boring.
+%
+% \StopEventually{
+% \PrintChanges{}
+% \PrintIndex{}
+%}
+%
+% \section{Implementation}
+%
+% \subsection{General stylistic decisions}
+% \changes{v0.1}{2019/01/17}{Define my main style}
+%
+% The main style file simply loads the appropriate files.
+%
+% \iffalse
+%<*report>
+% \fi
+%    \begin{macrocode}
+\DeclareOption{sourcepro}{\PassOptionsToPackage{sourcepro}%
+                                               {kprussing-font}}
+\DeclareOption{dejavu}{\PassOptionsToPackage{dejavu}%
+                                            {kprussing-font}}
+\ProcessOptions\relax
+\RequirePackage{kprussing-font}
+%    \end{macrocode}
+% \iffalse
+%</report>
+% \fi
+%
+% \subsubsection{Fonts}
+% \changes{v0.1}{2019/01/17}{Define my preferred fonts}
+%
+% The Source Pro family of fonts has good coverage of the Unicode points
+% I frequently use.  It also has a matched serif, sans-serif, and
+% monospaced version that maintains a consistent style.  The DejaVu
+% family is a good alternate.  To handle toggling options, we need some
+% logical flags
+%
+% \iffalse
+%<*fonts>
+% \fi
+%
+% To handle toggling options, we need some logicals.  We want flags for
+% the Source Pro family and the DejaVu family of fonts.  We also declare
+% a flag for Unicode math that will only be used with \hologo{LuaLaTeX}
+% and \hologo{XeLaTeX}.
+%    \begin{macrocode}
+\RequirePackage{iftex}
+\newif\ifkprussing@sourcepro
+\newif\ifkprussing@dejavu
+\newif\ifkprussing@unicodemath
+%    \end{macrocode}
+%
+% Now we can declare the options to toggle the options.
+%    \begin{macrocode}
+\DeclareOption{sourcepro}{\kprussing@sourceprotrue
+                          \kprussing@dejavufalse}
+\DeclareOption{dejavu}{\kprussing@sourceprofalse
+                       \kprussing@dejavutrue}
+\DeclareOption{math}{%
+    \ifPDFTeX{}
+        \PackageError{kprussing-font}%
+                     {Unicode math is not supported with PDFLaTeX}
+    \else
+        \PackageWarning{kprussing-font}%
+                       {Unicode math support is still experimental}
+        \kprussing@unicodemathtrue
+    \fi
+}
+%    \end{macrocode}
+%
+% And set the Source Pro family as the default.
+%    \begin{macrocode}
+\ExecuteOptions{sourcepro}
+\ProcessOptions\relax
+%    \end{macrocode}
+%
+% Now we need to load the fonts.  We start with the Source Pro family of
+% fonts.
+%    \begin{macrocode}
+\ifkprussing@sourcepro
+    \ifPDFTeX{}
+        \RequirePackage{sourceserifpro}
+        \RequirePackage{sourcesanspro}
+        \RequirePackage{sourcecodepro}
+        \RequirePackage[T1]{fontenc}
+        \RequirePackage[utf8]{inputenc}
+    \else
+        \RequirePackage{fontspec}
+%    \end{macrocode}
+% The serif font does not have small caps or italic shapes yet.  For
+% now, we use the sans-serif small caps and the DejaVu Serif italics.
+% The italics will need to change when the updated font is released.
+%    \begin{macrocode}
+        \setmainfont{Source Serif Pro}[%
+            SmallCapsFont={Source Sans Pro},
+            SmallCapsFeatures={%
+                Letters=SmallCaps,
+                Scale=MatchUppercase
+            },
+            ItalicFont=DejaVuSerif-Italic,
+            BoldItalicFont=DejaVuSerif-BoldItalic,
+            SlantedFont=DejaVuSerif-Italic,
+            BoldSlantedFont=DejaVuSerif-BoldItalic
+        ]
+        \setsansfont{Source Sans Pro}
+        \setmonofont{Source Code Pro}
+    \fi
+\fi
+%    \end{macrocode}
+%
+% Next, we load the DejaVu family of fonts.  We don't have a good small
+% capitals in the DejaVu family so we fall back on the Source Sans Pro.
+% This mirrors the decision above to use DejaVu italics for the Source
+% Serif Pro.
+%    \begin{macrocode}
+\ifkprussing@dejavu
+    \ifPDFTeX{}
+        \RequirePackage{dejavu}
+        \RequirePackage[T1]{fontenc}
+        \RequirePackage[utf8]{inputenc}
+    \else
+        \RequirePackage{fontspec}
+        \setmainfont{DejaVu Serif}[%
+            SmallCapsFont={Source Sans Pro},
+            SmallCapsFeatures={%
+                Letters=SmallCaps,
+                Scale=MatchUppercase
+            }
+        ]
+        \setsansfont{DejaVu Sans}[%
+            SmallCapsFont={Source Sans Pro},
+            SmallCapsFeatures={%
+                Letters=SmallCaps,
+                Scale=MatchUppercase
+            }
+        ]
+        \setmonofont{DejaVu Sans Mono}
+    \fi
+\fi
+%    \end{macrocode}
+%
+% Unicode math is finicky.  So, we define it at a per document level for
+% now while we figure it out.  The problem is the math fonts \emph{must}
+% be loaded before the unicode-math.  To make sure we have a way to get
+% \emph{something}, we offer a package option.
+%    \begin{macrocode}
+\ifPDFTeX{}
+\else
+    \ifkprussing@unicodemath
+        \RequirePackage{amsmath}
+        \RequirePackage{amsfonts}
+        \RequirePackage{unicode-math}
+        \setmathfont{TeX Gyre Pagella Math}
+        \RequirePackage{lualatex-math}
+    \fi
+\fi
+%    \end{macrocode}
+% \iffalse
+%</fonts>
+% \fi
+%
+% \subsubsection{Stylistic macros}
+% \changes{v0.1}{2019/01/17}{Define syntactic markup macros}
+%
+% \iffalse
+%<*report>
+% \fi
+% \begin{macro}{\software}
+% Use small caps for software.  This provides a distinctive appearance
+% from the main text similar to the old style of using all uppercase.
+% But the small caps do not disrupt the visual flow of the sentence as
+% much.
+%    \begin{macrocode}
+\newcommand{\software}[1]{%
+    \textsc{#1}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% The |\program|, |\subprogram|, and |\variable| macros are very closely
+% related because they all describe components within a larger piece of
+% software.  The natural choice would seem to be a monospace font or a
+% verbatim region; however, we can take advantage of the
+% \textsf{listings} package to offer highlighting if the user has
+% configured this.
+%
+% \begin{macro}{\program}
+% We start by defining the |\program| to safely use either the inline
+% listing or fall back to the monospace font in case it needs to be the
+% target of a hyperlink.
+%    \begin{macrocode}
+\RequirePackage{listings}
+\newcommand{\program}[1]{%
+    \texorpdfstring{\lstinline{#1}}{\texttt{#1}}
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\subprogram}
+% The subprogram simply calls the |\program| because they are so closely
+% related.
+%    \begin{macrocode}
+\newcommand{\subprogram}[1]{\program{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\variable}
+% As with the |\subprogram|, we simply use the |\program| macro to get
+% the common typesetting.
+%    \begin{macrocode}
+\newcommand{\variable}[1]{\program{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+%</report>
+% \fi
+%
+% \subsubsection{Main presentation theme}
+% \changes{v0.1}{2019/01/17}{Collect the presentation themes together}
+%
+% \iffalse
+%<*presentation>
+% \fi
+% Collect all of the themes into one global beamer theme.  First, we
+% provide an option to define the color scheme that is simply passed to
+% the color theme.
+%    \begin{macrocode}
+% Color options
+\DeclareOptionBeamer{light}{%
+    \PassOptionsToPackage{light}{beamercolorthemekprussing}
+}
+\ExecuteOptionsBeamer{light}
+\ProcessOptionsBeamer\relax
+%    \end{macrocode}
+% Now we simply load all of the themes along with the default style.
+%    \begin{macrocode}
+\RequirePackage{kprussing}
+\mode<presentation>
+\usecolortheme{kprussing}
+\usefonttheme{kprussing}
+\useoutertheme{kprussing}
+\useinnertheme{kprussing}
+\mode<all>
+%    \end{macrocode}
+% \iffalse
+%</presentation>
+% \fi
+%
+% \subsubsection{Presentation color theme}
+% \changes{v0.1}{2019/01/17}{Set the color scheme and the light version}
+%
+% \iffalse
+%<*beamercolor>
+% \fi
+% First, define a dark text on a light background color palette.  The
+% color palette will be used to set the major components of the
+% presentation to give it a consistent feel.
+%    \begin{macrocode}
+\DeclareOptionBeamer{light}{%
+    \definecolor{palette-primary}   {RGB}{  0, 37, 76}
+    \definecolor{palette-secondary} {RGB}{128,128,128}
+    \definecolor{palette-tertiary}  {RGB}{188,161,110}
+    \definecolor{palette-quaternary}{RGB}{ 34, 42, 53}
+    \definecolor{main-text}         {RGB}{ 34, 42, 53}
+    \definecolor{background-text}   {RGB}{173,185,202}
+}
+\ExecuteOptionsBeamer{light}
+%    \end{macrocode}
+% And process the options.
+%    \begin{macrocode}
+\DeclareOptionBeamer*{\PackageWarning{beamercolorthemekprussing}%
+                      {Unknown `\CurrentOption'}}
+\ProcessOptionsBeamer\relax
+%    \end{macrocode}
+%
+% Now we are ready to define all the colors for the palette.  We will
+% focus mainly on defining the style and tidying up odds and ends.
+% First, the very basic color scheme.
+%    \begin{macrocode}
+\mode<presentation>
+\setbeamercolor*{normal text}       {fg=main-text,
+                                     bg=background-text!10!white}
+\setbeamercolor*{structure}         {fg=palette-primary}
+\setbeamercolor*{palette primary}   {fg=palette-primary}
+\setbeamercolor*{palette secondary} {fg=palette-secondary}
+\setbeamercolor*{palette tertiary}  {fg=palette-tertiary}
+\setbeamercolor*{palette quaternary}{fg=palette-quaternary}
+%    \end{macrocode}
+% Next explicit call outs
+%    \begin{macrocode}
+\setbeamercolor*{alerted text}      {use=palette tertiary}
+\setbeamercolor*{example text}      {use=palette secondary}
+%    \end{macrocode}
+% And use the primary palette for titles
+%    \begin{macrocode}
+\setbeamercolor*{titlelike}         {use=palette primary}
+\setbeamercolor*{frametitle}        {use=palette primary}
+%    \end{macrocode}
+% And define the headline color using a reverse color scheme
+%    \begin{macrocode}
+\setbeamercolor*{headline}          {fg=palette tertiary.fg,
+                                     bg=structure.fg}
+%    \end{macrocode}
+% Place the title slide colors here and not with the title slide to
+% allow a user to override these choices in a single location.
+%    \begin{macrocode}
+\setbeamercolor*{title}             {parent=palette primary}
+\setbeamercolor*{subtitle}          {parent=palette primary}
+\setbeamercolor*{author}            {parent=palette primary}
+\setbeamercolor*{institute}         {parent=palette tertiary}
+\setbeamercolor*{date}              {parent=palette primary}
+%    \end{macrocode}
+% And establish the \textsf{hyperef} colors.  Beamer already takes care
+% of loading \textsf{hyperref} so we know it is available.
+%    \begin{macrocode}
+\hypersetup{colorlinks=true,
+            linkcolor=normal text.fg,
+            urlcolor=palette tertiary.fg,
+            citecolor=palette tertiary.fg,
+            anchorcolor=normal text.fg}
+\mode<all>
+%    \end{macrocode}
+% \iffalse
+%</beamercolor>
+% \fi
+%
+% \subsubsection{Presentation font theme}
+% \changes{v0.1}{2019/01/17}{Set the presentation fonts}
+%
+% \iffalse
+%<*beamerfont>
+% \fi
+% We know we want to use a proper font designed by professionals
+%    \begin{macrocode}
+\usefonttheme{professionalfonts}
+\RequirePackage{kprussing-font}
+%    \end{macrocode}
+% Now we just need to use the sans-serif font and adjust the title
+% fonts.
+%    \begin{macrocode}
+\mode<presentation>
+\renewcommand{\familydefault}{\sfdefault}
+\setbeamerfont*{frametitle}  {size=\Large, series=\bfseries}
+\setbeamerfont*{normal text} {size=\normalsize}
+\setbeamerfont*{title}       {size=\Huge, series=\bfseries}
+\setbeamerfont*{subtitle}    {size=\Large, series=\bfseries}
+\setbeamerfont*{author}      {size=\normalsize}
+\setbeamerfont*{institute}   {size=\scriptsize}
+\setbeamerfont*{date}        {size=\normalsize}
+\mode<all>
+%    \end{macrocode}
+% \iffalse
+%</beamerfont>
+% \fi
+%
+% \subsubsection{Presentation inner theme}
+% \changes{v0.1}{2019/01/17}{Add inner theme (with simple title)}
+%
+% \iffalse
+%<*beamerinner>
+% \fi
+% The inner theme defines the title slide, the parts page, a macro to
+% place the image on the outline slide, fixes the item bullets, and
+% fixes the bibliography.
+%
+% Now we define the title page.
+%    \begin{macrocode}
+\setbeamertemplate{title page}
+{%
+    \centering
+    \vfill
+    \usebeamercolor[fg]{title}
+    \usebeamerfont{title}\inserttitle\par
+    \usebeamercolor[fg]{subtitle}
+    \usebeamerfont{subtitle}\insertsubtitle\par
+    \bigskip
+    \usebeamercolor[fg]{author}
+    \usebeamerfont{author}\insertauthor\par
+    \usebeamercolor[fg]{institute}
+    \usebeamerfont{institute}\insertinstitute\par
+    \bigskip
+    \usebeamercolor[fg]{date}
+    \usebeamerfont{date}\insertdate\par
+}
+%    \end{macrocode}
+%
+% The part page uses the same template as the title page with the part
+% number and name in the place of the affiliation.
+%    \begin{macrocode}
+\setbeamertemplate{part page}
+{%
+    \centering
+    \vfill
+    \usebeamercolor[fg]{title}
+    \usebeamerfont{title}\inserttitle\par
+    \usebeamercolor[fg]{subtitle}
+    \usebeamerfont{subtitle}\insertsubtitle\par
+    \bigskip
+    \usebeamercolor[fg]{title}
+    \usebeamercolor[fg]{title}Part \insertpartnumber: \insertpart%
+    \par
+    \bigskip
+    \usebeamercolor[fg]{author}
+    \usebeamerfont{author}\insertauthor\par
+    \usebeamercolor[fg]{date}
+    \usebeamerfont{date}\insertdate\par
+}
+%    \end{macrocode}
+%
+% Now for the small details.  Use an actual bullet for the itemize list
+% and strip the extra levels from the enumerated lists.
+%    \begin{macrocode}
+\setbeamertemplate{itemize items}{\bfseries{\textbullet}}
+\setbeamertemplate{enumerate subitem}{\insertsubenumlabel}
+\setbeamertemplate{enumerate subsubitem}{\insertsubsubenumlabel}
+%    \end{macrocode}
+%
+% Force the bibliography to not be hideous.  If you have more than one
+% page of references, you want to tell beamer to put the continuation
+% section label from the second slide onwards
+%    \begin{macrocode}
+\setbeamertemplate{frametitle continuation}[from second]
+%    \end{macrocode}
+% Now get rid of all the colors and make the font a single (smaller)
+% size.
+%    \begin{macrocode}
+\setbeamerfont{bibliography entry title}{size=\scriptsize}
+\setbeamercolor*{bibliography entry title}{fg=}
+\setbeamerfont{bibliography entry author}{size=\scriptsize}
+\setbeamercolor*{bibliography entry author}{fg=}
+\setbeamerfont{bibliography entry location}{size=\scriptsize}
+\setbeamercolor*{bibliography entry location}{fg=}
+\setbeamerfont{bibliography entry note}{size=\scriptsize}
+\setbeamercolor*{bibliography entry note}{fg=}
+%    \end{macrocode}
+% And kill the abominable icon.
+%    \begin{macrocode}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamerfont{bibliography item}{size=\scriptsize}
+\setbeamercolor*{bibliography item}{fg=}
+\mode<all>
+%    \end{macrocode}
+% \iffalse
+%</beamerinner>
+% \fi
+%
+% \subsubsection{Presentation outer theme}
+% \changes{v0.1}{2019/01/17}{Set the presentation outer theme}
+%
+% \iffalse
+%<*beamerouter>
+% \fi
+% The outer theme simply sets the header and footer.
+%    \begin{macrocode}
+\mode<presentation>
+\RequirePackage{kprussing}
+%    \end{macrocode}
+%
+% And now we specify the headline using the specified height.  The
+% classification marking is hard coded for now but needs to be handled
+% by marking the slides.
+%    \begin{macrocode}
+\setbeamercolor{headline text}{parent=headline}
+\setbeamerfont{headline text}{parent=headline}
+\setbeamertemplate{headline}
+{%
+    \begin{beamercolorbox}[wd=\textwidth,ht=4em]{headline}
+        \null\vfill%
+        \hfill{\centering\usebeamertemplate*{headline text}}%
+        \hfill\null%
+        \vfill\null%
+    \end{beamercolorbox}
+}
+%    \end{macrocode}
+%
+% We do not want a side bar and we do not want the navigation buttons.
+% But, we might want the buttons at some point so we move the navigation
+% buttons into the footer and place the slide number on the left margin.
+% Using the |page number in head/foot| template allows us to override
+% the numbering in the main document; however, we want the default
+% option to add frame numbers.
+%    \begin{macrocode}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{page number in head/foot}[framenumber]%
+\setbeamertemplate{sidebar right}{}
+%    \end{macrocode}
+%
+% Provide a template for placing text in the foot line of the frame.
+% The font properties are inherited from the |page number in head/foot|.
+%    \begin{macrocode}
+\defbeamertemplate*{footline text}{copyright}{\insertshortauthor{}
+                                              \textcopyright{}
+                                              \insertshortdate}
+\setbeamerfont{footline text}{parent=page number in head/foot}
+\setbeamercolor{footline text}{parent=page number in head/foot}
+%    \end{macrocode}
+%
+% And assemble the foot line.
+%    \begin{macrocode}
+\setbeamertemplate{footline}{%
+    \hspace{0.03\paperwidth}
+    \usebeamertemplate*{page number in head/foot}%
+    \hfill{\centering\usebeamertemplate*{footline text}}%
+    \hfill\usebeamertemplate***{navigation symbols}%
+    \vspace{0.02\paperheight}%
+}
+\mode<all>
+%    \end{macrocode}
+% \iffalse
+%</beamerouter>
+% \fi
+%
+% \Finale{}
+\endinput
