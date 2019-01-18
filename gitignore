@@ -76,6 +76,10 @@ Session.vim
 *.snm
 *.bcf
 *.run.xml
+*.glo
+*.idx
+*.ilg
+*.ind
 
 # RevTex Bibliography file #
 ############################
