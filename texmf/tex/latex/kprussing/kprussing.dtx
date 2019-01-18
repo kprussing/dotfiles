@@ -644,21 +644,22 @@
 % \fi
 %
 % \subsubsection{Presentation outer theme}
-% \changes{v0.1}{2019/01/17}{Set the presentation outer theme}
+% \changes{v1.0}{2019/01/17}{Set the presentation outer theme}
 %
 % \iffalse
 %<*beamerouter>
 % \fi
 % The outer theme simply sets the header and footer.
-%    \begin{macrocode}
-\mode<presentation>
-\RequirePackage{kprussing}
-%    \end{macrocode}
 %
-% And now we specify the headline using the specified height.  The
-% classification marking is hard coded for now but needs to be handled
-% by marking the slides.
+% \DescribeMacro{\setbeamertemplate{headline text}}
+% \DescribeMacro{\setbeamercolor{{headline text}}}
+% \DescribeMacro{\setbeamerfont{{headline text}}}
+% \DescribeMacro{\setbeamertemplate{{headline}}}
+% We want to be able to place a marking in the header without changing
+% the overall template.  To do this, we define a text field centered in
+% the header.  The font of the text simply inherits from the |headline|.
 %    \begin{macrocode}
+\setbeamertemplate{headline text}{}
 \setbeamercolor{headline text}{parent=headline}
 \setbeamerfont{headline text}{parent=headline}
 \setbeamertemplate{headline}
@@ -672,6 +673,9 @@
 }
 %    \end{macrocode}
 %
+% \DescribeMacro{\setbeamertemplate{{navigation symbols}}}
+% \DescribeMacro{\setbeamertemplate{{page number in head/foot}}}
+% \DescribeMacro{\setbeamertemplate{{sidebar right}}}
 % We do not want a side bar and we do not want the navigation buttons.
 % But, we might want the buttons at some point so we move the navigation
 % buttons into the footer and place the slide number on the left margin.
@@ -684,8 +688,13 @@
 \setbeamertemplate{sidebar right}{}
 %    \end{macrocode}
 %
+% \DescribeMacro{\defbeamerteplate{{footline text}}}
+% \DescribeMacro{\setbeamerfont{{footline text}}}
+% \DescribeMacro{\setbeamercolor{{footline text}}}
 % Provide a template for placing text in the foot line of the frame.
-% The font properties are inherited from the |page number in head/foot|.
+% The default is to use the short author name and the copy right date in
+% the footer.  The font properties are inherited from the
+% |page number in head/foot|.
 %    \begin{macrocode}
 \defbeamertemplate*{footline text}{copyright}{\insertshortauthor{}
                                               \textcopyright{}
@@ -694,7 +703,11 @@
 \setbeamercolor{footline text}{parent=page number in head/foot}
 %    \end{macrocode}
 %
-% And assemble the foot line.
+% \DescribeMacro{\setbeamertemplate{{footline}}}
+% And assemble the foot line.  We want the page number and the defined
+% footer text.  We place the navigation symbols in the footer, but I
+% don't like them so I have them turned off.  Someone could put them
+% back if they really wanted.
 %    \begin{macrocode}
 \setbeamertemplate{footline}{%
     \hspace{0.03\paperwidth}
