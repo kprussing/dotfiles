@@ -29,6 +29,7 @@ unset -v BIN
 paths=(
     "/usr/share/man"
     "/usr/local/man"
+    "/usr/local/share/man"
     "/opt/local/share/man"
     "/opt/X11/share/man"
     "$HOME/.local/man"
