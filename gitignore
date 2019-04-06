@@ -80,6 +80,7 @@ Session.vim
 *.idx
 *.ilg
 *.ind
+*.vrb
 
 # RevTex Bibliography file #
 ############################
