@@ -37,6 +37,11 @@ if test -f "$HOME"/.dircolors; then
     fi
 fi
 
+if test -f "$HOME"/.ledger.d/functions.sh
+then
+    . "$HOME"/.ledger.d/functions.sh
+fi
+
 # Grab local settings.
 if test -f "$HOME"/.local/shrc; then
     . "$HOME"/.local/shrc

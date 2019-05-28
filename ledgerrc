@@ -1,0 +1,5 @@
+--file ~/.ledger.dat
+--exchange \$
+--aux-date
+#--strict
+#--date '%Y-%m-%d'
