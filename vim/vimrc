@@ -21,10 +21,6 @@ call pathogen#helptags()
 " Detect file types and auto indent
 filetype plugin indent on
 
-" Flag *.text as pandoc.
-autocmd BufNewFile,BufReadPost *.text set filetype=pandoc
-let g:pandoc#syntax#conceal#use=0
-
 " Set the color scheme here. zenburn for now!
 syntax enable
 "set background=dark
