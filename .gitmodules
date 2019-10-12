@@ -1,17 +1,14 @@
-[submodule "vim/bundle/nerdcommenter"]
-	path = vim/bundle/nerdcommenter
+[submodule "vim/pack/packages/start/nerdcommenter"]
+	path = vim/pack/packages/start/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/vim-pathogen"]
-	path = vim/bundle/vim-pathogen
-	url = https://github.com/tpope/vim-pathogen.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "vim/bundle/unicode"]
-	path = vim/bundle/unicode
+[submodule "vim/pack/packages/start/unicode"]
+	path = vim/pack/packages/start/unicode
 	url = git@github.com:chrisbra/unicode.vim.git
-[submodule "vim/bundle/vim-glsl"]
-	path = vim/bundle/vim-glsl
+[submodule "vim/pack/packages/start/vim-glsl"]
+	path = vim/pack/packages/start/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl.git
 [submodule "scons/site_scons/inkscape"]
 	path = scons/site_scons/site_tools/inkscape
@@ -25,12 +22,12 @@
 [submodule "tmux/plugins/tmux-resurrect"]
 	path = tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
-[submodule "vim/bundle/ale"]
-	path = vim/bundle/ale
-	url = git@github.com:w0rp/ale.git
 [submodule "scons/site_scons/site_tools/dtxtools"]
 	path = scons/site_scons/site_tools/dtxtools
 	url = git@github.com:kprussing/scons-dtxtools.git
 [submodule "texmf/tex/latex/zenburn-latex"]
 	path = texmf/tex/latex/zenburn-latex
 	url = git@github.com:kprussing/zenburn-latex.git
+[submodule "vim/pack/packages/opt/ale"]
+	path = vim/pack/packages/opt/ale
+	url = git@github.com:w0rp/ale.git
