@@ -113,6 +113,11 @@ nnoremap <leader>w <C-w>v<C-w>l
 " pausing my work in a development directory.
 nnoremap <leader>s :mksession!<CR>
 
+" Use a login shell with the GUI
+if has("gui_running")
+    set shellcmdflag=-ic
+endif
+
 "--------1---------2---------3---------4---------5---------6---------7--
 " The function to create and set the backup directories for cleanliness
 function! InitializeDirectories()
