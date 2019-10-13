@@ -1,14 +1,14 @@
-[submodule "vim/pack/packages/start/nerdcommenter"]
-	path = vim/pack/packages/start/nerdcommenter
+[submodule "vim/pack/packages/opt/nerdcommenter"]
+	path = vim/pack/packages/opt/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "vim/pack/packages/start/unicode"]
-	path = vim/pack/packages/start/unicode
+[submodule "vim/pack/packages/opt/unicode"]
+	path = vim/pack/packages/opt/unicode
 	url = git@github.com:chrisbra/unicode.vim.git
-[submodule "vim/pack/packages/start/vim-glsl"]
-	path = vim/pack/packages/start/vim-glsl
+[submodule "vim/pack/packages/opt/vim-glsl"]
+	path = vim/pack/packages/opt/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl.git
 [submodule "scons/site_scons/inkscape"]
 	path = scons/site_scons/site_tools/inkscape
