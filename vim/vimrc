@@ -12,14 +12,6 @@ if exists('+colorcolumn')
     set colorcolumn=73
 endif
 
-" Initialize pathogen
-filetype off
-"
-" Add extra packages
-packadd nerdcommenter
-packadd unicode
-packadd vim-glsl
-
 " Detect file types and auto indent
 filetype plugin indent on
 
@@ -158,6 +150,11 @@ ab #m %--------1---------2---------3---------4---------5---------6---------7--
 ab #p #--------1---------2---------3---------4---------5---------6---------7--
 
 let g:tex_flavor = "latex"
+
+" Add extra packages
+packadd nerdcommenter
+packadd unicode
+packadd vim-glsl
 
 " Try loading local options
 try
