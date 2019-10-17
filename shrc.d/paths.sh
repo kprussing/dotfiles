@@ -14,6 +14,7 @@ paths=(
     "/opt/android-sdk-macosx/platform-tools"
     "/nagfor/bin"
     "/Applications/MacVim.app/Contents/bin"
+    /opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin
 )
 for p in ${paths[@]}; do
     if ! echo "$PATH" | grep -q "$p" ; then
