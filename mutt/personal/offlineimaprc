@@ -42,6 +42,7 @@ maxconnections  = 1
 realdelete      = no
 sslcacertfile   = ~/.mutt/ca-bundle.crt
 ssl             = yes
+ssl_version     = tls1_2
 
 # Uncomment this for the first pull.
 #readonly = True
