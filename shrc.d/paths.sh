@@ -2,27 +2,26 @@
 # It is a collection of all the places I have had to put executables.
 
 paths=(
-    "/opt/local/bin"
-    "/opt/local/sbin"
-    "$HOME/.scripts"
-    "$HOME/.cabal/bin"
-    "$HOME/.local/bin"
-    "$HOME/.local/scripts"
-    "$HOME/Library/Python/3.7/bin"
-    "$HOME/Library/Python/2.7/bin"
-    "/opt/android-sdk-macosx/tools"
-    "/opt/android-sdk-macosx/platform-tools"
-    "/nagfor/bin"
-    "/Applications/MacVim.app/Contents/bin"
     /opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin
+    "/Applications/MacVim.app/Contents/bin"
+    "/nagfor/bin"
+    "/opt/android-sdk-macosx/platform-tools"
+    "/opt/android-sdk-macosx/tools"
+    "/opt/local/sbin"
+    "/opt/local/bin"
+    "$HOME/Library/Python/2.7/bin"
+    "$HOME/Library/Python/3.7/bin"
+    "$HOME/.local/scripts"
+    "$HOME/.local/bin"
+    "$HOME/.scripts"
 )
 for p in ${paths[@]}; do
-    if ! echo "$PATH" | grep -q "$p" ; then
-        BIN=$(path_append "$BIN" "$p")
-    fi
+    PATH=`path_prepend "$PATH" "$p"`
 done
-PATH=$BIN:$PATH
-unset -v BIN
+if ! test -z "$PATH"
+then
+    export PATH
+fi
 
 # For some reason, the man path is not updated correctly by default.  To
 # be fair, I no longer remember which system is the culprit.  I know
@@ -38,7 +37,7 @@ paths=(
     "$HOME/.local/share/man"
 )
 for p in ${paths[@]}; do
-    MANPATH=$(path_append "$MANPATH" "$p")
+    MANPATH=`path_append "$MANPATH" "$p"`
 done
 if ! test -z "$MANPATH"
 then
@@ -52,8 +51,8 @@ paths=(
     "$HOME/.local/lib64"
 )
 for p in ${paths[@]}; do
-    LD_LIBRARY_PATH=$(path_append "$LD_LIBRARY_PATH" "$p")
-    PKG_CONFIG_PATH=$(path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig)
+    LD_LIBRARY_PATH=`path_append "$LD_LIBRARY_PATH" "$p"`
+    PKG_CONFIG_PATH=`path_append "$PKG_CONFIG_PATH" "$p"/pkgconfig`
 done
 unset -v paths
 if ! test -z "$LD_LIBRARY_PATH"
