@@ -64,7 +64,7 @@ set wildignore+=*.png,*.pdf_tex,*.pgf               " Generated images.
 
 " Ignore some LaTeX files
 set wildignore+=*.aux,*.pdf,*.png,*.bbl,*.blg,*.fls,*.log,*.nav,*.out
-set wildignore+=*.svn,*.toc,*.snm,*.sta,*.fdb_latexmk
+set wildignore+=*.svn,*.toc,*.snm,*.sta,*.fdb_latexmk,*.bcf,*.run.xml
 
 " Now make myself learn to use the correct keys
 "nnoremap <up> <nop>
