@@ -31,6 +31,3 @@
 [submodule "vim/pack/packages/opt/ale"]
 	path = vim/pack/packages/opt/ale
 	url = git@github.com:w0rp/ale.git
-[submodule "texmf/tex/latex/secretx"]
-	path = texmf/tex/latex/secretx
-	url = git@github.com:kprussing/secretx.git
