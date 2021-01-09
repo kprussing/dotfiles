@@ -1,0 +1,46 @@
+# Set the storage locations
+
+MaildirStore local
+Path ~/Mail/
+Inbox ~/Mail/INBOX
+
+IMAPAccount gmail
+Host imap.gmail.com
+User kprussing74@gmail.com
+PassCmd "python -m keyring get gmail kprussing74"
+SSLType IMAPS
+
+IMAPStore remote
+Account gmail
+
+Channel personal-tags
+Master :remote:
+Slave :local:
+Patterns * ![Gmail]* !Archive !Drafts !Sent !Trash
+
+Channel personal-archive
+Master :remote:"[Gmail]/All Mail"
+Slave :local:Archive
+
+Channel personal-drafts
+Master :remote:"[Gmail]/Drafts"
+Slave :local:Drafts
+
+Channel personal-sent
+Master :remote:"[Gmail]/Sent Mail"
+Slave :local:Sent
+
+Channel personal-trash
+Master :remote:"[Gmail]/Trash"
+Slave :local:Trash
+
+Group personal
+Channel personal-tags
+Channel personal-drafts
+Channel personal-sent
+Channel personal-trash
+#Channel personal-archive
+
+Sync All
+SyncState *
+Create Both

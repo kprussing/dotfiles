@@ -15,7 +15,7 @@ set postponed   = +Drafts
 
 #### Retrieve email
 
-macro index O "<shell-escape>offlineimap<enter>"    "Run offlineimap"
+macro index O "<shell-escape>mbsync personal<enter>"    "Run mbsync"
 
 # Get the general settings.
 
