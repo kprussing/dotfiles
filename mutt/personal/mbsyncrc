@@ -39,7 +39,7 @@ Channel personal-tags
 Channel personal-drafts
 Channel personal-sent
 Channel personal-trash
-#Channel personal-archive
+Channel personal-archive
 
 Sync All
 SyncState *
