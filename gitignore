@@ -60,6 +60,7 @@ Session.vim
 # LaTex Files #
 ###############
 *.aux
+*.acr
 *.bbl
 *.blg
 *.dvi
