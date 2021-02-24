@@ -9,3 +9,5 @@
 	helper = osxkeychain
 [branch]
 	autosetuprebase = always
+[init]
+	defaultBranch = trunk
