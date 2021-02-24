@@ -1,5 +1,8 @@
-# Set the storage locations
+Sync All
+SyncState *
+Create Both
 
+# Set the storage locations
 MaildirStore local
 Path ~/Mail/
 Inbox ~/Mail/INBOX
@@ -14,25 +17,25 @@ IMAPStore remote
 Account gmail
 
 Channel personal-tags
-Master :remote:
-Slave :local:
+Far :remote:
+Near :local:
 Patterns * ![Gmail]* !Archive !Drafts !Sent !Trash
 
 Channel personal-archive
-Master :remote:"[Gmail]/All Mail"
-Slave :local:Archive
+Far :remote:"[Gmail]/All Mail"
+Near :local:Archive
 
 Channel personal-drafts
-Master :remote:"[Gmail]/Drafts"
-Slave :local:Drafts
+Far :remote:"[Gmail]/Drafts"
+Near :local:Drafts
 
 Channel personal-sent
-Master :remote:"[Gmail]/Sent Mail"
-Slave :local:Sent
+Far :remote:"[Gmail]/Sent Mail"
+Near :local:Sent
 
 Channel personal-trash
-Master :remote:"[Gmail]/Trash"
-Slave :local:Trash
+Far :remote:"[Gmail]/Trash"
+Near :local:Trash
 
 Group personal
 Channel personal-tags
@@ -41,6 +44,3 @@ Channel personal-sent
 Channel personal-trash
 Channel personal-archive
 
-Sync All
-SyncState *
-Create Both
