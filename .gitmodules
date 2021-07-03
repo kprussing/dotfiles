@@ -13,9 +13,6 @@
 [submodule "scons/site_scons/inkscape"]
 	path = scons/site_scons/site_tools/inkscape
 	url = git@github.com:kprussing/scons-inkscape.git
-[submodule "scons/site_scons/pandoc"]
-	path = scons/site_scons/site_tools/pandoc
-	url = git@github.com:kprussing/scons-pandoc.git
 [submodule "tmux/plugins/tmux-continuum"]
 	path = tmux/plugins/tmux-continuum
 	url = https://git::@github.com/tmux-plugins/tmux-continuum
