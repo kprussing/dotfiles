@@ -1,0 +1,9 @@
+# Move through panes line vim
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+
+# Split like vim
+bind v split -v
+bind s split
