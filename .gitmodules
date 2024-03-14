@@ -16,6 +16,3 @@
 [submodule "texmf/tex/latex/zenburn-latex"]
 	path = texmf/tex/latex/zenburn-latex
 	url = git@github.com:kprussing/zenburn-latex.git
-[submodule "vim/pack/packages/opt/ale"]
-	path = vim/pack/packages/opt/ale
-	url = git@github.com:w0rp/ale.git
