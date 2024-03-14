@@ -9,5 +9,7 @@
 	helper = osxkeychain
 [branch]
 	autosetuprebase = always
+[merge]
+	tool = vimdiff
 [init]
 	defaultBranch = trunk
