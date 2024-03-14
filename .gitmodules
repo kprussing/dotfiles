@@ -1,9 +1,6 @@
 [submodule "vim/pack/packages/opt/nerdcommenter"]
 	path = vim/pack/packages/opt/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "tmux/plugins/tpm"]
-	path = tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule "vim/pack/packages/opt/unicode"]
 	path = vim/pack/packages/opt/unicode
 	url = git@github.com:chrisbra/unicode.vim.git
@@ -13,12 +10,6 @@
 [submodule "scons/site_scons/inkscape"]
 	path = scons/site_scons/site_tools/inkscape
 	url = git@github.com:kprussing/scons-inkscape.git
-[submodule "tmux/plugins/tmux-continuum"]
-	path = tmux/plugins/tmux-continuum
-	url = https://git::@github.com/tmux-plugins/tmux-continuum
-[submodule "tmux/plugins/tmux-resurrect"]
-	path = tmux/plugins/tmux-resurrect
-	url = https://github.com/tmux-plugins/tmux-resurrect
 [submodule "scons/site_scons/site_tools/dtxtools"]
 	path = scons/site_scons/site_tools/dtxtools
 	url = git@github.com:kprussing/scons-dtxtools.git
