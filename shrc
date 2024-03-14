@@ -12,7 +12,8 @@ export LESS="-i -g -R"
 
 # And set the TeX directory to the proper value.
 
-export TEXMFHOME=$HOME/.texmf
+export TEXMFHOME=$HOME/.texmf//
+export TEXINPUTS=$HOME/.texmf//:
 
 # Set the X forwarding if we are using Windows as a client machine.
 
