@@ -451,55 +451,78 @@
 % \iffalse
 %<*beamercolor>
 % \fi
-% First, define a dark text on a light background color palette.  The
-% color palette will be used to set the major components of the
-% presentation to give it a consistent feel.
+% First we need to specify the base color palettes.  I spent a lot of
+% time on the \textsf{zenburn-latex} color scheme so that is my default.
+% We also provide a color palette based on my work palette.
 %    \begin{macrocode}
+\mode<presentation>
+\RequirePackage{xcolor}
+\RequirePackage{etoolbox}
+\newtoggle{kprussing zenburn color theme}
 \DeclareOptionBeamer{light}{%
+    \PassOptionsToPackage{light}{beamercolorthemezenburn}
+    \toggletrue{kprussing zenburn color theme}
+}
+\DeclareOptionBeamer{dark}{%
+    \PassOptionsToPackage{dark}{beamercolorthemezenburn}
+    \toggletrue{kprussing zenburn color theme}
+}
+\DeclareOptionBeamer{work}{%
     \definecolor{palette-primary}   {RGB}{  0, 37, 76}
-    \definecolor{palette-secondary} {RGB}{128,128,128}
+    \definecolor{palette-secondary} {RGB}{ 91,155,213}
     \definecolor{palette-tertiary}  {RGB}{188,161,110}
     \definecolor{palette-quaternary}{RGB}{ 34, 42, 53}
     \definecolor{main-text}         {RGB}{ 34, 42, 53}
-    \definecolor{background-text}   {RGB}{173,185,202}
+    \definecolor{blue-gray}         {RGB}{173,185,202}
+    \colorlet{background}           {blue-gray!10!white}
+    %
+    \setbeamercolor*{normal text}       {fg=main-text, bg=background}
+    \setbeamercolor*{structure}         {fg=palette-primary}
+    \setbeamercolor*{palette primary}   {fg=palette-primary}
+    \setbeamercolor*{palette secondary} {fg=palette-secondary}
+    \setbeamercolor*{palette tertiary}  {fg=palette-tertiary}
+    \setbeamercolor*{palette quaternary}{fg=palette-quaternary}
+    \togglefalse{kprussing zenburn color theme}
 }
 \ExecuteOptionsBeamer{light}
-%    \end{macrocode}
-% And process the options.
-%    \begin{macrocode}
 \DeclareOptionBeamer*{\PackageWarning{beamercolorthemekprussing}%
                       {Unknown `\CurrentOption'}}
 \ProcessOptionsBeamer\relax
 %    \end{macrocode}
 %
-% Now we are ready to define all the colors for the palette.  We will
+% Load \textsf{zenburn-latex} if necessary
+%    \begin{macrocode}
+\iftoggle{kprussing zenburn color theme}{
+    \usecolortheme{zenburn}
+}{}
+\usebeamercolor{normal text}
+\usebeamercolor{structure}
+\usebeamercolor{palette primary}
+\usebeamercolor{palette secondary}
+\usebeamercolor{palette tertiary}
+\usebeamercolor{palette quaternary}
+%    \end{macrocode}
+%
+% Now we are ready to define the other colors for the theme.  We will
 % focus mainly on defining the style and tidying up odds and ends.
-% First, the very basic color scheme.
+% First, explicit call outs
 %    \begin{macrocode}
-\mode<presentation>
-\setbeamercolor*{normal text}       {fg=main-text,
-                                     bg=background-text!10!white}
-\setbeamercolor*{structure}         {fg=palette-primary}
-\setbeamercolor*{palette primary}   {fg=palette-primary}
-\setbeamercolor*{palette secondary} {fg=palette-secondary}
-\setbeamercolor*{palette tertiary}  {fg=palette-tertiary}
-\setbeamercolor*{palette quaternary}{fg=palette-quaternary}
+\setbeamercolor*{alerted text}      {parent=palette tertiary}
+\setbeamercolor*{example text}      {parent=palette secondary}
 %    \end{macrocode}
-% Next explicit call outs
-%    \begin{macrocode}
-\setbeamercolor*{alerted text}      {use=palette tertiary}
-\setbeamercolor*{example text}      {use=palette secondary}
-%    \end{macrocode}
+%
 % And use the primary palette for titles
 %    \begin{macrocode}
-\setbeamercolor*{titlelike}         {use=palette primary}
-\setbeamercolor*{frametitle}        {use=palette primary}
+\setbeamercolor*{titlelike}         {parent=palette primary}
+\setbeamercolor*{frametitle}        {parent=palette primary}
 %    \end{macrocode}
+%
 % And define the headline color using a reverse color scheme
 %    \begin{macrocode}
 \setbeamercolor*{headline}          {fg=palette tertiary.fg,
                                      bg=structure.fg}
 %    \end{macrocode}
+%
 % Place the title slide colors here and not with the title slide to
 % allow a user to override these choices in a single location.
 %    \begin{macrocode}
@@ -509,13 +532,14 @@
 \setbeamercolor*{institute}         {parent=palette tertiary}
 \setbeamercolor*{date}              {parent=palette primary}
 %    \end{macrocode}
+%
 % And establish the \textsf{hyperef} colors.  Beamer already takes care
 % of loading \textsf{hyperref} so we know it is available.
 %    \begin{macrocode}
 \hypersetup{colorlinks=true,
             linkcolor=normal text.fg,
-            urlcolor=palette tertiary.fg,
-            citecolor=palette tertiary.fg,
+            urlcolor=palette secondary.fg,
+            citecolor=palette secondary.fg,
             anchorcolor=normal text.fg}
 \mode<all>
 %    \end{macrocode}
